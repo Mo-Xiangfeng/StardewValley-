@@ -1,42 +1,15 @@
-# === Visual Studio ===
+# 排除所有 Visual Studio 缓存和临时文件
 .vs/
-*.user
-*.suo
-*.opensdf
-*.sdf
+ipch/
 *.ipch
 *.pdb
-*.ilk
-*.log
-*.vc.db
-Browse.VC.db
+*.pch
+*.db
+*.recipe
+*.txt
 
-# === Build outputs ===
-Debug/
-Release/
-x64/
+# 排除所有编译生成的输出文件夹
+Debug.win32/
+Release.win32/
 bin/
-build/
-out/
-
-# === CMake ===
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-Makefile
-
-# === Cocos / Cache ===
-**/*.pch
-**/*.ipch
-**/*.pdb
-**/*.db
-
-# === Android / iOS ===
-proj.android/.gradle/
-proj.android/app/build/
-proj.ios_mac/build/
-
-# === System ===
-.DS_Store
-Thumbs.db
-*.tmp
+obj/
