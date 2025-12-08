@@ -1,38 +1,42 @@
-# Visual Studio
+# === Visual Studio ===
 .vs/
 *.user
 *.suo
 *.opensdf
 *.sdf
 *.ipch
+*.pdb
+*.ilk
+*.log
+*.vc.db
+Browse.VC.db
 
-# Build outputs
+# === Build outputs ===
 Debug/
 Release/
 x64/
 bin/
 build/
 out/
-*.exe
-*.dll
-*.lib
-*.pdb
-*.ilk
-*.log
 
-# CMake
+# === CMake ===
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
 Makefile
 
-# Android / iOS
+# === Cocos / Cache ===
+**/*.pch
+**/*.ipch
+**/*.pdb
+**/*.db
+
+# === Android / iOS ===
 proj.android/.gradle/
 proj.android/app/build/
 proj.ios_mac/build/
 
-# Temp / Cache
-*.tmp
-*.temp
+# === System ===
 .DS_Store
 Thumbs.db
+*.tmp
