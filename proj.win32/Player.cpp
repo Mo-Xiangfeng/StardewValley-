@@ -334,8 +334,7 @@ void Player::update(float dt)
         float halfH = this->getContentSize().height * 0.5f
             ;
         Vec2 clampedPos =
-            this
-            ->getPosition();
+            this->getPosition();
         clampedPos.x = clampf(clampedPos.x, halfW, mapSize.width - halfW);
         clampedPos.y = clampf(clampedPos.y, halfH, mapSize.height - halfH);
         this

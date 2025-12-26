@@ -54,7 +54,8 @@ public:
     void interactWithLand(int tx, int ty, int itemID); // 核心交互逻辑
     void nextDay(); // 每天清晨调用  
     void updateLandVisuals();   // 更新渲染
-
+    void handleInteraction(const cocos2d:: Vec2& posInMap);
+    const std::string& getCurrentMapId() const { return _currentMapId; }
     static GameWorld* create(const std::string& txtFile,
         const std::string& imgFile);
     virtual bool init(const std::string& txtFile,

@@ -128,8 +128,7 @@ void Monster::update(float dt)
         }
         else
         {
-            this
-                ->setPosition(nextPos);
+            this ->setPosition(nextPos);
         }
 
         // 常规翻转更新

@@ -35,7 +35,7 @@ bool GameScene::init()
     this->addChild(hotbar, 99);
 
     //商店
-    auto shopLabel = Label::createWithSystemFont("[SHOP]", "Arial", 32);
+   /* auto shopLabel = Label::createWithSystemFont("[SHOP]", "Arial", 32);
     shopLabel->setColor(Color3B(255, 215, 0));  // 金色
 
     auto shopButton = MenuItemLabel::create(shopLabel, [this](Ref* sender) {
@@ -52,7 +52,7 @@ bool GameScene::init()
 
     auto menu = Menu::create(shopButton, nullptr);
     menu->setPosition(Vec2::ZERO);
-    this->addChild(menu, 10);
+    this->addChild(menu, 10);*/
 
     //建立背包空间和物品初始化
     auto inv = InventoryManager::getInstance();
@@ -120,7 +120,16 @@ void GameScene::onMouseDown(EventMouse* event)
 
     if (event->getMouseButton() == cocos2d::EventMouse::MouseButton::BUTTON_LEFT)
     {
-        if (_playerSprite && !_playerSprite->_isAction && _playerSprite->what_in_hand_now == 1112) // 【? 避免重复攻击】
+        if (_gameWorld && _gameWorld->getCurrentMapId() == "Shop")
+        {
+            // 获取点击位置并转换为地图坐标
+            Vec2 touchPos = Director::getInstance()->convertToGL(event->getLocationInView());
+            Vec2 posInMap = _gameWorld->convertToNodeSpace(touchPos);
+
+            // 执行交互判定
+            _gameWorld->handleInteraction(posInMap);
+        }
+        else if (_playerSprite && !_playerSprite->_isAction && _playerSprite->what_in_hand_now == 1112) // 【? 避免重复攻击】
         {
             _playerSprite->farm();
         }

@@ -7,6 +7,7 @@
 #include "NPC2HouseLogic.h"
 #include "MineLogic.h"
 #include "GameScene.h"
+#include "TileType.h"
 #include "CropData.h"
 #include "fishing_game.h"
 USING_NS_CC;
@@ -39,7 +40,7 @@ bool GameWorld::init(const std::string&,
         "tilemap.txt",
         "Map.png",
         {
-            { "Spawn",    {13, 45} },
+            { "Spawn",    {53, 27} },
             { "HomeDoor", {32, 25} },
             { "ShopDoor", {53, 27} },
             { "NPC1Door", {20, 33} },
@@ -122,7 +123,52 @@ bool GameWorld::init(const std::string&,
     scheduleUpdate();
     return true;
 }
+// GameWorld.cpp
 
+
+void GameWorld::handleInteraction(const Vec2& posInMap)
+{
+    if (!_player) return;
+
+    // 1. 获取物理属性
+    float baseTileSize = getTileWidth();
+    float mapScale = getMapScale();
+    float actualTileSize = baseTileSize * mapScale;
+
+    // 2. 计算 X 索引 (通常不需要反转)
+    int tx = std::floor(posInMap.x / actualTileSize);
+
+    // 3. 【核心修复】计算 Y 索引：必须用地图高度减去点击位置
+    // _map.height - 1 是最大行索引。这样可以将左下角原点转换为左上角原点。
+    int ty = (_map.height - 1) - std::floor(posInMap.y / actualTileSize);
+
+    // 4. 越界检查
+    if (!_map.inBounds(tx, ty)) return;
+
+    // 5. 获取图块 ID 并判断
+    int tileId = _map.getTile(tx, ty);
+
+    if (tileId == 11) // Businessman = 11
+    {
+        // 6. 【核心修复】重算中心点坐标用于距离判定（Y 也要翻转回去）
+        float centerX = (tx + 0.5f) * actualTileSize;
+        float centerY = (_map.height - 1 - ty + 0.5f) * actualTileSize;
+        Vec2 merchantCenter = Vec2(centerX, centerY);
+
+        // 7. 距离判定
+        float playerDist = _player->getPosition().distance(merchantCenter);
+
+        if (playerDist < actualTileSize * 2.5f)
+        {
+            if (_logic) {
+                _logic->onInteract(_player);
+            }
+        }
+        else {
+            CCLOG("太远了，走近点再点商人");
+        }
+    }
+}
 /* =========================
    Player 绑定
    ========================= */
