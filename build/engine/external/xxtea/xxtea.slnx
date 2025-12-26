@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Solution>
+	<Configurations>
+		<BuildType Name="Debug"/>
+		<BuildType Name="Release"/>
+		<Platform Name="win32"/>
+	</Configurations>
+	<Folder Name="/CMakePredefinedTargets/">
+		<Project Path="ALL_BUILD.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="828948a5-db95-3ba1-a8ba-32eb15d35e00" DefaultStartup="true">
+			<BuildDependency Project="../../../ZERO_CHECK.vcxproj"/>
+			<BuildDependency Project="ext_xxtea.vcxproj"/>
+			<Build Solution="Debug|*" Project="false"/>
+			<Build Solution="Release|*" Project="false"/>
+		</Project>
+		<Project Path="../../../ZERO_CHECK.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="23bb7555-2f87-340f-9729-74b97d8033c6"/>
+	</Folder>
+	<Folder Name="/External/">
+		<Project Path="ext_xxtea.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="b2c1946d-842e-3776-ae46-e0d10ffb8ab2">
+			<BuildDependency Project="../../../ZERO_CHECK.vcxproj"/>
+		</Project>
+	</Folder>
+</Solution>

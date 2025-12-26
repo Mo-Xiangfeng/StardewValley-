@@ -1,0 +1,1458 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "CMakeLists.txt:30 (project)"
+    message: |
+      The system is: Windows - 10.0.26200 - AMD64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:30 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX86\\x86"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\VC\\VCPackages"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\TestWindow"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer"
+        - "D:\\VisualStudioCommunity\\MSBuild\\Current\\bin\\Roslyn"
+        - "D:\\VisualStudioCommunity\\Team Tools\\DiagnosticsHub\\Collector"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\Extensions\\Microsoft\\CodeCoverage.Console"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x86"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x86"
+        - "D:\\VisualStudioCommunity\\\\MSBuild\\Current\\Bin\\amd64"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\"
+        - "D:\\VisualStudioCommunity\\Common7\\Tools\\"
+        - "C:\\Python27"
+        - "C:\\Python27\\Scripts"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Program Files\\Java\\jdk-17\\bin"
+        - "%USERPROFILE%\\AppData\\Local\\Muse Hub\\lib"
+        - "C:\\Program Files\\Git\\cmd"
+        - "D:\\Users\\cocos2d-x-3.17.2\\tools\\cocos2d-console\\bin"
+        - "D:\\Users\\x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0\\mingw64\\bin"
+        - "D:\\Users\\cocos2d-x-3.17.2\\tools\\cocos2d-console\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "D:\\Users\\cocos2d-x-3.17.2\\templates"
+        - "C:\\Users\\lcr20\\.cargo\\bin"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\lcr20\\AppData\\Local\\GitHubDesktop\\bin"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\PrivateAssemblies\\runtimes\\win-x64\\native"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\VC\\Linux\\bin\\ConnectionManagerExe"
+        - "D:\\VisualStudioCommunity\\VC\\vcpkg"
+      ENV{INCLUDE}:
+        - "D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.50.35717\\include"
+        - "D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.50.35717\\ATLMFC\\include"
+        - "D:\\VisualStudioCommunity\\VC\\Auxiliary\\VS\\include"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.26100.0\\\\um"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.26100.0\\\\shared"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.26100.0\\\\winrt"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.26100.0\\\\cppwinrt"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:30 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      閫傜敤浜?.NET Framework MSBuild 鐗堟湰 18.0.5+e22287bf1
+      鐢熸垚鍚姩鏃堕棿涓?2025/12/24 21:11:25銆?
+      
+      鑺傜偣 1 涓婄殑椤圭洰鈥淒:\\Users\\MyProjects\\MyStardewGame\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.vcxproj鈥?榛樿鐩爣)銆?
+      PrepareForBuild:
+        姝ｅ湪鍒涘缓鐩綍鈥淒ebug\\鈥濄€?
+        宸插惎鐢ㄧ粨鏋勫寲杈撳嚭銆傜紪璇戝櫒璇婃柇鐨勬牸寮忚缃皢鍙嶆槧閿欒灞傛缁撴瀯銆傛湁鍏宠缁嗕俊鎭紝璇峰弬闃?https://aka.ms/cpp/structured-output銆?
+        姝ｅ湪鍒涘缓鐩綍鈥淒ebug\\CompilerIdC.tlog\\鈥濄€?
+      InitializeBuildStatus:
+        姝ｅ湪鍒涘缓鈥淒ebug\\CompilerIdC.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
+        姝ｅ湪瀵光€淒ebug\\CompilerIdC.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
+      ClCompile:
+        D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TC /analyze- /FC /errorReport:queue CMakeCCompilerId.c
+        CMakeCCompilerId.c
+      Link:
+        D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X86 /SAFESEH Debug\\CMakeCCompilerId.obj
+        CompilerIdC.vcxproj -> D:\\Users\\MyProjects\\MyStardewGame\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_C_COMPILER=D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x86\\cl.exe
+      FinalizeBuildStatus:
+        姝ｅ湪鍒犻櫎鏂囦欢鈥淒ebug\\CompilerIdC.tlog\\unsuccessfulbuild鈥濄€?
+        姝ｅ湪瀵光€淒ebug\\CompilerIdC.tlog\\CompilerIdC.lastbuildstate鈥濇墽琛?Touch 浠诲姟銆?
+      宸插畬鎴愮敓鎴愰」鐩€淒:\\Users\\MyProjects\\MyStardewGame\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.vcxproj鈥?榛樿鐩爣)鐨勬搷浣溿€?
+      
+      宸叉垚鍔熺敓鎴愩€?
+          0 涓鍛?
+          0 涓敊璇?
+      
+      宸茬敤鏃堕棿 00:00:04.57
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
+      
+      The C compiler identification is MSVC, found in:
+        D:/Users/MyProjects/MyStardewGame/build/CMakeFiles/4.2.0/CompilerIdC/CompilerIdC.exe
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:103 (__resolve_linker_path)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:30 (project)"
+    mode: "program"
+    variable: "_CMAKE_TOOL_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "link"
+    candidate_directories:
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x86/"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/amd64/"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/"
+      - "D:/VisualStudioCommunity/Common7/IDE/"
+      - "D:/VisualStudioCommunity/Common7/Tools/"
+      - "C:/Python27/"
+      - "C:/Python27/Scripts/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Program Files/Java/jdk-17/bin/"
+      - "D:/Users/MyProjects/MyStardewGame/%USERPROFILE%/AppData/Local/Muse Hub/lib/"
+      - "C:/Program Files/Git/cmd/"
+      - "D:/Users/cocos2d-x-3.17.2/tools/cocos2d-console/bin/"
+      - "D:/Users/x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0/mingw64/bin/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "D:/Users/cocos2d-x-3.17.2/templates/"
+      - "C:/Users/lcr20/.cargo/bin/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/lcr20/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Ollama/"
+      - "C:/Users/lcr20/AppData/Local/GitHubDesktop/bin/"
+      - "D:/VisualStudioCommunity/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/"
+      - "D:/VisualStudioCommunity/VC/vcpkg/"
+    searched_directories:
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/link.com"
+    found: "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/link.exe"
+    search_context:
+      ENV{PATH}:
+        - "D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX86\\x86"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\VC\\VCPackages"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\TestWindow"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer"
+        - "D:\\VisualStudioCommunity\\MSBuild\\Current\\bin\\Roslyn"
+        - "D:\\VisualStudioCommunity\\Team Tools\\DiagnosticsHub\\Collector"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\Extensions\\Microsoft\\CodeCoverage.Console"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x86"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x86"
+        - "D:\\VisualStudioCommunity\\\\MSBuild\\Current\\Bin\\amd64"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\"
+        - "D:\\VisualStudioCommunity\\Common7\\Tools\\"
+        - "C:\\Python27"
+        - "C:\\Python27\\Scripts"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Program Files\\Java\\jdk-17\\bin"
+        - "%USERPROFILE%\\AppData\\Local\\Muse Hub\\lib"
+        - "C:\\Program Files\\Git\\cmd"
+        - "D:\\Users\\cocos2d-x-3.17.2\\tools\\cocos2d-console\\bin"
+        - "D:\\Users\\x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0\\mingw64\\bin"
+        - "D:\\Users\\cocos2d-x-3.17.2\\tools\\cocos2d-console\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "D:\\Users\\cocos2d-x-3.17.2\\templates"
+        - "C:\\Users\\lcr20\\.cargo\\bin"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\lcr20\\AppData\\Local\\GitHubDesktop\\bin"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\PrivateAssemblies\\runtimes\\win-x64\\native"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\VC\\Linux\\bin\\ConnectionManagerExe"
+        - "D:\\VisualStudioCommunity\\VC\\vcpkg"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:104 (__resolve_linker_path)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:30 (project)"
+    mode: "program"
+    variable: "_CMAKE_TOOL_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "lld-link"
+    candidate_directories:
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x86/"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/amd64/"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/"
+      - "D:/VisualStudioCommunity/Common7/IDE/"
+      - "D:/VisualStudioCommunity/Common7/Tools/"
+      - "C:/Python27/"
+      - "C:/Python27/Scripts/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Program Files/Java/jdk-17/bin/"
+      - "D:/Users/MyProjects/MyStardewGame/%USERPROFILE%/AppData/Local/Muse Hub/lib/"
+      - "C:/Program Files/Git/cmd/"
+      - "D:/Users/cocos2d-x-3.17.2/tools/cocos2d-console/bin/"
+      - "D:/Users/x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0/mingw64/bin/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "D:/Users/cocos2d-x-3.17.2/templates/"
+      - "C:/Users/lcr20/.cargo/bin/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/lcr20/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Ollama/"
+      - "C:/Users/lcr20/AppData/Local/GitHubDesktop/bin/"
+      - "D:/VisualStudioCommunity/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/"
+      - "D:/VisualStudioCommunity/VC/vcpkg/"
+    searched_directories:
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/lld-link.com"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/lld-link.exe"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/lld-link"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/lld-link.com"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/lld-link.exe"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/lld-link"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/lld-link"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/lld-link"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/lld-link"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/lld-link.com"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/lld-link.exe"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/lld-link"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/lld-link.com"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/lld-link.exe"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/lld-link"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/lld-link"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/lld-link.com"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/lld-link.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/lld-link"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x86/lld-link.com"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x86/lld-link.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x86/lld-link"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/amd64/lld-link.com"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/amd64/lld-link.exe"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/amd64/lld-link"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/lld-link.com"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/lld-link.exe"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/lld-link"
+      - "D:/VisualStudioCommunity/Common7/IDE/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/lld-link"
+      - "D:/VisualStudioCommunity/Common7/Tools/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/Tools/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/Tools/lld-link"
+      - "C:/Python27/lld-link.com"
+      - "C:/Python27/lld-link.exe"
+      - "C:/Python27/lld-link"
+      - "C:/Python27/Scripts/lld-link.com"
+      - "C:/Python27/Scripts/lld-link.exe"
+      - "C:/Python27/Scripts/lld-link"
+      - "C:/Windows/System32/lld-link.com"
+      - "C:/Windows/System32/lld-link.exe"
+      - "C:/Windows/System32/lld-link"
+      - "C:/Windows/lld-link.com"
+      - "C:/Windows/lld-link.exe"
+      - "C:/Windows/lld-link"
+      - "C:/Windows/System32/wbem/lld-link.com"
+      - "C:/Windows/System32/wbem/lld-link.exe"
+      - "C:/Windows/System32/wbem/lld-link"
+      - "C:/Program Files/Java/jdk-17/bin/lld-link.com"
+      - "C:/Program Files/Java/jdk-17/bin/lld-link.exe"
+      - "C:/Program Files/Java/jdk-17/bin/lld-link"
+      - "D:/Users/MyProjects/MyStardewGame/%USERPROFILE%/AppData/Local/Muse Hub/lib/lld-link.com"
+      - "D:/Users/MyProjects/MyStardewGame/%USERPROFILE%/AppData/Local/Muse Hub/lib/lld-link.exe"
+      - "D:/Users/MyProjects/MyStardewGame/%USERPROFILE%/AppData/Local/Muse Hub/lib/lld-link"
+      - "C:/Program Files/Git/cmd/lld-link.com"
+      - "C:/Program Files/Git/cmd/lld-link.exe"
+      - "C:/Program Files/Git/cmd/lld-link"
+      - "D:/Users/cocos2d-x-3.17.2/tools/cocos2d-console/bin/lld-link.com"
+      - "D:/Users/cocos2d-x-3.17.2/tools/cocos2d-console/bin/lld-link.exe"
+      - "D:/Users/cocos2d-x-3.17.2/tools/cocos2d-console/bin/lld-link"
+      - "D:/Users/x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0/mingw64/bin/lld-link.com"
+      - "D:/Users/x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0/mingw64/bin/lld-link.exe"
+      - "D:/Users/x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0/mingw64/bin/lld-link"
+      - "C:/Program Files/CMake/bin/lld-link.com"
+      - "C:/Program Files/CMake/bin/lld-link.exe"
+      - "C:/Program Files/CMake/bin/lld-link"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link"
+      - "D:/Users/cocos2d-x-3.17.2/templates/lld-link.com"
+      - "D:/Users/cocos2d-x-3.17.2/templates/lld-link.exe"
+      - "D:/Users/cocos2d-x-3.17.2/templates/lld-link"
+      - "C:/Users/lcr20/.cargo/bin/lld-link.com"
+      - "C:/Users/lcr20/.cargo/bin/lld-link.exe"
+      - "C:/Users/lcr20/.cargo/bin/lld-link"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/Scripts/lld-link.com"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/Scripts/lld-link.exe"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/Scripts/lld-link"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/lld-link.com"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/lld-link.exe"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/lld-link"
+      - "C:/Users/lcr20/AppData/Local/Microsoft/WindowsApps/lld-link.com"
+      - "C:/Users/lcr20/AppData/Local/Microsoft/WindowsApps/lld-link.exe"
+      - "C:/Users/lcr20/AppData/Local/Microsoft/WindowsApps/lld-link"
+      - "C:/Users/lcr20/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.com"
+      - "C:/Users/lcr20/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.exe"
+      - "C:/Users/lcr20/AppData/Local/Programs/Microsoft VS Code/bin/lld-link"
+      - "C:/Users/lcr20/AppData/Local/Programs/Ollama/lld-link.com"
+      - "C:/Users/lcr20/AppData/Local/Programs/Ollama/lld-link.exe"
+      - "C:/Users/lcr20/AppData/Local/Programs/Ollama/lld-link"
+      - "C:/Users/lcr20/AppData/Local/GitHubDesktop/bin/lld-link.com"
+      - "C:/Users/lcr20/AppData/Local/GitHubDesktop/bin/lld-link.exe"
+      - "C:/Users/lcr20/AppData/Local/GitHubDesktop/bin/lld-link"
+      - "D:/VisualStudioCommunity/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/lld-link"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/lld-link"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/lld-link"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/lld-link"
+      - "D:/VisualStudioCommunity/VC/vcpkg/lld-link.com"
+      - "D:/VisualStudioCommunity/VC/vcpkg/lld-link.exe"
+      - "D:/VisualStudioCommunity/VC/vcpkg/lld-link"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX86\\x86"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\VC\\VCPackages"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\TestWindow"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer"
+        - "D:\\VisualStudioCommunity\\MSBuild\\Current\\bin\\Roslyn"
+        - "D:\\VisualStudioCommunity\\Team Tools\\DiagnosticsHub\\Collector"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\Extensions\\Microsoft\\CodeCoverage.Console"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x86"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x86"
+        - "D:\\VisualStudioCommunity\\\\MSBuild\\Current\\Bin\\amd64"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\"
+        - "D:\\VisualStudioCommunity\\Common7\\Tools\\"
+        - "C:\\Python27"
+        - "C:\\Python27\\Scripts"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Program Files\\Java\\jdk-17\\bin"
+        - "%USERPROFILE%\\AppData\\Local\\Muse Hub\\lib"
+        - "C:\\Program Files\\Git\\cmd"
+        - "D:\\Users\\cocos2d-x-3.17.2\\tools\\cocos2d-console\\bin"
+        - "D:\\Users\\x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0\\mingw64\\bin"
+        - "D:\\Users\\cocos2d-x-3.17.2\\tools\\cocos2d-console\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "D:\\Users\\cocos2d-x-3.17.2\\templates"
+        - "C:\\Users\\lcr20\\.cargo\\bin"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\lcr20\\AppData\\Local\\GitHubDesktop\\bin"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\PrivateAssemblies\\runtimes\\win-x64\\native"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\VC\\Linux\\bin\\ConnectionManagerExe"
+        - "D:\\VisualStudioCommunity\\VC\\vcpkg"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:30 (project)"
+    mode: "program"
+    variable: "CMAKE_LINKER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "link"
+    candidate_directories:
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x86/"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/amd64/"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/"
+      - "D:/VisualStudioCommunity/Common7/IDE/"
+      - "D:/VisualStudioCommunity/Common7/Tools/"
+      - "C:/Python27/"
+      - "C:/Python27/Scripts/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Program Files/Java/jdk-17/bin/"
+      - "D:/Users/MyProjects/MyStardewGame/%USERPROFILE%/AppData/Local/Muse Hub/lib/"
+      - "C:/Program Files/Git/cmd/"
+      - "D:/Users/cocos2d-x-3.17.2/tools/cocos2d-console/bin/"
+      - "D:/Users/x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0/mingw64/bin/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "D:/Users/cocos2d-x-3.17.2/templates/"
+      - "C:/Users/lcr20/.cargo/bin/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/lcr20/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Ollama/"
+      - "C:/Users/lcr20/AppData/Local/GitHubDesktop/bin/"
+      - "D:/VisualStudioCommunity/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/"
+      - "D:/VisualStudioCommunity/VC/vcpkg/"
+    searched_directories:
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/link.com"
+    found: "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/link.exe"
+    search_context:
+      ENV{PATH}:
+        - "D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX86\\x86"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\VC\\VCPackages"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\TestWindow"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer"
+        - "D:\\VisualStudioCommunity\\MSBuild\\Current\\bin\\Roslyn"
+        - "D:\\VisualStudioCommunity\\Team Tools\\DiagnosticsHub\\Collector"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\Extensions\\Microsoft\\CodeCoverage.Console"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x86"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x86"
+        - "D:\\VisualStudioCommunity\\\\MSBuild\\Current\\Bin\\amd64"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\"
+        - "D:\\VisualStudioCommunity\\Common7\\Tools\\"
+        - "C:\\Python27"
+        - "C:\\Python27\\Scripts"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Program Files\\Java\\jdk-17\\bin"
+        - "%USERPROFILE%\\AppData\\Local\\Muse Hub\\lib"
+        - "C:\\Program Files\\Git\\cmd"
+        - "D:\\Users\\cocos2d-x-3.17.2\\tools\\cocos2d-console\\bin"
+        - "D:\\Users\\x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0\\mingw64\\bin"
+        - "D:\\Users\\cocos2d-x-3.17.2\\tools\\cocos2d-console\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "D:\\Users\\cocos2d-x-3.17.2\\templates"
+        - "C:\\Users\\lcr20\\.cargo\\bin"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\lcr20\\AppData\\Local\\GitHubDesktop\\bin"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\PrivateAssemblies\\runtimes\\win-x64\\native"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\VC\\Linux\\bin\\ConnectionManagerExe"
+        - "D:\\VisualStudioCommunity\\VC\\vcpkg"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:30 (project)"
+    mode: "program"
+    variable: "CMAKE_MT"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "mt"
+    candidate_directories:
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x86/"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/amd64/"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/"
+      - "D:/VisualStudioCommunity/Common7/IDE/"
+      - "D:/VisualStudioCommunity/Common7/Tools/"
+      - "C:/Python27/"
+      - "C:/Python27/Scripts/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Program Files/Java/jdk-17/bin/"
+      - "D:/Users/MyProjects/MyStardewGame/%USERPROFILE%/AppData/Local/Muse Hub/lib/"
+      - "C:/Program Files/Git/cmd/"
+      - "D:/Users/cocos2d-x-3.17.2/tools/cocos2d-console/bin/"
+      - "D:/Users/x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0/mingw64/bin/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "D:/Users/cocos2d-x-3.17.2/templates/"
+      - "C:/Users/lcr20/.cargo/bin/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/lcr20/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Ollama/"
+      - "C:/Users/lcr20/AppData/Local/GitHubDesktop/bin/"
+      - "D:/VisualStudioCommunity/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/"
+      - "D:/VisualStudioCommunity/VC/vcpkg/"
+    searched_directories:
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/mt.com"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/mt.exe"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/mt"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/mt.com"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/mt.exe"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/mt"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/mt.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/mt.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/mt"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/mt.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/mt.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/mt"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/mt.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/mt.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/mt"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/mt.com"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/mt.exe"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/mt"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/mt.com"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/mt.exe"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/mt"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/mt.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/mt.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/mt"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/mt.com"
+    found: "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/mt.exe"
+    search_context:
+      ENV{PATH}:
+        - "D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX86\\x86"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\VC\\VCPackages"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\TestWindow"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer"
+        - "D:\\VisualStudioCommunity\\MSBuild\\Current\\bin\\Roslyn"
+        - "D:\\VisualStudioCommunity\\Team Tools\\DiagnosticsHub\\Collector"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\Extensions\\Microsoft\\CodeCoverage.Console"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x86"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x86"
+        - "D:\\VisualStudioCommunity\\\\MSBuild\\Current\\Bin\\amd64"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\"
+        - "D:\\VisualStudioCommunity\\Common7\\Tools\\"
+        - "C:\\Python27"
+        - "C:\\Python27\\Scripts"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Program Files\\Java\\jdk-17\\bin"
+        - "%USERPROFILE%\\AppData\\Local\\Muse Hub\\lib"
+        - "C:\\Program Files\\Git\\cmd"
+        - "D:\\Users\\cocos2d-x-3.17.2\\tools\\cocos2d-console\\bin"
+        - "D:\\Users\\x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0\\mingw64\\bin"
+        - "D:\\Users\\cocos2d-x-3.17.2\\tools\\cocos2d-console\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "D:\\Users\\cocos2d-x-3.17.2\\templates"
+        - "C:\\Users\\lcr20\\.cargo\\bin"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\lcr20\\AppData\\Local\\GitHubDesktop\\bin"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\PrivateAssemblies\\runtimes\\win-x64\\native"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\VC\\Linux\\bin\\ConnectionManagerExe"
+        - "D:\\VisualStudioCommunity\\VC\\vcpkg"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:30 (project)"
+    mode: "program"
+    variable: "CMAKE_AR"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "lib"
+    candidate_directories:
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x86/"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/amd64/"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/"
+      - "D:/VisualStudioCommunity/Common7/IDE/"
+      - "D:/VisualStudioCommunity/Common7/Tools/"
+      - "C:/Python27/"
+      - "C:/Python27/Scripts/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Program Files/Java/jdk-17/bin/"
+      - "D:/Users/MyProjects/MyStardewGame/%USERPROFILE%/AppData/Local/Muse Hub/lib/"
+      - "C:/Program Files/Git/cmd/"
+      - "D:/Users/cocos2d-x-3.17.2/tools/cocos2d-console/bin/"
+      - "D:/Users/x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0/mingw64/bin/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "D:/Users/cocos2d-x-3.17.2/templates/"
+      - "C:/Users/lcr20/.cargo/bin/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/lcr20/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Ollama/"
+      - "C:/Users/lcr20/AppData/Local/GitHubDesktop/bin/"
+      - "D:/VisualStudioCommunity/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/"
+      - "D:/VisualStudioCommunity/VC/vcpkg/"
+    searched_directories:
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/lib.com"
+    found: "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/lib.exe"
+    search_context:
+      ENV{PATH}:
+        - "D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX86\\x86"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\VC\\VCPackages"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\TestWindow"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer"
+        - "D:\\VisualStudioCommunity\\MSBuild\\Current\\bin\\Roslyn"
+        - "D:\\VisualStudioCommunity\\Team Tools\\DiagnosticsHub\\Collector"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\Extensions\\Microsoft\\CodeCoverage.Console"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x86"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x86"
+        - "D:\\VisualStudioCommunity\\\\MSBuild\\Current\\Bin\\amd64"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\"
+        - "D:\\VisualStudioCommunity\\Common7\\Tools\\"
+        - "C:\\Python27"
+        - "C:\\Python27\\Scripts"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Program Files\\Java\\jdk-17\\bin"
+        - "%USERPROFILE%\\AppData\\Local\\Muse Hub\\lib"
+        - "C:\\Program Files\\Git\\cmd"
+        - "D:\\Users\\cocos2d-x-3.17.2\\tools\\cocos2d-console\\bin"
+        - "D:\\Users\\x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0\\mingw64\\bin"
+        - "D:\\Users\\cocos2d-x-3.17.2\\tools\\cocos2d-console\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "D:\\Users\\cocos2d-x-3.17.2\\templates"
+        - "C:\\Users\\lcr20\\.cargo\\bin"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\lcr20\\AppData\\Local\\GitHubDesktop\\bin"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\PrivateAssemblies\\runtimes\\win-x64\\native"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\VC\\Linux\\bin\\ConnectionManagerExe"
+        - "D:\\VisualStudioCommunity\\VC\\vcpkg"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:30 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX86\\x86"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\VC\\VCPackages"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\TestWindow"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer"
+        - "D:\\VisualStudioCommunity\\MSBuild\\Current\\bin\\Roslyn"
+        - "D:\\VisualStudioCommunity\\Team Tools\\DiagnosticsHub\\Collector"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\Extensions\\Microsoft\\CodeCoverage.Console"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x86"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x86"
+        - "D:\\VisualStudioCommunity\\\\MSBuild\\Current\\Bin\\amd64"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\"
+        - "D:\\VisualStudioCommunity\\Common7\\Tools\\"
+        - "C:\\Python27"
+        - "C:\\Python27\\Scripts"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Program Files\\Java\\jdk-17\\bin"
+        - "%USERPROFILE%\\AppData\\Local\\Muse Hub\\lib"
+        - "C:\\Program Files\\Git\\cmd"
+        - "D:\\Users\\cocos2d-x-3.17.2\\tools\\cocos2d-console\\bin"
+        - "D:\\Users\\x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0\\mingw64\\bin"
+        - "D:\\Users\\cocos2d-x-3.17.2\\tools\\cocos2d-console\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "D:\\Users\\cocos2d-x-3.17.2\\templates"
+        - "C:\\Users\\lcr20\\.cargo\\bin"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\lcr20\\AppData\\Local\\GitHubDesktop\\bin"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\PrivateAssemblies\\runtimes\\win-x64\\native"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\VC\\Linux\\bin\\ConnectionManagerExe"
+        - "D:\\VisualStudioCommunity\\VC\\vcpkg"
+      ENV{INCLUDE}:
+        - "D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.50.35717\\include"
+        - "D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.50.35717\\ATLMFC\\include"
+        - "D:\\VisualStudioCommunity\\VC\\Auxiliary\\VS\\include"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.26100.0\\\\um"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.26100.0\\\\shared"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.26100.0\\\\winrt"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.26100.0\\\\cppwinrt"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:30 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      閫傜敤浜?.NET Framework MSBuild 鐗堟湰 18.0.5+e22287bf1
+      鐢熸垚鍚姩鏃堕棿涓?2025/12/24 21:11:30銆?
+      
+      鑺傜偣 1 涓婄殑椤圭洰鈥淒:\\Users\\MyProjects\\MyStardewGame\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.vcxproj鈥?榛樿鐩爣)銆?
+      PrepareForBuild:
+        姝ｅ湪鍒涘缓鐩綍鈥淒ebug\\鈥濄€?
+        宸插惎鐢ㄧ粨鏋勫寲杈撳嚭銆傜紪璇戝櫒璇婃柇鐨勬牸寮忚缃皢鍙嶆槧閿欒灞傛缁撴瀯銆傛湁鍏宠缁嗕俊鎭紝璇峰弬闃?https://aka.ms/cpp/structured-output銆?
+        姝ｅ湪鍒涘缓鐩綍鈥淒ebug\\CompilerIdCXX.tlog\\鈥濄€?
+      InitializeBuildStatus:
+        姝ｅ湪鍒涘缓鈥淒ebug\\CompilerIdCXX.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
+        姝ｅ湪瀵光€淒ebug\\CompilerIdCXX.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
+      ClCompile:
+        D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /analyze- /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X86 /SAFESEH Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> D:\\Users\\MyProjects\\MyStardewGame\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x86\\cl.exe
+      FinalizeBuildStatus:
+        姝ｅ湪鍒犻櫎鏂囦欢鈥淒ebug\\CompilerIdCXX.tlog\\unsuccessfulbuild鈥濄€?
+        姝ｅ湪瀵光€淒ebug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate鈥濇墽琛?Touch 浠诲姟銆?
+      宸插畬鎴愮敓鎴愰」鐩€淒:\\Users\\MyProjects\\MyStardewGame\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.vcxproj鈥?榛樿鐩爣)鐨勬搷浣溿€?
+      
+      宸叉垚鍔熺敓鎴愩€?
+          0 涓鍛?
+          0 涓敊璇?
+      
+      宸茬敤鏃堕棿 00:00:00.87
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        D:/Users/MyProjects/MyStardewGame/build/CMakeFiles/4.2.0/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:104 (__resolve_linker_path)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:30 (project)"
+    mode: "program"
+    variable: "_CMAKE_TOOL_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "lld-link"
+    candidate_directories:
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x86/"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/amd64/"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/"
+      - "D:/VisualStudioCommunity/Common7/IDE/"
+      - "D:/VisualStudioCommunity/Common7/Tools/"
+      - "C:/Python27/"
+      - "C:/Python27/Scripts/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Program Files/Java/jdk-17/bin/"
+      - "D:/Users/MyProjects/MyStardewGame/%USERPROFILE%/AppData/Local/Muse Hub/lib/"
+      - "C:/Program Files/Git/cmd/"
+      - "D:/Users/cocos2d-x-3.17.2/tools/cocos2d-console/bin/"
+      - "D:/Users/x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0/mingw64/bin/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "D:/Users/cocos2d-x-3.17.2/templates/"
+      - "C:/Users/lcr20/.cargo/bin/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/lcr20/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Ollama/"
+      - "C:/Users/lcr20/AppData/Local/GitHubDesktop/bin/"
+      - "D:/VisualStudioCommunity/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/"
+      - "D:/VisualStudioCommunity/VC/vcpkg/"
+    searched_directories:
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/lld-link.com"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/lld-link.exe"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/lld-link"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/lld-link.com"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/lld-link.exe"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/lld-link"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/lld-link"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/lld-link"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/lld-link"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/lld-link.com"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/lld-link.exe"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/lld-link"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/lld-link.com"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/lld-link.exe"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/lld-link"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/lld-link"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/lld-link.com"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/lld-link.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/lld-link"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x86/lld-link.com"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x86/lld-link.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x86/lld-link"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/amd64/lld-link.com"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/amd64/lld-link.exe"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/amd64/lld-link"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/lld-link.com"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/lld-link.exe"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/lld-link"
+      - "D:/VisualStudioCommunity/Common7/IDE/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/lld-link"
+      - "D:/VisualStudioCommunity/Common7/Tools/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/Tools/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/Tools/lld-link"
+      - "C:/Python27/lld-link.com"
+      - "C:/Python27/lld-link.exe"
+      - "C:/Python27/lld-link"
+      - "C:/Python27/Scripts/lld-link.com"
+      - "C:/Python27/Scripts/lld-link.exe"
+      - "C:/Python27/Scripts/lld-link"
+      - "C:/Windows/System32/lld-link.com"
+      - "C:/Windows/System32/lld-link.exe"
+      - "C:/Windows/System32/lld-link"
+      - "C:/Windows/lld-link.com"
+      - "C:/Windows/lld-link.exe"
+      - "C:/Windows/lld-link"
+      - "C:/Windows/System32/wbem/lld-link.com"
+      - "C:/Windows/System32/wbem/lld-link.exe"
+      - "C:/Windows/System32/wbem/lld-link"
+      - "C:/Program Files/Java/jdk-17/bin/lld-link.com"
+      - "C:/Program Files/Java/jdk-17/bin/lld-link.exe"
+      - "C:/Program Files/Java/jdk-17/bin/lld-link"
+      - "D:/Users/MyProjects/MyStardewGame/%USERPROFILE%/AppData/Local/Muse Hub/lib/lld-link.com"
+      - "D:/Users/MyProjects/MyStardewGame/%USERPROFILE%/AppData/Local/Muse Hub/lib/lld-link.exe"
+      - "D:/Users/MyProjects/MyStardewGame/%USERPROFILE%/AppData/Local/Muse Hub/lib/lld-link"
+      - "C:/Program Files/Git/cmd/lld-link.com"
+      - "C:/Program Files/Git/cmd/lld-link.exe"
+      - "C:/Program Files/Git/cmd/lld-link"
+      - "D:/Users/cocos2d-x-3.17.2/tools/cocos2d-console/bin/lld-link.com"
+      - "D:/Users/cocos2d-x-3.17.2/tools/cocos2d-console/bin/lld-link.exe"
+      - "D:/Users/cocos2d-x-3.17.2/tools/cocos2d-console/bin/lld-link"
+      - "D:/Users/x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0/mingw64/bin/lld-link.com"
+      - "D:/Users/x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0/mingw64/bin/lld-link.exe"
+      - "D:/Users/x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0/mingw64/bin/lld-link"
+      - "C:/Program Files/CMake/bin/lld-link.com"
+      - "C:/Program Files/CMake/bin/lld-link.exe"
+      - "C:/Program Files/CMake/bin/lld-link"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link"
+      - "D:/Users/cocos2d-x-3.17.2/templates/lld-link.com"
+      - "D:/Users/cocos2d-x-3.17.2/templates/lld-link.exe"
+      - "D:/Users/cocos2d-x-3.17.2/templates/lld-link"
+      - "C:/Users/lcr20/.cargo/bin/lld-link.com"
+      - "C:/Users/lcr20/.cargo/bin/lld-link.exe"
+      - "C:/Users/lcr20/.cargo/bin/lld-link"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/Scripts/lld-link.com"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/Scripts/lld-link.exe"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/Scripts/lld-link"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/lld-link.com"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/lld-link.exe"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/lld-link"
+      - "C:/Users/lcr20/AppData/Local/Microsoft/WindowsApps/lld-link.com"
+      - "C:/Users/lcr20/AppData/Local/Microsoft/WindowsApps/lld-link.exe"
+      - "C:/Users/lcr20/AppData/Local/Microsoft/WindowsApps/lld-link"
+      - "C:/Users/lcr20/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.com"
+      - "C:/Users/lcr20/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.exe"
+      - "C:/Users/lcr20/AppData/Local/Programs/Microsoft VS Code/bin/lld-link"
+      - "C:/Users/lcr20/AppData/Local/Programs/Ollama/lld-link.com"
+      - "C:/Users/lcr20/AppData/Local/Programs/Ollama/lld-link.exe"
+      - "C:/Users/lcr20/AppData/Local/Programs/Ollama/lld-link"
+      - "C:/Users/lcr20/AppData/Local/GitHubDesktop/bin/lld-link.com"
+      - "C:/Users/lcr20/AppData/Local/GitHubDesktop/bin/lld-link.exe"
+      - "C:/Users/lcr20/AppData/Local/GitHubDesktop/bin/lld-link"
+      - "D:/VisualStudioCommunity/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/lld-link"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/lld-link"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/lld-link"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/lld-link.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/lld-link.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/lld-link"
+      - "D:/VisualStudioCommunity/VC/vcpkg/lld-link.com"
+      - "D:/VisualStudioCommunity/VC/vcpkg/lld-link.exe"
+      - "D:/VisualStudioCommunity/VC/vcpkg/lld-link"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX86\\x86"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\VC\\VCPackages"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\TestWindow"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer"
+        - "D:\\VisualStudioCommunity\\MSBuild\\Current\\bin\\Roslyn"
+        - "D:\\VisualStudioCommunity\\Team Tools\\DiagnosticsHub\\Collector"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\Extensions\\Microsoft\\CodeCoverage.Console"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x86"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x86"
+        - "D:\\VisualStudioCommunity\\\\MSBuild\\Current\\Bin\\amd64"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\"
+        - "D:\\VisualStudioCommunity\\Common7\\Tools\\"
+        - "C:\\Python27"
+        - "C:\\Python27\\Scripts"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Program Files\\Java\\jdk-17\\bin"
+        - "%USERPROFILE%\\AppData\\Local\\Muse Hub\\lib"
+        - "C:\\Program Files\\Git\\cmd"
+        - "D:\\Users\\cocos2d-x-3.17.2\\tools\\cocos2d-console\\bin"
+        - "D:\\Users\\x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0\\mingw64\\bin"
+        - "D:\\Users\\cocos2d-x-3.17.2\\tools\\cocos2d-console\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "D:\\Users\\cocos2d-x-3.17.2\\templates"
+        - "C:\\Users\\lcr20\\.cargo\\bin"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\lcr20\\AppData\\Local\\GitHubDesktop\\bin"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\PrivateAssemblies\\runtimes\\win-x64\\native"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\VC\\Linux\\bin\\ConnectionManagerExe"
+        - "D:\\VisualStudioCommunity\\VC\\vcpkg"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineRCCompiler.cmake:40 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Windows-MSVC.cmake:580 (enable_language)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Windows-MSVC.cmake:553 (__windows_compiler_msvc_enable_rc)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Windows-MSVC-C.cmake:5 (__windows_compiler_msvc)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCInformation.cmake:48 (include)"
+      - "CMakeLists.txt:30 (project)"
+    mode: "program"
+    variable: "CMAKE_RC_COMPILER"
+    description: "RC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rc"
+    candidate_directories:
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x86/"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/amd64/"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/"
+      - "D:/VisualStudioCommunity/Common7/IDE/"
+      - "D:/VisualStudioCommunity/Common7/Tools/"
+      - "C:/Python27/"
+      - "C:/Python27/Scripts/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Program Files/Java/jdk-17/bin/"
+      - "D:/Users/MyProjects/MyStardewGame/%USERPROFILE%/AppData/Local/Muse Hub/lib/"
+      - "C:/Program Files/Git/cmd/"
+      - "D:/Users/cocos2d-x-3.17.2/tools/cocos2d-console/bin/"
+      - "D:/Users/x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0/mingw64/bin/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "D:/Users/cocos2d-x-3.17.2/templates/"
+      - "C:/Users/lcr20/.cargo/bin/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/lcr20/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/lcr20/AppData/Local/Programs/Ollama/"
+      - "C:/Users/lcr20/AppData/Local/GitHubDesktop/bin/"
+      - "D:/VisualStudioCommunity/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/"
+      - "D:/VisualStudioCommunity/VC/vcpkg/"
+      - "C:/Program Files/bin/"
+      - "C:/Program Files/sbin/"
+      - "C:/Program Files/"
+      - "C:/Program Files (x86)/bin/"
+      - "C:/Program Files (x86)/sbin/"
+      - "C:/Program Files (x86)/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/CMake/sbin/"
+      - "C:/Program Files/CMake/"
+      - "C:/Program Files (x86)/MyStardewGame/bin/"
+      - "C:/Program Files (x86)/MyStardewGame/sbin/"
+      - "C:/Program Files (x86)/MyStardewGame/"
+    searched_directories:
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/rc.com"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/rc.exe"
+      - "D:/VisualStudioCommunity/VC/Tools/MSVC/14.50.35717/bin/Hostx86/x86/rc"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/rc.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/rc.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/VC/vcpackages/rc"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/rc.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/rc.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TestWindow/rc"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/rc.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/rc.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/rc"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/rc.com"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/rc.exe"
+      - "D:/VisualStudioCommunity/MSBuild/Current/Bin/Roslyn/rc"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/rc.com"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/rc.exe"
+      - "D:/VisualStudioCommunity/Team Tools/DiagnosticsHub/Collector/rc"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/rc.com"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/rc.exe"
+      - "D:/VisualStudioCommunity/Common7/IDE/Extensions/Microsoft/CodeCoverage.Console/rc"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/rc.com"
+    found: "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/rc.exe"
+    search_context:
+      ENV{PATH}:
+        - "D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX86\\x86"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\VC\\VCPackages"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\TestWindow"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer"
+        - "D:\\VisualStudioCommunity\\MSBuild\\Current\\bin\\Roslyn"
+        - "D:\\VisualStudioCommunity\\Team Tools\\DiagnosticsHub\\Collector"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\Extensions\\Microsoft\\CodeCoverage.Console"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x86"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x86"
+        - "D:\\VisualStudioCommunity\\\\MSBuild\\Current\\Bin\\amd64"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\"
+        - "D:\\VisualStudioCommunity\\Common7\\Tools\\"
+        - "C:\\Python27"
+        - "C:\\Python27\\Scripts"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Program Files\\Java\\jdk-17\\bin"
+        - "%USERPROFILE%\\AppData\\Local\\Muse Hub\\lib"
+        - "C:\\Program Files\\Git\\cmd"
+        - "D:\\Users\\cocos2d-x-3.17.2\\tools\\cocos2d-console\\bin"
+        - "D:\\Users\\x86_64-15.2.0-release-posix-seh-ucrt-rt_v13-rev0\\mingw64\\bin"
+        - "D:\\Users\\cocos2d-x-3.17.2\\tools\\cocos2d-console\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "D:\\Users\\cocos2d-x-3.17.2\\templates"
+        - "C:\\Users\\lcr20\\.cargo\\bin"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\lcr20\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\lcr20\\AppData\\Local\\GitHubDesktop\\bin"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\PrivateAssemblies\\runtimes\\win-x64\\native"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja"
+        - "D:\\VisualStudioCommunity\\Common7\\IDE\\VC\\Linux\\bin\\ConnectionManagerExe"
+        - "D:\\VisualStudioCommunity\\VC\\vcpkg"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/MyStardewGame"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "C:/Program Files/CMake"
+        - "C:/Program Files (x86)/MyStardewGame"
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:30 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "D:/Users/MyProjects/MyStardewGame/build/CMakeFiles/CMakeScratch/TryCompile-vflkji"
+      binary: "D:/Users/MyProjects/MyStardewGame/build/CMakeFiles/CMakeScratch/TryCompile-vflkji"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Users/MyProjects/MyStardewGame/build/CMakeFiles/CMakeScratch/TryCompile-vflkji'
+        
+        Run Build Command(s): D:/VisualStudioCommunity/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_da540.vcxproj /p:Configuration=Debug /p:Platform=win32 /p:VisualStudioVersion=18.0 /v:n
+        閫傜敤浜?.NET Framework MSBuild 鐗堟湰 18.0.5+e22287bf1
+        鐢熸垚鍚姩鏃堕棿涓?2025/12/24 21:11:32銆?
+        
+        鑺傜偣 1 涓婄殑椤圭洰鈥淒:\\Users\\MyProjects\\MyStardewGame\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vflkji\\cmTC_da540.vcxproj鈥?榛樿鐩爣)銆?
+        PrepareForBuild:
+          宸插惎鐢ㄧ粨鏋勫寲杈撳嚭銆傜紪璇戝櫒璇婃柇鐨勬牸寮忚缃皢鍙嶆槧閿欒灞傛缁撴瀯銆傛湁鍏宠缁嗕俊鎭紝璇峰弬闃?https://aka.ms/cpp/structured-output銆?
+          姝ｅ湪鍒涘缓鐩綍鈥淒:\\Users\\MyProjects\\MyStardewGame\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vflkji\\Debug\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_da540.dir\\Debug\\cmTC_da540.tlog\\鈥濄€?
+        InitializeBuildStatus:
+          姝ｅ湪鍒涘缓鈥渃mTC_da540.dir\\Debug\\cmTC_da540.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
+          姝ｅ湪瀵光€渃mTC_da540.dir\\Debug\\cmTC_da540.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
+        ClCompile:
+          D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /Oy- /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_da540.dir\\Debug\\\\" /Fd"cmTC_da540.dir\\Debug\\vc143.pdb" /external:W3 /TC /analyze- /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
+          鐢ㄤ簬 x86 鐨?Microsoft (R) C/C++ 浼樺寲缂栬瘧鍣?19.44.35221 鐗?
+          鐗堟潈鎵€鏈?C) Microsoft Corporation銆備繚鐣欐墍鏈夋潈鍒┿€?
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /Oy- /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_da540.dir\\Debug\\\\" /Fd"cmTC_da540.dir\\Debug\\vc143.pdb" /external:W3 /TC /analyze- /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
+          CMakeCCompilerABI.c
+        Link:
+          D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\link.exe /OUT:"D:\\Users\\MyProjects\\MyStardewGame\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vflkji\\Debug\\cmTC_da540.exe" /INCREMENTAL /ILK:"cmTC_da540.dir\\Debug\\cmTC_da540.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Users/MyProjects/MyStardewGame/build/CMakeFiles/CMakeScratch/TryCompile-vflkji/Debug/cmTC_da540.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/Users/MyProjects/MyStardewGame/build/CMakeFiles/CMakeScratch/TryCompile-vflkji/Debug/cmTC_da540.lib" /MACHINE:X86  /machine:X86 cmTC_da540.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_da540.vcxproj -> D:\\Users\\MyProjects\\MyStardewGame\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vflkji\\Debug\\cmTC_da540.exe
+        FinalizeBuildStatus:
+          姝ｅ湪鍒犻櫎鏂囦欢鈥渃mTC_da540.dir\\Debug\\cmTC_da540.tlog\\unsuccessfulbuild鈥濄€?
+          姝ｅ湪瀵光€渃mTC_da540.dir\\Debug\\cmTC_da540.tlog\\cmTC_da540.lastbuildstate鈥濇墽琛?Touch 浠诲姟銆?
+        宸插畬鎴愮敓鎴愰」鐩€淒:\\Users\\MyProjects\\MyStardewGame\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vflkji\\cmTC_da540.vcxproj鈥?榛樿鐩爣)鐨勬搷浣溿€?
+        
+        宸叉垚鍔熺敓鎴愩€?
+            0 涓鍛?
+            0 涓敊璇?
+        
+        宸茬敤鏃堕棿 00:00:00.70
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:30 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'C': D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/HostX64/x86/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:30 (project)"
+    message: |
+      Running the C compiler's linker: "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/HostX64/x86/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.44.35221.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:30 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "D:/Users/MyProjects/MyStardewGame/build/CMakeFiles/CMakeScratch/TryCompile-ec1etw"
+      binary: "D:/Users/MyProjects/MyStardewGame/build/CMakeFiles/CMakeScratch/TryCompile-ec1etw"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Users/MyProjects/MyStardewGame/build/CMakeFiles/CMakeScratch/TryCompile-ec1etw'
+        
+        Run Build Command(s): D:/VisualStudioCommunity/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_bd2ab.vcxproj /p:Configuration=Debug /p:Platform=win32 /p:VisualStudioVersion=18.0 /v:n
+        閫傜敤浜?.NET Framework MSBuild 鐗堟湰 18.0.5+e22287bf1
+        鐢熸垚鍚姩鏃堕棿涓?2025/12/24 21:11:33銆?
+        
+        鑺傜偣 1 涓婄殑椤圭洰鈥淒:\\Users\\MyProjects\\MyStardewGame\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ec1etw\\cmTC_bd2ab.vcxproj鈥?榛樿鐩爣)銆?
+        PrepareForBuild:
+          宸插惎鐢ㄧ粨鏋勫寲杈撳嚭銆傜紪璇戝櫒璇婃柇鐨勬牸寮忚缃皢鍙嶆槧閿欒灞傛缁撴瀯銆傛湁鍏宠缁嗕俊鎭紝璇峰弬闃?https://aka.ms/cpp/structured-output銆?
+          姝ｅ湪鍒涘缓鐩綍鈥淒:\\Users\\MyProjects\\MyStardewGame\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ec1etw\\Debug\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_bd2ab.dir\\Debug\\cmTC_bd2ab.tlog\\鈥濄€?
+        InitializeBuildStatus:
+          姝ｅ湪鍒涘缓鈥渃mTC_bd2ab.dir\\Debug\\cmTC_bd2ab.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
+          姝ｅ湪瀵光€渃mTC_bd2ab.dir\\Debug\\cmTC_bd2ab.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
+        ClCompile:
+          D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /Oy- /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_bd2ab.dir\\Debug\\\\" /Fd"cmTC_bd2ab.dir\\Debug\\vc143.pdb" /external:W3 /TP /analyze- /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
+          鐢ㄤ簬 x86 鐨?Microsoft (R) C/C++ 浼樺寲缂栬瘧鍣?19.44.35221 鐗?
+          鐗堟潈鎵€鏈?C) Microsoft Corporation銆備繚鐣欐墍鏈夋潈鍒┿€?
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /Oy- /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_bd2ab.dir\\Debug\\\\" /Fd"cmTC_bd2ab.dir\\Debug\\vc143.pdb" /external:W3 /TP /analyze- /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          D:\\VisualStudioCommunity\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\link.exe /OUT:"D:\\Users\\MyProjects\\MyStardewGame\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ec1etw\\Debug\\cmTC_bd2ab.exe" /INCREMENTAL /ILK:"cmTC_bd2ab.dir\\Debug\\cmTC_bd2ab.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Users/MyProjects/MyStardewGame/build/CMakeFiles/CMakeScratch/TryCompile-ec1etw/Debug/cmTC_bd2ab.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/Users/MyProjects/MyStardewGame/build/CMakeFiles/CMakeScratch/TryCompile-ec1etw/Debug/cmTC_bd2ab.lib" /MACHINE:X86  /machine:X86 cmTC_bd2ab.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_bd2ab.vcxproj -> D:\\Users\\MyProjects\\MyStardewGame\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ec1etw\\Debug\\cmTC_bd2ab.exe
+        FinalizeBuildStatus:
+          姝ｅ湪鍒犻櫎鏂囦欢鈥渃mTC_bd2ab.dir\\Debug\\cmTC_bd2ab.tlog\\unsuccessfulbuild鈥濄€?
+          姝ｅ湪瀵光€渃mTC_bd2ab.dir\\Debug\\cmTC_bd2ab.tlog\\cmTC_bd2ab.lastbuildstate鈥濇墽琛?Touch 浠诲姟銆?
+        宸插畬鎴愮敓鎴愰」鐩€淒:\\Users\\MyProjects\\MyStardewGame\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ec1etw\\cmTC_bd2ab.vcxproj鈥?榛樿鐩爣)鐨勬搷浣溿€?
+        
+        宸叉垚鍔熺敓鎴愩€?
+            0 涓鍛?
+            0 涓敊璇?
+        
+        宸茬敤鏃堕棿 00:00:00.68
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:30 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/HostX64/x86/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:30 (project)"
+    message: |
+      Running the CXX compiler's linker: "D:/VisualStudioCommunity/VC/Tools/MSVC/14.44.35207/bin/HostX64/x86/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.44.35221.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+...

@@ -1,0 +1,584 @@
+﻿#include "GameWorld.h"
+#include "Player.h"
+#include "MainMapLogic.h"
+#include "HomeLogic.h"
+#include "ShopLogic.h"
+#include "NPC1HouseLogic.h"
+#include "NPC2HouseLogic.h"
+#include "MineLogic.h"
+#include "GameScene.h"
+#include "CropData.h"
+#include "fishing_game.h"
+USING_NS_CC;
+
+/* =========================
+   创建 & 初始化
+   ========================= */
+
+GameWorld* GameWorld::create(const std::string& txtFile,
+    const std::string& imgFile)
+{
+    GameWorld* pRet = new (std::nothrow) GameWorld();
+    if (pRet && pRet->init(txtFile, imgFile))
+    {
+        pRet->autorelease();
+        return pRet;
+    }
+    CC_SAFE_DELETE(pRet);
+    return nullptr;
+}
+
+bool GameWorld::init(const std::string&,
+    const std::string&)
+{
+    if (!Node::init()) return false;
+    /* ========= 注册所有地图 ========= */
+
+    // ================= 主地图 =================
+    _maps["Map"] = {
+        "tilemap.txt",
+        "Map.png",
+        {
+            { "Spawn",    {13, 45} },
+            { "HomeDoor", {32, 25} },
+            { "ShopDoor", {53, 27} },
+            { "NPC1Door", {20, 33} },
+            { "NPC2Door", {8,  30} },
+            { "MineDoor", {13, 45} }
+        },
+        {
+            { {32, 25}, "Home",      "Exit" },
+            { {53, 27}, "Shop",      "Exit" },
+            { {20, 33}, "NPC1House", "Exit" },
+            { {8,  30}, "NPC2House", "Exit" },
+            { {13, 45}, "Mine",      "Exit" }
+        }
+    };
+
+    // ================= 主角家 =================
+    _maps["Home"] = {
+        "Home.txt",
+        "Home.png",
+        {
+            { "Exit", {13, 0} }
+        },
+        {
+            { {13, 0}, "Map", "HomeDoor" }
+        }
+    };
+
+    // ================= 商店 =================
+    _maps["Shop"] = {
+        "Shop.txt",
+        "Shop.png",
+        {
+            { "Exit", {16, 4} }
+        },
+        {
+            { {16, 4}, "Map", "ShopDoor" }
+        }
+    };
+
+    // ================= NPC1 家 =================
+    _maps["NPC1House"] = {
+        "NPC1House.txt",
+        "NPC1House.png",
+        {
+            { "Exit", {13, 0} }
+        },
+        {
+            { {13, 0}, "Map", "NPC1Door" }
+        }
+    };
+
+    // ================= NPC2 家 =================
+    _maps["NPC2House"] = {
+        "NPC2House.txt",
+        "NPC2House.png",
+        {
+            { "Exit", {13, 0} }
+        },
+        {
+            { {13, 0}, "Map", "NPC2Door" }
+        }
+    };
+
+    // ================= 矿洞 =================
+    _maps["Mine"] = {
+        "Mine.txt",
+        "Mine.png",
+        {
+            { "Exit", {36, 42} }
+        },
+        {
+            { {36, 42}, "Map", "MineDoor" }
+        }
+    };
+
+
+    /* ========= 初始进入主地图 ========= */
+    //switchMap("Map", "Spawn");
+    CCLOG("DEBUG: Map Loaded. Width: %d, Height: %d", _map.width, _map.height);
+    scheduleUpdate();
+    return true;
+}
+
+/* =========================
+   Player 绑定
+   ========================= */
+
+void GameWorld::setPlayer(Player* player) {
+    _player = player;
+    if (_player) {
+        // 让人物的显示大小跟随地图的缩放比例
+		auto _playerScale = _player->getPlayerScale();
+        _player->setScale(_playerScale);
+    }
+}
+
+/* =========================
+   地图加载
+   ========================= */
+
+void GameWorld::reload(const std::string& txtFile,
+    const std::string& imgFile)
+{
+    if (_mapSprite)
+    {
+        removeChild(_mapSprite);
+        _mapSprite = nullptr;
+    }
+
+    _map.load(txtFile, 16, 16);
+
+    _mapSprite = Sprite::create(imgFile);
+    _mapSprite->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+    _mapSprite->setScale(_mapScale);
+    addChild(_mapSprite, 0);
+
+    _mapSizeScaled = _mapSprite->getContentSize() * _mapScale;
+
+    _portals.clear();
+
+    float ts = _map.tileWidth * _mapScale;
+
+    const auto& info = _maps.at(_currentMapId);
+
+    for (const auto& p : info.portals)
+    {
+        _portals.emplace_back(
+            Rect(p.tile.x * ts, p.tile.y * ts, ts, ts),
+            _currentMapId,
+            p.toMap,
+            p.toEntry
+        );
+    }
+    drawFarmGrid();
+}
+
+/* =========================
+   切换地图（核心）
+   ========================= */
+
+void GameWorld::switchMap(const std::string& mapId,
+    const std::string& entry)
+{
+    // 离开旧地图逻辑
+    if (_logic)
+        _logic->onExit(this, _player);
+
+    const auto& info = _maps.at(mapId);
+    _currentMapId = mapId;
+
+    reload(info.txt, info.img);
+
+    if (_player)
+    {
+        Vec2 spawn = info.entries.at(entry);
+        _player->setTilePosition(spawn.x, spawn.y);
+    }
+
+    // 创建对应地图逻辑
+    if (mapId == "Map")
+        _logic = std::make_unique<MainMapLogic>();
+    else if (mapId == "Home")
+        _logic = std::make_unique<HomeLogic>();
+    else if (mapId == "Shop")
+        _logic = std::make_unique<ShopLogic>();
+    else if (mapId == "NPC1House")
+        _logic = std::make_unique<NPC1HouseLogic>();
+    else if (mapId == "NPC2House")
+        _logic = std::make_unique<NPC2HouseLogic>();
+    else if (mapId == "Mine")
+        _logic = std::make_unique<MineLogic>();
+
+    // 进入新地图逻辑
+    if (_logic)
+        _logic->onEnter(this, _player);
+
+    _currentPortal = nullptr;
+    _portalStayTime = 0.0f;
+}
+
+/* =========================
+   交互
+   ========================= */
+
+void GameWorld::onInteract() {
+    if (_activePortal) {
+        // 触发带黑屏过渡的切换
+        fadeSwitch(_activePortal->toMap, _activePortal->toEntry);
+    }
+}
+void GameWorld::fadeSwitch(const std::string& mapId, const std::string& entry) {
+    auto mask = LayerColor::create(Color4B::BLACK);
+    mask->setOpacity(0);
+    Director::getInstance()->getRunningScene()->addChild(mask, 999);
+
+    mask->runAction(Sequence::create(
+        FadeIn::create(0.2f),
+        CallFunc::create([=]() { this->switchMap(mapId, entry); }),
+        FadeOut::create(0.2f),
+        RemoveSelf::create(),
+        nullptr
+    ));
+}
+
+/* =========================
+   更新（Portal + Logic）
+   ========================= */
+
+void GameWorld::update(float dt) {
+    if (!_player) return;
+    Vec2 pos = _player->getPosition();
+    _activePortal = nullptr; // 每帧重置
+
+    for (auto& p : _portals) {
+        if (p.triggerArea.containsPoint(pos)) {
+            _activePortal = &p; // 发现玩家站在门上
+            break;
+        }
+    }
+    if (_logic) _logic->update(dt);
+}
+
+/* =========================
+   碰撞判定
+   ========================= */
+int GameWorld::debugGetTile(int tx, int ty)
+{
+    return _map.getTile(tx, ty);
+}
+
+/*bool GameWorld::isWalkable(const Vec2& worldPos)
+{
+    float ts = _map.tileWidth * _mapScale;
+
+    int tx = worldPos.x / ts;
+    int ty = worldPos.y / ts;
+
+    int tileId = _map.getTile(tx, ty);
+
+    // Debug（现在你会看到正常的 tileId 了）
+    //CCLOG("tx=%d ty=%d tileId=%d", tx, ty, tileId);
+
+    if (tileId < 0) return false;
+    return _map.isWalkable(tileId);
+}*/
+
+bool GameWorld::isWalkable(const cocos2d::Vec2& posInMap)
+{
+    float ts = _map.tileWidth * _mapScale;
+
+    // 使用 floor 确保负数也能正确转换，并加上一个微小的偏移防止边界误差
+    int tx = std::floor((posInMap.x + 0.1f) / ts);
+    int ty = std::floor((posInMap.y + 0.1f) / ts);
+
+    // 打印地图实际宽高，看看是不是 txt 没读全
+    // CCLOG("Map Size: %d x %d", _map.width, _map.height);
+
+    int tileId = _map.getTile(tx, ty);
+
+    // 如果是 -1，说明 tx/ty 超过了 _map.width/height
+    if (tileId < 0) {
+        // 临时修改：如果是边缘越界，先允许通行，看看人能不能出来
+        // return true; 
+        return false;
+    }
+
+    return _map.isWalkable(tileId);
+}
+
+
+void GameWorld::updateCamera()
+{
+    if (!_player) return;
+
+    auto visibleSize = Director::getInstance()->getVisibleSize();
+    auto mapSize = _mapSizeScaled;
+    auto playerPos = _player->getPosition();
+
+    // -------------------
+    // 目标世界位置（平滑跟随）
+    // -------------------
+    Vec2 screenCenter(visibleSize.width / 2, visibleSize.height / 2);
+    Vec2 targetPos = screenCenter - playerPos;
+    Vec2 currentPos = this->getPosition();
+    Vec2 newWorldPos = currentPos + (targetPos - currentPos) * 0.1f; // 缓动
+
+    // -------------------
+    // 边界限制 & 小地图居中
+    // -------------------
+    float worldX, worldY;
+
+    // 横向
+    if (mapSize.width < visibleSize.width)
+        worldX = (visibleSize.width - mapSize.width) / 2.0f; // 居中
+    else {
+        float minX = visibleSize.width - mapSize.width;
+        worldX = clampf(newWorldPos.x, minX, 0);
+    }
+
+    // 纵向
+    if (mapSize.height < visibleSize.height)
+        worldY = (visibleSize.height - mapSize.height) / 2.0f; // 居中
+    else {
+        float minY = visibleSize.height - mapSize.height;
+        worldY = clampf(newWorldPos.y, minY, 0);
+    }
+
+    // -------------------
+    // 应用位置
+    // -------------------
+    this->setPosition(Vec2(worldX, worldY));
+}
+
+void GameWorld::drawFarmGrid()
+{
+    // 1. 查找或创建 DrawNode
+    auto drawNode = dynamic_cast<DrawNode*>(this->getChildByTag(999));
+    if (!drawNode) {
+        drawNode = DrawNode::create();
+        this->addChild(drawNode, 100, 999); // 将 ZOrder 调高到 100，确保在最顶层
+    }
+    else {
+        drawNode->clear();
+    }
+
+    // 2. 检查缩放倍数 (如果这个值是 0，线条会重叠在原点看不见)
+    float scale = getMapScale();
+    if (scale <= 0.0f) {
+        CCLOG("Warning: Map scale is 0, grid might not show!");
+        scale = 1.0f; // 给个默认值防止消失
+    }
+    float ts = 16.0f * scale;
+
+
+    Color4F lineColor(0.42f, 0.24f, 0.16f, 0.20f);
+
+
+    int count = 0; // 用于调试计数
+
+    // 4. 遍历
+    for (int ty = 0; ty < _map.height; ++ty)
+    {
+        for (int tx = 0; tx < _map.width; ++tx)
+        {
+            if (_map.getTile(tx, ty) == 8)
+            {
+                //cocos2d::log("Paint!!!!!!!");
+                Vec2 bottomLeft = Vec2(tx * ts, ty * ts);
+                Vec2 topRight = Vec2((tx + 1) * ts, (ty + 1) * ts);
+
+                drawNode->drawRect(bottomLeft, topRight, lineColor);
+                count++;
+
+            }
+        }
+    }
+
+    //CCLOG("DrawGrid finished. Total farm tiles drawn: %d", count);
+}
+
+void GameWorld::interactWithLand(int tx, int ty, int itemID) {
+    // 1. 判定地图ID：只有 ID 为 8 的格子才能交互
+    if (_map.getTile(tx, ty) != 8) {
+        return;
+    }
+
+    std::string key = getLandKey(tx, ty);
+    LandTileData& land = _farmlandData[key];
+
+    // 2. 根据 itemID 判断行为
+    if (itemID == 1112) { // 假设 1112 是锄头
+        if (land.state == LandState::NONE) {
+            land.state = LandState::TILLED;
+        }
+    }
+    else if (itemID == 1113) { // 假设 1113 是水壶
+        if (land.state == LandState::TILLED) {
+            land.state = LandState::WATERED;
+        }
+    }
+    else {
+        // 3. 播种判断：从你的 CropDatabase 查找 itemID 是否为种子
+        auto cropInfo = CropDatabase::getInstance()->getCrop(itemID);
+        if (cropInfo && land.state != LandState::NONE && land.cropId == -1) {
+            // 只有耕过且没种过东西的地才能播种
+            land.cropId = itemID;
+            land.currentGrowth = 0;
+            land.isHarvestable = false;
+
+            // 播种后，需要消耗背包里的种子数量 (假设你有这个方法)
+            // InventoryManager::getInstance()->removeItem(itemID, 1);
+        }
+
+        // 4. 收获判断
+        if (land.isHarvestable) {
+            // 这里可以给玩家产出物，然后重置土地
+            land.cropId = -1;
+            land.isHarvestable = false;
+            land.state = LandState::TILLED; // 收获后变回已耕种状态
+        }
+    }
+
+    updateLandVisuals();
+}
+
+void GameWorld::updateLandVisuals() {
+    auto drawNode = dynamic_cast<DrawNode*>(this->getChildByTag(888));
+    if (!drawNode) {
+        drawNode = DrawNode::create();
+        this->addChild(drawNode, 1, 888);
+    }
+    drawNode->clear();
+
+    float ts = 16.0f * getMapScale();
+
+    for (auto it = _farmlandData.begin(); it != _farmlandData.end(); ++it) {
+        const std::string& key = it->first;
+        const LandTileData& land = it->second;
+
+        // 解析坐标
+        size_t sep = key.find('_');
+        int tx = std::atoi(key.substr(0, sep).c_str());
+        int ty = std::atoi(key.substr(sep + 1).c_str());
+
+        Vec2 origin(tx * ts, ty * ts);
+        Vec2 dest((tx + 1) * ts, (ty + 1) * ts);
+
+        // --- 绘制土地颜色 ---
+        Color4F landColor;
+        if (land.state == LandState::TILLED) landColor = Color4F(0.4f, 0.25f, 0.15f, 0.7f);
+        else if (land.state == LandState::WATERED) landColor = Color4F(0.2f, 0.15f, 0.1f, 0.9f);
+        else continue;
+
+        drawNode->drawSolidRect(origin, dest, landColor);
+
+        // --- 绘制作物标记 ---
+        if (land.cropId != -1) {
+            Vec2 center((tx + 0.5f) * ts, (ty + 0.5f) * ts);
+            if (land.isHarvestable) {
+                // 成熟了画个金色的圆 (代表可收获)
+                drawNode->drawDot(center, ts * 0.4f, Color4F::YELLOW);
+            }
+            else {
+                // 生长中画个绿色的点，点的大小随生长进度变大
+                auto info = CropDatabase::getInstance()->getCrop(land.cropId);
+                float progress = (info && info->growthDays > 0) ? (float)land.currentGrowth / info->growthDays : 0.1f;
+                drawNode->drawDot(center, ts * (0.1f + progress * 0.2f), Color4F::GREEN);
+            }
+        }
+    }
+}
+#include "fishing_game.h"
+
+void GameWorld::startFishingMinigame() {
+    if (!_player) return;
+
+    // 1. 判定玩家面前是否为水 (复用之前的逻辑)
+    float ts = 16.0f * _mapScale;
+    Vec2 pos = _player->getPosition();
+    int tx = std::floor(pos.x / ts);
+    int ty = std::floor(pos.y / ts);
+
+    if (_player->direction == 0) ty--;
+    else if (_player->direction == 3) ty++;
+    else if (_player->direction == 1) tx--;
+    else if (_player->direction == 2) tx++;
+
+    if (!isWater(tx, ty)) return; // 如果面前不是水，直接返回
+
+    // 2. 锁定玩家，停止移动
+    _player->stop_move(0, 0);
+    _player->_isAction = true;
+
+    // 3. 创建小游戏
+    auto fishingNode = FishingGame::create();
+
+    // 关键修正：将小游戏添加到 Scene 层，而不是 GameWorld 层
+    // 这样 UI 就会根据屏幕分辨率居中，而不是跟着地图跑
+    auto currentScene = Director::getInstance()->getRunningScene();
+    if (currentScene) {
+        currentScene->addChild(fishingNode, 9999);
+    }
+
+    // 4. 处理回调
+    fishingNode->onGameOver = [this, fishingNode](bool success) {
+        if (success) {
+            CCLOG("Catch!");
+            // 这里可以添加奖励逻辑
+        }
+
+        // 解锁玩家
+        if (this->_player) {
+            this->_player->_isAction = false;
+        }
+
+        // 移除小游戏
+        fishingNode->removeFromParent();
+        };
+}
+bool GameWorld::isWater(int tx, int ty) {
+    if (!_map.inBounds(tx, ty)) return false;
+
+    int tileId = _map.getTile(tx, ty);
+    // 根据 TileType.h，Water 的 ID 是 2
+    return (tileId == 2);
+}
+bool GameWorld::isFarmable(int tx, int ty) {
+    // 1. 首先必须在地图边界内
+    if (!_map.inBounds(tx, ty)) return false;
+
+    int tileId = _map.getTile(tx, ty);
+    return (tileId == 8); // 假设 8 号图块是可耕种的泥土
+
+    return false;
+}
+
+void GameWorld::nextDay() {
+    // 使用传统的迭代器访问 unordered_map
+    for (auto it = _farmlandData.begin(); it != _farmlandData.end(); ++it) {
+        // it->first 是 key (字符串), it->second 是 LandTileData 对象
+        LandTileData& land = it->second;
+
+        // 成长判定：只有浇了水的土地，作物才会生长
+        if (land.cropId != -1 && !land.isHarvestable) {
+            if (land.state == LandState::WATERED) {
+                land.currentGrowth++;
+
+                // 从数据库查询生长天数
+                auto info = CropDatabase::getInstance()->getCrop(land.cropId);
+                if (info && land.currentGrowth >= info->growthDays) {
+                    land.isHarvestable = true;
+                }
+            }
+        }
+
+        // 每日结算：湿润的土地变干
+        if (land.state == LandState::WATERED) {
+            land.state = LandState::TILLED;
+        }
+    }
+    updateLandVisuals();
+}

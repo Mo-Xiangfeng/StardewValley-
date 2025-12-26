@@ -7,7 +7,7 @@
     <Filter Include="resource">
       <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src">
+    <Filter Include="classes">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -15,27 +15,471 @@
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="AppDelegate.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="HelloWorldScene.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameWorld.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraController.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="MapPortal.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMapLogic.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="HomeLogic.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="ShopLogic.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC1HouseLogic.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC2HouseLogic.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="MineLogic.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="BagScene.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="CropData.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeDisplayScene.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="WeatherManager.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryManager.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="MoneyManager.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="ShopLayer.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Hotbar.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="fishing_game.cpp">
+      <Filter>classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>src</Filter>
+    <ClInclude Include="resource.h">
+      <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\HelloWorldScene.h">
-      <Filter>src</Filter>
+    <ClInclude Include="TileMap.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="TileType.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="AppDelegate.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="HelloWorldScene.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorld.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraController.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="MapPortal.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="MapLogic.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMapLogic.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="HomeLogic.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="ShopLogic.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC1HouseLogic.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC2HouseLogic.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="MineLogic.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="BagScene.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CropData.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeDisplayScene.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="WeatherManager.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryManager.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="MoneyManager.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="ShopLayer.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Hotbar.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="TileData.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="fishing_game.h">
+      <Filter>classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\down_side.plist">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\down_side_action.plist">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\down_side_cut.plist">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\down_side_water.plist">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\left_side.plist">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\left_side_action.plist">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\left_side_cut.plist">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\left_side_water.plist">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\right_side.plist">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\right_side_action.plist">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\right_side_cut.plist">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\right_side_water.plist">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\slime.plist">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\up_side.plist">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\up_side_action.plist">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\up_side_cut.plist">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\up_side_water.plist">
+      <Filter>resource</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resources\down_side.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\down_side_action.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\down_side_action-0.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\down_side_cut.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\down_side_water.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\down_side-0.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\ExitPressedButton.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\Home.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\left_side.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\left_side_action.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\left_side_action-0.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\left_side_cut.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\left_side_water.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\left_side-0.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\Map.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\Mine.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\NPC1House.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\NPC2House.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\Player.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\right_side.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\right_side_action.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\right_side_action-0.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\right_side_cut.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\right_side_water.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\right_side-0.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\scene.jpg">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\Shop.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\slime-0.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\slime-1.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\slime-2.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\StartPressedButton.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\trash_can.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\up_side.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\up_side_action.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\up_side_action-0.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\up_side_cut.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\up_side_water.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\up_side-0.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\store.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\cover.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\ExitButton.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\slime.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\StartButton.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\fishing.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\fishing_pole.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\GREEN.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\1100.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\1101.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\1102.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\1103.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\1104.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\1105.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\1106.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\1107.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\1108.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\1109.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\1110.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\1111.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\1112.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\1113.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\2200.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\2201.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\2207.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\3101.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\3112.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\3120.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\3125.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\3126.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\4101.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\5110.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\5113.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\item\5114.png">
+      <Filter>resource</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Resources\Home.txt">
+      <Filter>resource</Filter>
+    </Text>
+    <Text Include="..\Resources\Mine.txt">
+      <Filter>resource</Filter>
+    </Text>
+    <Text Include="..\Resources\NPC1House.txt">
+      <Filter>resource</Filter>
+    </Text>
+    <Text Include="..\Resources\NPC2House.txt">
+      <Filter>resource</Filter>
+    </Text>
+    <Text Include="..\Resources\Shop.txt">
+      <Filter>resource</Filter>
+    </Text>
+    <Text Include="..\Resources\tilemap.txt">
+      <Filter>resource</Filter>
+    </Text>
   </ItemGroup>
 </Project>

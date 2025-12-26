@@ -114,6 +114,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
       <Outputs>$(TargetName).cab</Outputs>
       <Inputs>$(TargetFileName)</Inputs>
     </CustomBuildStep>
+    <Link>
+      <ImageHasSafeExceptionHandlers Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ImageHasSafeExceptionHandlers>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -150,14 +153,65 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="AppDelegate.cpp" />
+    <ClCompile Include="BagScene.cpp" />
+    <ClCompile Include="CameraController.cpp" />
+    <ClCompile Include="CropData.cpp" />
+    <ClCompile Include="fishing_game.cpp" />
+    <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="GameWorld.cpp" />
+    <ClCompile Include="HelloWorldScene.cpp" />
+    <ClCompile Include="HomeLogic.cpp" />
+    <ClCompile Include="Hotbar.cpp" />
+    <ClCompile Include="InventoryManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMapLogic.cpp" />
+    <ClCompile Include="MapPortal.cpp" />
+    <ClCompile Include="MineLogic.cpp" />
+    <ClCompile Include="MoneyManager.cpp" />
+    <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="NPC1HouseLogic.cpp" />
+    <ClCompile Include="NPC2HouseLogic.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ShopLayer.cpp" />
+    <ClCompile Include="ShopLogic.cpp" />
+    <ClCompile Include="TileMap.cpp" />
+    <ClCompile Include="TimeDisplayScene.cpp" />
+    <ClCompile Include="TimeManager.cpp" />
+    <ClCompile Include="WeatherManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Classes\AppDelegate.h" />
-    <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="AppDelegate.h" />
+    <ClInclude Include="BagScene.h" />
+    <ClInclude Include="CameraController.h" />
+    <ClInclude Include="CropData.h" />
+    <ClInclude Include="fishing_game.h" />
+    <ClInclude Include="GameScene.h" />
+    <ClInclude Include="GameWorld.h" />
+    <ClInclude Include="HelloWorldScene.h" />
+    <ClInclude Include="HomeLogic.h" />
+    <ClInclude Include="Hotbar.h" />
+    <ClInclude Include="InventoryManager.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="MainMapLogic.h" />
+    <ClInclude Include="MapLogic.h" />
+    <ClInclude Include="MapPortal.h" />
+    <ClInclude Include="MineLogic.h" />
+    <ClInclude Include="MoneyManager.h" />
+    <ClInclude Include="Monster.h" />
+    <ClInclude Include="NPC1HouseLogic.h" />
+    <ClInclude Include="NPC2HouseLogic.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="ShopLayer.h" />
+    <ClInclude Include="ShopLogic.h" />
+    <ClInclude Include="TileData.h" />
+    <ClInclude Include="TileMap.h" />
+    <ClInclude Include="TileType.h" />
+    <ClInclude Include="TimeDisplayScene.h" />
+    <ClInclude Include="TimeManager.h" />
+    <ClInclude Include="WeatherManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cocos2d\cocos\2d\libcocos2d.vcxproj">
@@ -170,6 +224,107 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\down_side.plist" />
+    <None Include="..\Resources\down_side_action.plist" />
+    <None Include="..\Resources\down_side_cut.plist" />
+    <None Include="..\Resources\down_side_water.plist" />
+    <None Include="..\Resources\left_side.plist" />
+    <None Include="..\Resources\left_side_action.plist" />
+    <None Include="..\Resources\left_side_cut.plist" />
+    <None Include="..\Resources\left_side_water.plist" />
+    <None Include="..\Resources\right_side.plist" />
+    <None Include="..\Resources\right_side_action.plist" />
+    <None Include="..\Resources\right_side_cut.plist" />
+    <None Include="..\Resources\right_side_water.plist" />
+    <None Include="..\Resources\slime.plist" />
+    <None Include="..\Resources\up_side.plist" />
+    <None Include="..\Resources\up_side_action.plist" />
+    <None Include="..\Resources\up_side_cut.plist" />
+    <None Include="..\Resources\up_side_water.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resources\cover.png" />
+    <Image Include="..\Resources\down_side-0.png" />
+    <Image Include="..\Resources\down_side.png" />
+    <Image Include="..\Resources\down_side_action-0.png" />
+    <Image Include="..\Resources\down_side_action.png" />
+    <Image Include="..\Resources\down_side_cut.png" />
+    <Image Include="..\Resources\down_side_water.png" />
+    <Image Include="..\Resources\ExitButton.png" />
+    <Image Include="..\Resources\ExitPressedButton.png" />
+    <Image Include="..\Resources\fishing.png" />
+    <Image Include="..\Resources\fishing_pole.png" />
+    <Image Include="..\Resources\GREEN.png" />
+    <Image Include="..\Resources\Home.png" />
+    <Image Include="..\Resources\item\1100.png" />
+    <Image Include="..\Resources\item\1101.png" />
+    <Image Include="..\Resources\item\1102.png" />
+    <Image Include="..\Resources\item\1103.png" />
+    <Image Include="..\Resources\item\1104.png" />
+    <Image Include="..\Resources\item\1105.png" />
+    <Image Include="..\Resources\item\1106.png" />
+    <Image Include="..\Resources\item\1107.png" />
+    <Image Include="..\Resources\item\1108.png" />
+    <Image Include="..\Resources\item\1109.png" />
+    <Image Include="..\Resources\item\1110.png" />
+    <Image Include="..\Resources\item\1111.png" />
+    <Image Include="..\Resources\item\1112.png" />
+    <Image Include="..\Resources\item\1113.png" />
+    <Image Include="..\Resources\item\2200.png" />
+    <Image Include="..\Resources\item\2201.png" />
+    <Image Include="..\Resources\item\2207.png" />
+    <Image Include="..\Resources\item\3101.png" />
+    <Image Include="..\Resources\item\3112.png" />
+    <Image Include="..\Resources\item\3120.png" />
+    <Image Include="..\Resources\item\3125.png" />
+    <Image Include="..\Resources\item\3126.png" />
+    <Image Include="..\Resources\item\4101.png" />
+    <Image Include="..\Resources\item\5110.png" />
+    <Image Include="..\Resources\item\5113.png" />
+    <Image Include="..\Resources\item\5114.png" />
+    <Image Include="..\Resources\left_side-0.png" />
+    <Image Include="..\Resources\left_side.png" />
+    <Image Include="..\Resources\left_side_action-0.png" />
+    <Image Include="..\Resources\left_side_action.png" />
+    <Image Include="..\Resources\left_side_cut.png" />
+    <Image Include="..\Resources\left_side_water.png" />
+    <Image Include="..\Resources\Map.png" />
+    <Image Include="..\Resources\Mine.png" />
+    <Image Include="..\Resources\NPC1House.png" />
+    <Image Include="..\Resources\NPC2House.png" />
+    <Image Include="..\Resources\Player.png" />
+    <Image Include="..\Resources\right_side-0.png" />
+    <Image Include="..\Resources\right_side.png" />
+    <Image Include="..\Resources\right_side_action-0.png" />
+    <Image Include="..\Resources\right_side_action.png" />
+    <Image Include="..\Resources\right_side_cut.png" />
+    <Image Include="..\Resources\right_side_water.png" />
+    <Image Include="..\Resources\scene.jpg" />
+    <Image Include="..\Resources\Shop.png" />
+    <Image Include="..\Resources\slime-0.png" />
+    <Image Include="..\Resources\slime-1.png" />
+    <Image Include="..\Resources\slime-2.png" />
+    <Image Include="..\Resources\slime.png" />
+    <Image Include="..\Resources\StartButton.png" />
+    <Image Include="..\Resources\StartPressedButton.png" />
+    <Image Include="..\Resources\store.png" />
+    <Image Include="..\Resources\trash_can.png" />
+    <Image Include="..\Resources\up_side-0.png" />
+    <Image Include="..\Resources\up_side.png" />
+    <Image Include="..\Resources\up_side_action-0.png" />
+    <Image Include="..\Resources\up_side_action.png" />
+    <Image Include="..\Resources\up_side_cut.png" />
+    <Image Include="..\Resources\up_side_water.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Resources\Home.txt" />
+    <Text Include="..\Resources\Mine.txt" />
+    <Text Include="..\Resources\NPC1House.txt" />
+    <Text Include="..\Resources\NPC2House.txt" />
+    <Text Include="..\Resources\Shop.txt" />
+    <Text Include="..\Resources\tilemap.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
