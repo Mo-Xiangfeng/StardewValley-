@@ -80,7 +80,9 @@ public:
     void GameWorld::drawFarmGrid();
     void switchMap(const std::string& mapId,
         const std::string& entry);
-    
+    MapLogic* getLogic() const {
+        return _logic.get();
+    }
 private:
     std::unordered_map<std::string, LandTileData> _farmlandData;
     std::string getLandKey(int tx, int ty) { return std::to_string(tx) + "_" + std::to_string(ty); }

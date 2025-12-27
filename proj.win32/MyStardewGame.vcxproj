@@ -207,6 +207,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClInclude Include="NPC2HouseLogic.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="ReviveSystem.h" />
     <ClInclude Include="ShopLayer.h" />
     <ClInclude Include="ShopLogic.h" />
     <ClInclude Include="TileData.h" />

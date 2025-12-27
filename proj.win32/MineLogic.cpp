@@ -148,6 +148,6 @@ void MineLogic::onExit(GameWorld* world, Player* player) {
     _monsters.clear();
 }
 
-void MineLogic::onInteract(Player* player) {
+void MineLogic::onInteract(Player* player,const Vec2& posInMap) {
     cocos2d::log("Mining action triggered in logic.");
 }

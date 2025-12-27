@@ -200,6 +200,9 @@
     <ClInclude Include="TreeManager.h">
       <Filter>classes</Filter>
     </ClInclude>
+    <ClInclude Include="ReviveSystem.h">
+      <Filter>classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

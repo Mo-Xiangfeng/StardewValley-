@@ -9,6 +9,8 @@
 #include "Hotbar.h"
 #include "GameWorld.h"
 #include "ReviveSystem.h"
+#include "MapLogic.h"   
+#include "HomeLogic.h"
 USING_NS_CC;
 
 Scene* GameScene::createScene()
@@ -166,7 +168,17 @@ void GameScene::onMouseDown(EventMouse* event)
         if (_playerSprite && _playerSprite->_isAction) {
             return;
         }
-		 if (_gameWorld && _gameWorld->getCurrentMapId() == "Shop")
+        if(_gameWorld && _gameWorld->getCurrentMapId() == "Home")
+        { 
+            Vec2 touchPos = Director::getInstance()->convertToGL(event->getLocationInView());
+            Vec2 posInMap = _gameWorld->convertToNodeSpace(touchPos);
+            auto logic = _gameWorld->getLogic();
+            if (logic) {
+                
+                logic->onInteract(_playerSprite, posInMap);
+            }
+        }
+		else if (_gameWorld && _gameWorld->getCurrentMapId() == "Shop")
         {
             // 获取点击位置并转换为地图坐标
             Vec2 touchPos = Director::getInstance()->convertToGL(event->getLocationInView());

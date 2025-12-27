@@ -10,7 +10,7 @@ void ShopLogic::onEnter(GameWorld* world, Player* player) {
 }
 
 // ShopLogic.cpp
-void ShopLogic::onInteract(Player* player) {
+void ShopLogic::onInteract(Player* player,const Vec2& posInMap) {
     auto currentScene = Director::getInstance()->getRunningScene();
     if (!currentScene) return;
 

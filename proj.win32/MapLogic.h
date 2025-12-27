@@ -1,6 +1,6 @@
 #ifndef __MAP_LOGIC_H__
 #define __MAP_LOGIC_H__
-
+#include"cocos2d.h"
 class GameWorld;
 class Player;
 
@@ -17,8 +17,8 @@ public:
     // 每帧更新（矿洞 / NPC 用）
     virtual void update(float dt) {}
 
-    // 玩家交互（E 键）
-    virtual void onInteract(Player* player) {}
+    
+    virtual void onInteract(Player* player, const cocos2d::Vec2& posInMap = cocos2d::Vec2::ZERO) = 0;
 };
 
 #endif
