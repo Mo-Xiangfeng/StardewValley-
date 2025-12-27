@@ -47,6 +47,7 @@ struct LandTile {
 class GameWorld : public cocos2d::Node
 {
 public:
+    void playTreeHitEffect(int tx, int ty); // 播放树木受击效果
     void startFishingMinigame();
     bool isFarmable(int tx, int ty);
     bool GameWorld::isWater(int tx, int ty);

@@ -725,3 +725,29 @@ bool GameWorld::isWater(int tx, int ty) {
     // 根据 TileType.h，Water 的 ID 是 2
     return (tileId == 2);
 }
+void GameWorld::playTreeHitEffect(int tx, int ty)
+{
+    int tag = 200000 + tx * 1000 + ty;
+
+    // 从 _treeLayer 中获取树的精灵
+    auto tree = _treeLayer->getChildByTag(tag);
+
+    if (tree) {
+        // 先停止树木当前正在运行的动作，防止连续点击导致动作叠加变不回来
+        tree->stopAllActionsByTag(999); // 假设给受击动作设个标签
+
+        // 1. 定义变暗动作 (120, 120, 120 是深灰色)
+        auto tintDark = TintTo::create(0.05f, 120, 120, 120);
+
+        // 2. 定义恢复原色动作 (255, 255, 255 是图片原始色彩)
+        auto tintBack = TintTo::create(0.05f, 255, 255, 255);
+
+        // 3. 组合动作序列：变暗 -> 恢复
+        auto hitSequence = Sequence::create(tintDark, tintBack, nullptr);
+
+        // 给动作设置一个 tag，方便上面 stopAllActionsByTag 调用
+        hitSequence->setTag(999);
+
+        tree->runAction(hitSequence);
+    }
+}

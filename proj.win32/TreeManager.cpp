@@ -104,7 +104,11 @@ bool TreeManager::removeTreeAt(int tx, int ty, int damage) {
                 _trees.erase(it);
                 return true; // 树倒了
             }
-            return false; // 树还在
+            else{
+                // --- 这里就是添加闪烁的地方 ---
+                _world->playTreeHitEffect(tx, ty);
+                return false;
+            }
         }
     }
     return false; // 该位置没树
