@@ -12,7 +12,8 @@ public:
 
     void initInventory(int capacity);
     int getmoney(int index);
-    bool removeItem(int index);
+    bool removeItem(int index, int num = 0);
+    bool InventoryManager::removeItemByID(int id, int num);
     bool addItem(std::shared_ptr<Item> newItem);
     bool addItemByID(int id, int count);
 

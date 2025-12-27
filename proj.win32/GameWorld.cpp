@@ -7,9 +7,11 @@
 #include "NPC2HouseLogic.h"
 #include "MineLogic.h"
 #include "GameScene.h"
-#include "TileType.h"
 #include "CropData.h"
-#include "fishing_game.h"
+#include "InventoryManager.h"
+#include "WeatherManager.h"
+#include "fishing_game.h"`
+#include "TreeManager.h"
 USING_NS_CC;
 
 /* =========================
@@ -40,7 +42,7 @@ bool GameWorld::init(const std::string&,
         "tilemap.txt",
         "Map.png",
         {
-            { "Spawn",    {53, 27} },
+            { "Spawn",    {33, 25} },
             { "HomeDoor", {32, 25} },
             { "ShopDoor", {53, 27} },
             { "NPC1Door", {20, 33} },
@@ -117,14 +119,21 @@ bool GameWorld::init(const std::string&,
     };
 
 
-    /* ========= 初始进入主地图 ========= */
-    //switchMap("Map", "Spawn");
+   
+    switchMap("Map", "Spawn");
     CCLOG("DEBUG: Map Loaded. Width: %d, Height: %d", _map.width, _map.height);
+    _daylightLayer = Daylight::create();
+    this->addChild(_daylightLayer, 999); // 确保在最顶层
+    _daylightLayer->setVisible(false);
+
+    // 地图加载完成后
+    _treeLayer = Node::create();
+    this->addChild(_treeLayer, 70);
+
     scheduleUpdate();
+    TreeManager::getInstance()->init(this);
     return true;
 }
-// GameWorld.cpp
-
 
 void GameWorld::handleInteraction(const Vec2& posInMap)
 {
@@ -169,6 +178,45 @@ void GameWorld::handleInteraction(const Vec2& posInMap)
         }
     }
 }
+// GameWorld.cpp
+void GameWorld::addTreeSprite(int tx, int ty) {
+    auto tree = Sprite::create("tree.png");
+    tree->setAnchorPoint(Vec2(0.5f, 0.2f));
+
+    
+
+    const float TILE_SIZE = 16.0f;
+    const float MAP_SCALE = 2.7f;
+
+    // 计算显示位置（不要覆盖 tx, ty 变量）
+    float posX = (tx * TILE_SIZE + TILE_SIZE * 0.5f) * MAP_SCALE;
+    float posY = (ty * TILE_SIZE) * MAP_SCALE;
+    tree->setPosition(posX, posY);
+
+    tree->setScale(1.1f);
+
+    // 使用原始的 tx, ty 生成 Tag
+    int tag = 200000 + tx * 1000 + ty;
+    tree->setTag(tag);
+
+    _treeLayer->addChild(tree);
+}
+
+void GameWorld::removeTreeSprite(const cocos2d::Vec2& tilePos) {
+    int tx = (int)tilePos.x;
+    int ty = (int)tilePos.y;
+    int tag = 200000 + tx * 1000 + ty;
+
+    // 关键修正：去 _treeLayer 里找，而不是 this
+    if (_treeLayer) {
+        auto tree = _treeLayer->getChildByTag(tag);
+        if (tree) {
+            tree->removeFromParent(); // 或者 _treeLayer->removeChildByTag(tag);
+            //CCLOG("Tree Sprite at %d, %d removed from _treeLayer", tx, ty);
+        }
+    }
+}
+
 /* =========================
    Player 绑定
    ========================= */
@@ -219,7 +267,9 @@ void GameWorld::reload(const std::string& txtFile,
             p.toEntry
         );
     }
+    
     drawFarmGrid();
+   
 }
 
 /* =========================
@@ -237,7 +287,14 @@ void GameWorld::switchMap(const std::string& mapId,
     _currentMapId = mapId;
 
     reload(info.txt, info.img);
-
+    if (_treeLayer) {
+        if (_currentMapId == "Map") {
+            _treeLayer->setVisible(true);   // 回到主地图，显示树木
+        }
+        else {
+            _treeLayer->setVisible(false);  // 进入室内/矿洞，隐藏树木
+        }
+    }
     if (_player)
     {
         Vec2 spawn = info.entries.at(entry);
@@ -257,13 +314,21 @@ void GameWorld::switchMap(const std::string& mapId,
         _logic = std::make_unique<NPC2HouseLogic>();
     else if (mapId == "Mine")
         _logic = std::make_unique<MineLogic>();
-
+    if (_daylightLayer) {
+        if (mapId != "Mine") {
+            _daylightLayer->setVisible(true);  // 回到主地图，开启黑夜
+        }
+        else {
+            _daylightLayer->setVisible(false); // 进入室内，强行变亮
+        }
+    }
     // 进入新地图逻辑
     if (_logic)
         _logic->onEnter(this, _player);
 
     _currentPortal = nullptr;
     _portalStayTime = 0.0f;
+    updateLandVisuals();
 }
 
 /* =========================
@@ -476,15 +541,27 @@ void GameWorld::interactWithLand(int tx, int ty, int itemID) {
             land.isHarvestable = false;
 
             // 播种后，需要消耗背包里的种子数量 (假设你有这个方法)
-            // InventoryManager::getInstance()->removeItem(itemID, 1);
+            InventoryManager::getInstance()->removeItemByID(itemID, 1);
         }
 
         // 4. 收获判断
         if (land.isHarvestable) {
-            // 这里可以给玩家产出物，然后重置土地
-            land.cropId = -1;
-            land.isHarvestable = false;
-            land.state = LandState::TILLED; // 收获后变回已耕种状态
+            // 技巧：假设种子 ID 是 1100，对应的果实 ID 是 2200 (你的库里定义的)
+            int fruitId = land.cropId + 1100;
+
+            // 2. 给予玩家物品
+            bool success = InventoryManager::getInstance()->addItemByID(fruitId, 1);
+
+            if (success) {
+                CCLOG("收获成功！获得了果实 ID: %d", fruitId);
+                // 3. 重置土地
+                land.cropId = -1;
+                land.isHarvestable = false;
+                land.state = LandState::TILLED;
+            }
+            else {
+                CCLOG("背包已满，无法收获！");
+            }
         }
     }
 
@@ -537,7 +614,63 @@ void GameWorld::updateLandVisuals() {
         }
     }
 }
-#include "fishing_game.h"
+
+bool GameWorld::isFarmable(int tx, int ty) {
+    // 1. 首先必须在地图边界内
+    if (!_map.inBounds(tx, ty)) return false;
+
+    int tileId = _map.getTile(tx, ty);
+    return (tileId == 8); // 假设 8 号图块是可耕种的泥土
+
+    return false;
+}
+
+void GameWorld::nextDay() {
+    CCLOG("DEBUG: nextDay() has been triggered!");
+
+    // 1. 获取当前天气
+    auto weather = WeatherManager::getInstance()->getCurrentWeather();
+    bool isRaining = (weather == WeatherType::RAINY || weather == WeatherType::STORMY);
+
+    if (isRaining) {
+        CCLOG("It's raining! All tilled land will be watered automatically.");
+    }
+
+    for (auto it = _farmlandData.begin(); it != _farmlandData.end(); ++it) {
+        LandTileData& land = it->second;
+
+        // 【新增逻辑】：如果是雨天/雷暴，且土地是已耕种状态，自动变湿润
+        if (isRaining && land.state == LandState::TILLED) {
+            land.state = LandState::WATERED;
+        }
+
+        // 2. 成长判定：只有浇了水的土地（包括被雨淋湿的），作物才会生长
+        if (land.cropId != -1 && !land.isHarvestable) {
+            if (land.state == LandState::WATERED) {
+                land.currentGrowth++;
+
+                auto info = CropDatabase::getInstance()->getCrop(land.cropId);
+                if (info && land.currentGrowth >= info->growthDays) {
+                    land.isHarvestable = true;
+                }
+            }
+        }
+
+        // 3. 每日结算：湿润的土地变干
+        if (land.state == LandState::WATERED) {
+            land.state = LandState::TILLED;
+        }
+        else if (land.state == LandState::TILLED) {
+            // 如果没播种，第二天变回普通地块
+            if (land.cropId == -1) {
+                land.state = LandState::NONE;
+            }
+        }
+    }
+
+    updateLandVisuals();
+    this->drawFarmGrid();
+}
 
 void GameWorld::startFishingMinigame() {
     if (!_player) return;
@@ -591,40 +724,4 @@ bool GameWorld::isWater(int tx, int ty) {
     int tileId = _map.getTile(tx, ty);
     // 根据 TileType.h，Water 的 ID 是 2
     return (tileId == 2);
-}
-bool GameWorld::isFarmable(int tx, int ty) {
-    // 1. 首先必须在地图边界内
-    if (!_map.inBounds(tx, ty)) return false;
-
-    int tileId = _map.getTile(tx, ty);
-    return (tileId == 8); // 假设 8 号图块是可耕种的泥土
-
-    return false;
-}
-
-void GameWorld::nextDay() {
-    // 使用传统的迭代器访问 unordered_map
-    for (auto it = _farmlandData.begin(); it != _farmlandData.end(); ++it) {
-        // it->first 是 key (字符串), it->second 是 LandTileData 对象
-        LandTileData& land = it->second;
-
-        // 成长判定：只有浇了水的土地，作物才会生长
-        if (land.cropId != -1 && !land.isHarvestable) {
-            if (land.state == LandState::WATERED) {
-                land.currentGrowth++;
-
-                // 从数据库查询生长天数
-                auto info = CropDatabase::getInstance()->getCrop(land.cropId);
-                if (info && land.currentGrowth >= info->growthDays) {
-                    land.isHarvestable = true;
-                }
-            }
-        }
-
-        // 每日结算：湿润的土地变干
-        if (land.state == LandState::WATERED) {
-            land.state = LandState::TILLED;
-        }
-    }
-    updateLandVisuals();
 }

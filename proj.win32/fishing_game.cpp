@@ -24,26 +24,26 @@ bool FishingGame::init() {
 
     // 3. 绘制 UI (背景槽、绿条、鱼)
     auto bg = Sprite::create("fishing_pole.png");
-    bg->setPosition(20, 0); 
+    bg->setPosition(20, 0);
     bg->setScale(0.7f);
     _container->addChild(bg);
-    
-   
+
+
     _fishBar = Sprite::create();
-    _fishBar->setTextureRect(Rect(0, 0, 9, BAR_H));
+    _fishBar->setTextureRect(Rect(0, 0, 35, BAR_H));
     _fishBar->setColor(Color3B::GREEN);
     _fishBar->setAnchorPoint(Vec2(0, -0.1));
 
     Size bgSize = bg->getContentSize();
-    float barPosX = bgSize.width * 0.44f; 
-    float initialY = 50.0f;
+    float barPosX = bgSize.width * 0.44f;
+    float initialY = 100.0f;
     _barY = initialY;
     _fishY = initialY;
-    _fishBar->setPosition(Vec2(barPosX, _barY ));
+    _fishBar->setPosition(Vec2(barPosX, _barY));
     bg->addChild(_fishBar);
 
     _fish = Sprite::create("fishing.png");
-    _fish->setPosition(Vec2(_fishBar->getPositionX()+5, _fishY));
+    _fish->setPosition(Vec2(_fishBar->getPositionX() + 15, _fishY));
     _fish->setScale(0.2f);
     bg->addChild(_fish);
 
@@ -55,19 +55,33 @@ bool FishingGame::init() {
     _prog->setRotation(90);
 
     _prog->ignoreContentAdaptWithSize(false);
-    _prog->setContentSize(Size(135, 4)); 
+    _prog->setContentSize(Size(AREA_H, 11));
     _prog->setPosition(Vec2(bgSize.width * 0.89f, bgSize.height * 0.5f));
     bg->addChild(_prog, 10);
-  
+
     auto mouseListener = EventListenerMouse::create();
+
+    // 设置吞噬事件，防止点击穿透到下层的 GameScene
+    // 注意：EventListenerMouse 没有 setSwallowTouches，
+    // 但我们可以通过在回调中停止传播或使用优先级来实现
+
     mouseListener->onMouseDown = [this](Event* event) {
-        if (static_cast<EventMouse*>(event)->getMouseButton() == EventMouse::MouseButton::BUTTON_LEFT)
+        if (static_cast<EventMouse*>(event)->getMouseButton() == EventMouse::MouseButton::BUTTON_LEFT) {
             _isPressing = true;
+            // 停止事件向下传递
+            event->stopPropagation();
+        }
         };
+
+    // 同样修改 onMouseUp
     mouseListener->onMouseUp = [this](Event* event) {
-        if (static_cast<EventMouse*>(event)->getMouseButton() == EventMouse::MouseButton::BUTTON_LEFT)
+        if (static_cast<EventMouse*>(event)->getMouseButton() == EventMouse::MouseButton::BUTTON_LEFT) {
             _isPressing = false;
+            event->stopPropagation();
+        }
         };
+
+    // 使用较高的优先级注册（或者使用带有 SceneGraphPriority 的监听）
     _eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
 
     this->scheduleUpdate();
@@ -97,7 +111,7 @@ void FishingGame::update(float dt) {
         _fishTargetY = CCRANDOM_0_1() * (AREA_H - 20);
         _fishTimer = 1.0f + CCRANDOM_0_1() * 1.5f;
     }
-    _fishY = _fishY + (_fishTargetY - _fishY) * 1.8f * dt; // Lerp 平滑插值
+    _fishY = _fishY + (_fishTargetY - _fishY) * 1.0f * dt; // Lerp 平滑插值
     _fish->setPositionY(_fishY + 10); // +10 是为了对齐中心
 
     bool isInside = (_fishY >= _barY && _fishY <= _barY + BAR_H);

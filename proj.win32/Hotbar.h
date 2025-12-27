@@ -12,7 +12,7 @@ public:
     virtual void onEnter() override;
 private:
     const int _slotCount = 10;
-    const float _slotSize = 20.0f; // 快捷栏格子稍微大一点
+    const float _slotSize = 80.0f; // 快捷栏格子稍微大一点
     const float _padding = 8.0f;
 
     cocos2d::Node* _itemsContainer = nullptr;

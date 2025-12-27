@@ -157,6 +157,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClCompile Include="BagScene.cpp" />
     <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="CropData.cpp" />
+    <ClCompile Include="Daylight.cpp" />
     <ClCompile Include="fishing_game.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameWorld.cpp" />
@@ -173,11 +174,13 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClCompile Include="NPC1HouseLogic.cpp" />
     <ClCompile Include="NPC2HouseLogic.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ReviveSystem.cpp" />
     <ClCompile Include="ShopLayer.cpp" />
     <ClCompile Include="ShopLogic.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="TimeDisplayScene.cpp" />
     <ClCompile Include="TimeManager.cpp" />
+    <ClCompile Include="TreeManager.cpp" />
     <ClCompile Include="WeatherManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +214,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClInclude Include="TileType.h" />
     <ClInclude Include="TimeDisplayScene.h" />
     <ClInclude Include="TimeManager.h" />
+    <ClInclude Include="Tree.h" />
+    <ClInclude Include="TreeManager.h" />
     <ClInclude Include="WeatherManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -311,6 +316,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <Image Include="..\Resources\StartPressedButton.png" />
     <Image Include="..\Resources\store.png" />
     <Image Include="..\Resources\trash_can.png" />
+    <Image Include="..\Resources\tree.png" />
     <Image Include="..\Resources\up_side-0.png" />
     <Image Include="..\Resources\up_side.png" />
     <Image Include="..\Resources\up_side_action-0.png" />

@@ -131,13 +131,39 @@ void InventoryManager::swapItems(int idx1, int idx2) {
     }
 }
 
-bool InventoryManager::removeItem(int index) {
-    if (index >= 0 && index < _inventory.size()) {
-        // 由于使用了 shared_ptr，将其设为 nullptr 会自动减少引用计数
-        // 如果没有其他地方引用该对象，它会被自动销毁
-        _inventory[index] = nullptr;
-        notifyUpdate();
-        return true;
+bool InventoryManager::removeItem(int index, int num) {
+    // 1. 检查索引合法性
+    if (index >= 0 && index < _inventory.size() && _inventory[index] != nullptr) {
+
+        // 2. 如果 num 为 0，表示直接清空该格子
+        if (num == 0) {
+            _inventory[index] = nullptr;
+            notifyUpdate();
+            return true;
+        }
+        else {
+            // 3. 检查数量是否足够扣除
+            if (_inventory[index]->count >= num) {
+                _inventory[index]->count -= num;
+
+                // --- 新增逻辑：如果扣除后数量为 0，则清空格子 ---
+                if (_inventory[index]->count <= 0) {
+                    _inventory[index] = nullptr;
+                }
+
+                notifyUpdate();
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool InventoryManager::removeItemByID(int id, int num) {
+    for (int i = 0; i < _inventory.size(); ++i) {
+        if (_inventory[i] && _inventory[i]->id == id) {
+            return removeItem(i, num); // 复用上面的逻辑
+        }
     }
     return false;
 }

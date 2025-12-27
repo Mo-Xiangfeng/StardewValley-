@@ -13,6 +13,9 @@ public:
 
     // implement the "static create()" method manually
     CREATE_FUNC(GameScene);
+
+    GameWorld* getGameWorld() const { return _gameWorld; }
+    Player* getPlayer() const { return _playerSprite; }
 private:
     // 【修改点 1】：动画精灵
     Player* _playerSprite;
@@ -27,6 +30,9 @@ private:
     bool _isSPressed = false;
     bool _isDPressed = false;
     bool _isTPressed = false;
+    // 凌晨强制睡眠标志
+    bool _hasTriggeredExhaustion = false;
+    int _selectedSlotIndex = -1; // -1 表示空手，0-8 表示快捷栏格位
     void onMouseDown(cocos2d::EventMouse* event);
     void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
     void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);

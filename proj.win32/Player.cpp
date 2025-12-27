@@ -3,6 +3,8 @@
 #include "GameScene.h"
 #include "HelloWorldScene.h" 
 #include "GameWorld.h"
+#include "TreeManager.h"
+#include "InventoryManager.h"
 USING_NS_CC;
 #define WALK_ACTION_TAG 100 // 定义统一的动作标签
 #define farm_ACTION_TAG 200 
@@ -240,21 +242,7 @@ void Player::start_move(int directionX, int directionY)
     // 5. 确保 update 函数被调度
     this->scheduleUpdate();
 }
-void Player::takeDamage(int damage) {
-    if (this->currentHP <= 0) return;
 
-    this->currentHP -= damage;
-
-    // 受击反馈：红光闪烁
-    auto tintRed = cocos2d::TintTo::create(0.1f, 255, 100, 100);
-    auto tintBack = cocos2d::TintTo::create(0.1f, 255, 255, 255);
-    this->runAction(cocos2d::Sequence::create(tintRed, tintBack, nullptr));
-
-    if (this->currentHP <= 0) {
-        // 处理玩家死亡逻辑（如弹出游戏结束界面）
-        cocos2d::log("Player is dead!");
-    }
-}
 void Player::stop_move(int directionX, int directionY)
 {
     if (directionX == 0 && directionY == 0)
@@ -284,7 +272,7 @@ void Player::update(float dt)
 {
     // 1. 计算预期速度和位置
    // 1. 计算预期速度和位置
-    const float speed = 100.0f
+    const float speed = 200.0f
         ;
     Vec2 velocity = Vec2::ZERO;
 
@@ -334,7 +322,8 @@ void Player::update(float dt)
         float halfH = this->getContentSize().height * 0.5f
             ;
         Vec2 clampedPos =
-            this->getPosition();
+            this
+            ->getPosition();
         clampedPos.x = clampf(clampedPos.x, halfW, mapSize.width - halfW);
         clampedPos.y = clampf(clampedPos.y, halfH, mapSize.height - halfH);
         this
@@ -445,34 +434,44 @@ void Player::water()
 
 void Player::cut()
 {
+    // 1. 播放动画逻辑 (保持你原有的逻辑)
     stop_move(0, 0);
-    // 1. 停止所有移动相关的动作
-    this->stopActionByTag(WALK_ACTION_TAG); // 停止行走动画
-    this->stopActionByTag(farm_ACTION_TAG); // 停止可能正在运行的旧攻击动画
-
-    // 攻击时，速度应为零，但我们不再取消 Player 的 update 调度。
-    // 因为 GameScene::update 依赖它来做移动计算。
-    _currentVelocity = cocos2d::Vec2::ZERO;
-    //this->unscheduleUpdate();
+    this->stopActionByTag(WALK_ACTION_TAG);
     this->_isAction = true;
-    // 2. 根据当前方向选择攻击动作
+
     cocos2d::Action* cutAction = nullptr;
     switch (this->direction) {
     case DIR_UP:    cutAction = _cutAction_up; break;
     case DIR_DOWN:  cutAction = _cutAction_down; break;
     case DIR_LEFT:  cutAction = _cutAction_left; break;
     case DIR_RIGHT: cutAction = _cutAction_right; break;
-    default: return; // 默认方向不执行
+    default: return;
     }
 
-    // 3. 运行攻击动作
     if (cutAction) {
-        // 必须使用 clone()
-        cocos2d::Action* clonedAction = cutAction->clone();
-        clonedAction->setTag(cut_ACTION_TAG);
-        this->runAction(clonedAction);
+        this->runAction(cutAction->clone());
     }
-    //this->scheduleUpdate();
+
+    // 2. 核心：计算交互坐标
+    float ts = _world->getTileWidth() * _world->getMapScale();
+    int tx = (int)(this->getPositionX() / ts);
+    int ty = (int)(this->getPositionY() / ts);
+
+    // 根据面朝方向确定目标格子坐标
+    if (direction == DIR_UP) ty++;
+    else if (direction == DIR_DOWN) ty--;
+    else if (direction == DIR_LEFT) tx--;
+    else if (direction == DIR_RIGHT) tx++;
+
+    // 3. 调用 TreeManager 砍树
+    if (_world) {
+        bool isDestroyed = TreeManager::getInstance()->removeTreeAt(tx, ty, 1);
+        if (isDestroyed) {
+            CCLOG("Tree at (%d, %d) was chopped down!", tx, ty);
+            // 这里可以添加获得木材的逻辑，例如：
+            // InventoryManager::getInstance()->addItemByID(WOOD_ID, 1);
+        }
+    }
 }
 
 void Player::onInteract() {
@@ -487,5 +486,32 @@ void Player::onInteract() {
 
     if (_world) {
         _world->interactWithLand(tx, ty, this->what_in_hand_now); // 1113 是水壶
+    }
+}
+
+void Player::takeDamage(int damage) {
+    if (this->currentHP <= 0) return;
+
+    this->currentHP -= damage;
+
+    // 受击反馈：红光闪烁
+    auto tintRed = cocos2d::TintTo::create(0.1f, 255, 100, 100);
+    auto tintBack = cocos2d::TintTo::create(0.1f, 255, 255, 255);
+    this->runAction(cocos2d::Sequence::create(tintRed, tintBack, nullptr));
+
+    if (this->currentHP <= 0) {
+        // 处理玩家死亡逻辑（如弹出游戏结束界面）
+        cocos2d::log("Player is dead!");
+    }
+}
+void Player::tryChopTree(const Vec2& front) {
+   
+
+    TreeManager* tm = TreeManager::getInstance();
+    bool dead = tm->removeTreeAt(front.x, front.y, 1);
+
+    if (dead) {
+        // 只有砍倒才给资源
+        //InventoryManager::getInstance()->addItemByID(WOOD_ID, 1);
     }
 }

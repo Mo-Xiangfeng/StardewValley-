@@ -8,7 +8,7 @@
 #include <vector>
 #include <memory>
 #include <string>
-
+#include "Daylight.h"
 class Player;
 class MapLogic;
 
@@ -54,7 +54,7 @@ public:
     void interactWithLand(int tx, int ty, int itemID); // 核心交互逻辑
     void nextDay(); // 每天清晨调用  
     void updateLandVisuals();   // 更新渲染
-    void handleInteraction(const cocos2d:: Vec2& posInMap);
+    void handleInteraction(const cocos2d::Vec2& posInMap);
     const std::string& getCurrentMapId() const { return _currentMapId; }
     static GameWorld* create(const std::string& txtFile,
         const std::string& imgFile);
@@ -63,6 +63,8 @@ public:
     void updateCamera();
     void reload(const std::string& txtFile, const std::string& imgFile);
     int debugGetTile(int tx, int ty);
+    void addTreeSprite(int tx, int ty);
+    void removeTreeSprite(const cocos2d::Vec2& tilePos);
 
     int getMapWidth() const { return _map.width; }
     int getMapHeight() const { return _map.height; }
@@ -78,11 +80,12 @@ public:
     void GameWorld::drawFarmGrid();
     void switchMap(const std::string& mapId,
         const std::string& entry);
-
+    
 private:
     std::unordered_map<std::string, LandTileData> _farmlandData;
     std::string getLandKey(int tx, int ty) { return std::to_string(tx) + "_" + std::to_string(ty); }
-
+    cocos2d::Node* _treeLayer = nullptr; // 专门存放树木的容器
+   
     void setupPortalsForMap(const std::string& mapId);
     TileMap _map;
     cocos2d::Sprite* _mapSprite = nullptr;
@@ -99,7 +102,7 @@ private:
     MapPortal* _activePortal = nullptr;
     MapPortal* _currentPortal = nullptr;
     float _portalStayTime = 0.0f;
-
+    Daylight* _daylightLayer = nullptr;
 };
 
 #endif

@@ -58,10 +58,12 @@ public:
     void farm();
     void water();
     void cut();
+    
     void onInteract();
     void useStamina(int cost);
     bool isDead() const;
     // 构造函数和初始化方法
+    void tryChopTree(const cocos2d:: Vec2& posInMap);
     float getPlayerScale() const { return _playerScale; }
     Player();
     virtual bool initWithSpriteFrameName(const std::string& spriteFrameName) override;

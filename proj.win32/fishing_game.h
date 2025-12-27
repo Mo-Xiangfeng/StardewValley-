@@ -29,8 +29,8 @@ private:
     bool _isPressing = false;
 
     // 物理常量
-    const float AREA_H = 133.0f;    // 钓鱼槽高度
-    const float BAR_H = 27.0f;      // 绿条高度
+    const float AREA_H = 580.0f;    // 钓鱼槽高度
+    const float BAR_H = 110.0f;      // 绿条高度
     const float GRAVITY = -300.0f; // 重力
     const float BUOYANCY = 400.0f; // 鼠标按住时的浮力
 };

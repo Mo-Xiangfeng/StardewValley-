@@ -24,13 +24,13 @@ bool BagScene::init() {
 
     // 2. 添加标题 (静态)
     auto title = Label::createWithTTF("PLAYER INVENTORY", "fonts/Marker Felt.ttf", 100);
-    title->setPosition(Vec2(_visibleSize.width / 2, _visibleSize.height - 50));
+    title->setPosition(Vec2(_visibleSize.width / 2, _visibleSize.height - 150));
     this->addChild(title);
 
     // 3. 添加返回按钮 (静态)
-    auto backLabel = Label::createWithTTF("BACK", "fonts/Marker Felt.ttf", 36);
+    auto backLabel = Label::createWithTTF("BACK", "fonts/Marker Felt.ttf", 100);
     auto backItem = MenuItemLabel::create(backLabel, CC_CALLBACK_1(BagScene::onBackToGame, this));
-    backItem->setPosition(Vec2(_visibleSize.width / 2, 500));
+    backItem->setPosition(Vec2(_visibleSize.width / 2, 250));
     auto menu = Menu::create(backItem, nullptr);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu);
@@ -139,7 +139,7 @@ void BagScene::updateSlotUI(int index) {
         _itemsContainer->addChild(itemSprite, 10);
 
         if (item->count > 1) {
-            auto label = Label::createWithTTF(std::to_string(item->count), "fonts/arial.ttf", 60);
+            auto label = Label::createWithTTF(std::to_string(item->count), "fonts/arial.ttf", 30);
             label->setPosition(pos + Vec2(_slotSize / 2 - 2, -_slotSize / 2 + 2));
             label->setTag(2000 + index);
             _itemsContainer->addChild(label, 11);

@@ -5,7 +5,7 @@
 #include <map>
 #include "Item.h"
 // 作物类型枚举
-enum class CropType {
+/*enum class CropType {
     PARSNIP,      // 防风草 - 春季
     CAULIFLOWER,  // 花椰菜 - 春季
     POTATO,       // 土豆 - 春季
@@ -13,9 +13,8 @@ enum class CropType {
     MELON,        // 甜瓜 - 夏季
     CORN,         // 玉米 - 夏季/秋季
     PUMPKIN,      // 南瓜 - 秋季
-    WHEAT        // 小麦 - 全季节
-   
-};
+    WHEAT         // 小麦 - 全季节
+};*/
 
 // 作物季节枚举
 enum class CropSeason {

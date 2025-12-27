@@ -90,6 +90,15 @@
     <ClCompile Include="fishing_game.cpp">
       <Filter>classes</Filter>
     </ClCompile>
+    <ClCompile Include="TreeManager.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="ReviveSystem.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Daylight.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -183,6 +192,12 @@
       <Filter>classes</Filter>
     </ClInclude>
     <ClInclude Include="fishing_game.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeManager.h">
       <Filter>classes</Filter>
     </ClInclude>
   </ItemGroup>
@@ -459,6 +474,9 @@
       <Filter>resource</Filter>
     </Image>
     <Image Include="..\Resources\item\5114.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\tree.png">
       <Filter>resource</Filter>
     </Image>
   </ItemGroup>

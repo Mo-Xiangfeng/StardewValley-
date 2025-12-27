@@ -8,6 +8,7 @@
 #include "ShopLayer.h"
 #include "Hotbar.h"
 #include "GameWorld.h"
+#include "ReviveSystem.h"
 USING_NS_CC;
 
 Scene* GameScene::createScene()
@@ -31,11 +32,11 @@ bool GameScene::init()
     auto hotbar = Hotbar::create();
 
     // 放置在屏幕底部中心，留出 20 像素边距
-    hotbar->setPosition(Vec2(visibleSize.width / 2, 500));
+    hotbar->setPosition(Vec2(visibleSize.width / 2, 0));
     this->addChild(hotbar, 99);
 
     //商店
-   /* auto shopLabel = Label::createWithSystemFont("[SHOP]", "Arial", 32);
+    /*auto shopLabel = Label::createWithSystemFont("[SHOP]", "Arial", 32);
     shopLabel->setColor(Color3B(255, 215, 0));  // 金色
 
     auto shopButton = MenuItemLabel::create(shopLabel, [this](Ref* sender) {
@@ -89,7 +90,7 @@ bool GameScene::init()
         _playerSprite->setGameWorld(_gameWorld);
 
         // 3. 将主角添加到地图层而不是 Scene 层 (这样相机移动时角色才会随地图移动)
-        _gameWorld->addChild(_playerSprite, 10);
+        _gameWorld->addChild(_playerSprite, 1000);
         _gameWorld->setPlayer(_playerSprite);
 
         // 4. 加载动画数据
@@ -111,7 +112,49 @@ bool GameScene::init()
         // 7. 开启主循环
         scheduleUpdate();
     }
+    auto timeManager = TimeManager::getInstance();
+    timeManager->registerExhaustionCallback([this]() {
+        CCLOG("[GameScene] Exhaustion callback triggered at 02:00!");
 
+        auto reviveSystem = ReviveSystem::getInstance();
+        if (reviveSystem && !reviveSystem->isReviving())
+        {
+            // 暂停时间流逝
+            auto timeManager = TimeManager::getInstance();
+            if (timeManager) {
+                timeManager->pauseTime();
+                CCLOG("[GameScene] Time paused during revive.");
+            }
+
+            reviveSystem->triggerRevive(this, "exhaustion", [this]() {
+                CCLOG("[GameScene] Exhaustion revive completed.");
+
+                // 恢复玩家状态
+                if (_playerSprite) {
+                    _playerSprite->currentHP = _playerSprite->maxHP;
+                    _playerSprite->currentStamina = _playerSprite->maxStamina;
+                }
+
+                // 恢复时间流逝
+                auto timeManager = TimeManager::getInstance();
+                if (timeManager) {
+                    timeManager->resumeTime();
+                    CCLOG("[GameScene] Time resumed after revive.");
+                }
+                });
+        }
+    });
+    // --- 关键修正：注册日期变更回调 ---
+    timeManager->registerDayCallback([this](int y, int s, int d) {
+        CCLOG("[GameScene] DayCallback RECEIVED! New Day: %d", d);
+        if (this->_gameWorld) {
+            CCLOG("[GameScene] Notifying _gameWorld to process nextDay logic...");
+            this->_gameWorld->nextDay();
+        }
+        else {
+            CCLOG("[GameScene] ERROR: DayCallback received but _gameWorld is NULL!");
+        }
+        });
     return true;
 }
 
@@ -120,7 +163,10 @@ void GameScene::onMouseDown(EventMouse* event)
 
     if (event->getMouseButton() == cocos2d::EventMouse::MouseButton::BUTTON_LEFT)
     {
-        if (_gameWorld && _gameWorld->getCurrentMapId() == "Shop")
+        if (_playerSprite && _playerSprite->_isAction) {
+            return;
+        }
+		 if (_gameWorld && _gameWorld->getCurrentMapId() == "Shop")
         {
             // 获取点击位置并转换为地图坐标
             Vec2 touchPos = Director::getInstance()->convertToGL(event->getLocationInView());
@@ -141,133 +187,82 @@ void GameScene::onMouseDown(EventMouse* event)
         }
         else if (_playerSprite->what_in_hand_now == 1111) {
             _gameWorld->startFishingMinigame();
-            
+
         }
-        else{
-            if (_playerSprite && !_playerSprite->_isAction && _playerSprite->what_in_hand_now != 0) {
+        else {
+            if (_playerSprite && !_playerSprite->_isAction) {
                 _playerSprite->onInteract();
             }
         }
     }
 }
 
+/*void GameScene::onMouseDown(EventMouse* event)
+{
+
+    if (event->getMouseButton() == cocos2d::EventMouse::MouseButton::BUTTON_LEFT)
+    {
+        if (_playerSprite && !_playerSprite->_isAction && _playerSprite->what_in_hand_now == 1112) // 【? 避免重复攻击】
+        {
+            _playerSprite->farm();
+        }
+        else if (_playerSprite && !_playerSprite->_isAction && _playerSprite->what_in_hand_now == 1113) {
+            _playerSprite->water();
+        }
+        else if (_playerSprite && !_playerSprite->_isAction && _playerSprite->what_in_hand_now == 1110) {
+            _playerSprite->cut();
+        }
+        else{
+            if (_playerSprite && !_playerSprite->_isAction) {
+                _playerSprite->onInteract();
+            }
+        }
+    }
+}*/
+
 void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
-    auto items = InventoryManager::getInstance()->getItems();
-    int num = items.size();
-    // 【修改点】：设置按键状态为 true
-    switch (keyCode)
-    {
-    case EventKeyboard::KeyCode::KEY_W:
-		cocos2d::log("按下W键");
-        _isWPressed = true;
-        break;
-    case EventKeyboard::KeyCode::KEY_A:
-        _isAPressed = true;
-        break;
-    case EventKeyboard::KeyCode::KEY_S:
-        _isSPressed = true;
-        break;
-    case EventKeyboard::KeyCode::KEY_D:
-        _isDPressed = true;
-        break;
-    case EventKeyboard::KeyCode::KEY_T:
-        _isTPressed = true;
-        break;
-    case EventKeyboard::KeyCode::KEY_0:
-        _playerSprite->what_in_hand_now = 0;
-        CCLOG("空手");
-        break;
-    case EventKeyboard::KeyCode::KEY_1:
-        if (items[0]!=nullptr) {
-            _playerSprite->what_in_hand_now = items[0]->id;
-            CCLOG("使用物品1");
+    // ... 其他逻辑 ...
+
+    // 1. 处理数字键 1-9
+    if (keyCode >= EventKeyboard::KeyCode::KEY_1 && keyCode <= EventKeyboard::KeyCode::KEY_9) {
+        // 计算索引：KEY_1 对应 0，KEY_2 对应 1...
+        int idx = (int)keyCode - (int)EventKeyboard::KeyCode::KEY_1;
+        _selectedSlotIndex = idx;
+
+        auto items = InventoryManager::getInstance()->getItems();
+        if (idx < items.size() && items[idx] != nullptr) {
+            _playerSprite->what_in_hand_now = items[idx]->id;
+            CCLOG("选中快捷栏 %d, 物品ID: %d", idx + 1, items[idx]->id);
         }
         else {
             _playerSprite->what_in_hand_now = 0;
+            CCLOG("选中快捷栏 %d, 但该格为空", idx + 1);
         }
-        break;
-    case EventKeyboard::KeyCode::KEY_2:
-        if (items[1]!=nullptr) {
-            _playerSprite->what_in_hand_now = items[1]->id;
-            CCLOG("使用物品2");
-        }
-        else {
-            _playerSprite->what_in_hand_now = 0;
-        }
-        break;
-    case EventKeyboard::KeyCode::KEY_3:
-        if (items[2]!=nullptr) {
-            _playerSprite->what_in_hand_now = items[2]->id;
-            CCLOG("使用物品3");
-        }
-        else {
-            _playerSprite->what_in_hand_now = 0;
-        }
-        break;
-    case EventKeyboard::KeyCode::KEY_4:
-        if (items[3]!=nullptr) {
-            _playerSprite->what_in_hand_now = items[3]->id;
-            CCLOG("使用物品4");
-        }
-        else {
-            _playerSprite->what_in_hand_now = 0;
-        }
-        break;
-    case EventKeyboard::KeyCode::KEY_5:
-        if (items[4]!=nullptr) {
-            _playerSprite->what_in_hand_now = items[4]->id;
-            CCLOG("使用物品5");
-        }
-        else {
-            _playerSprite->what_in_hand_now = 0;
-        }
-        break;
-    case EventKeyboard::KeyCode::KEY_6:
-        if (items[5]!=nullptr) {
-            _playerSprite->what_in_hand_now = items[5]->id;
-            CCLOG("使用物品6");
-        }
-        else {
-            _playerSprite->what_in_hand_now = 0;
-        }
-        break;
-    case EventKeyboard::KeyCode::KEY_7:
-        if (items[6]!=nullptr) {
-            _playerSprite->what_in_hand_now = items[6]->id;
-            CCLOG("使用物品7");
-        }
-        else {
-            _playerSprite->what_in_hand_now = 0;
-        }
-        break;
-    case EventKeyboard::KeyCode::KEY_8:
-        if (items[7]!=nullptr) {
-            _playerSprite->what_in_hand_now = items[7]->id;
-            CCLOG("使用物品8");
-        }
-        else {
-            _playerSprite->what_in_hand_now = 0;
-        }
-        break;
-    case EventKeyboard::KeyCode::KEY_9:
-        if (items[8]!=nullptr) {
-            _playerSprite->what_in_hand_now = items[8]->id;
-            CCLOG("使用物品9");
-        }
-        else {
-            _playerSprite->what_in_hand_now = 0;
-        }
-        break;
-    case EventKeyboard::KeyCode::KEY_E: // 假设 B 是背包快捷键
-    {
-        auto bag = BagScene::createScene();
-        // 使用 pushScene 而不是 replaceScene
-        Director::getInstance()->pushScene(TransitionFade::create(0.5, bag));
-        break;
+        return;
     }
-    default:
-        break;
+
+    // 2. 处理 0 (空手)
+    if (keyCode == EventKeyboard::KeyCode::KEY_0) {
+        _selectedSlotIndex = -1;
+        _playerSprite->what_in_hand_now = 0;
+        CCLOG("切换为空手");
+        return;
+    }
+
+    // 3. 原有的其他按键处理
+    switch (keyCode) {
+        case EventKeyboard::KeyCode::KEY_W: _isWPressed = true; break;
+        case EventKeyboard::KeyCode::KEY_A: _isAPressed = true; break;
+        case EventKeyboard::KeyCode::KEY_S: _isSPressed = true; break;
+        case EventKeyboard::KeyCode::KEY_D: _isDPressed = true; break;
+        case EventKeyboard::KeyCode::KEY_T: _isTPressed = true; break;
+        case EventKeyboard::KeyCode::KEY_E: {
+            auto bag = BagScene::createScene();
+            Director::getInstance()->pushScene(TransitionFade::create(0.5, bag));
+            break;
+        }
+        default: break;
     }
 }
 
@@ -358,7 +353,24 @@ void GameScene::update(float dt)
             // 3. 更新相机 (让画面跟随主角)
             _gameWorld->updateCamera();
         }
-    
+        if (_selectedSlotIndex != -1) {
+            auto items = InventoryManager::getInstance()->getItems();
+            // 检查当前选中的格子是否变成了空指针，或者 ID 是否发生了变化
+            if (_selectedSlotIndex < items.size()) {
+                auto currentItem = items[_selectedSlotIndex];
+                if (currentItem == nullptr) {
+                    // 关键点：如果物品用完了，自动重置 ID
+                    if (_playerSprite->what_in_hand_now != 0) {
+                        _playerSprite->what_in_hand_now = 0;
+                        CCLOG("检测到物品已消耗殆尽，自动清空手持。");
+                    }
+                }
+                else {
+                    // 确保 ID 同步（防止背包格位被替换了）
+                    _playerSprite->what_in_hand_now = currentItem->id;
+                }
+            }
+        }
 }
 
 GameScene::~GameScene()
