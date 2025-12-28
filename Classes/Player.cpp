@@ -3,6 +3,10 @@
 #include "GameScene.h"
 #include "HelloWorldScene.h" 
 #include "GameWorld.h"
+#include "TreeManager.h"
+#include "InventoryManager.h"
+#include "ReviveSystem.h"
+#include "RockManager.h"
 USING_NS_CC;
 #define WALK_ACTION_TAG 100 // 定义统一的动作标签
 #define farm_ACTION_TAG 200 
@@ -270,7 +274,7 @@ void Player::update(float dt)
 {
     // 1. 计算预期速度和位置
    // 1. 计算预期速度和位置
-    const float speed = 100.0f
+    const float speed = 200.0f
         ;
     Vec2 velocity = Vec2::ZERO;
 
@@ -287,14 +291,11 @@ void Player::update(float dt)
     Vec2 newPos = currentPos + velocity * dt;
 
     // ======== 核心：在此处插入碰撞检测逻辑 ========
-    if
-        (_world) {
+    if (_world) {
         // 检查新位置是否可以通行
-        if
-            (_world->isWalkable(newPos)) {
+        if(_world->isWalkable(newPos)) {
             // 如果可以通行，直接设置新位置
-            this
-                ->setPosition(newPos);
+            this->setPosition(newPos);
         }
         else
         {
@@ -302,9 +303,7 @@ void Player::update(float dt)
             // 尝试只在 X 轴移动
             Vec2 xOnlyPos = Vec2(newPos.x, currentPos.y);
             if
-                (_world->isWalkable(xOnlyPos)) {
-                this
-                    ->setPosition(xOnlyPos);
+                (_world->isWalkable(xOnlyPos)) {this -> setPosition(xOnlyPos);
             }
             else
             {
@@ -317,7 +316,7 @@ void Player::update(float dt)
                 }
             }
         }
-
+    
         // [可选]：地图边界检查
         Size mapSize = _world->getMapSizeScaled();
         float halfW = this->getContentSize().width * 0.5f
@@ -373,6 +372,26 @@ void Player::farm()
         clonedAction->setTag(farm_ACTION_TAG);
         this->runAction(clonedAction);
     }
+
+    float ts = _world->getTileWidth() * _world->getMapScale();
+    int tx = (int)(this->getPositionX() / ts);
+    int ty = (int)(this->getPositionY() / ts);
+
+    // 根据面朝方向确定目标格子
+    if (direction == DIR_UP) ty++;
+    else if (direction == DIR_DOWN) ty--;
+    else if (direction == DIR_LEFT) tx--;
+    else if (direction == DIR_RIGHT) tx++;
+
+    if (_world) {
+        std::string currentMap = _world->getCurrentMapId();
+        CCLOG("555555555555555555555555555555555555555555");
+        if (currentMap == "Mine") {
+            CCLOG("666666666666666666666666666666666666");
+            RockManager::getInstance()->removeRockAt(tx, ty, 1);
+        }
+        else _world->interactWithLand(tx, ty, 1112); // 1112 对应锄头
+    }
     //this->scheduleUpdate();
 }
 
@@ -405,37 +424,286 @@ void Player::water()
         clonedAction->setTag(water_ACTION_TAG);
         this->runAction(clonedAction);
     }
+
+    int tx = this->getPositionX() / (_world->getTileWidth() * _world->getMapScale());
+    int ty = this->getPositionY() / (_world->getTileWidth() * _world->getMapScale());
+
+    if (direction == DIR_UP) ty++;
+    else if (direction == DIR_DOWN) ty--;
+    else if (direction == DIR_LEFT) tx--;
+    else if (direction == DIR_RIGHT) tx++;
+
+    if (_world) {
+        _world->interactWithLand(tx, ty, 1113); // 1113 是水壶
+    }
+
     //this->scheduleUpdate();
 }
 
 void Player::cut()
 {
+    // 1. 播放动画逻辑 (保持你原有的逻辑)
     stop_move(0, 0);
-    // 1. 停止所有移动相关的动作
-    this->stopActionByTag(WALK_ACTION_TAG); // 停止行走动画
-    this->stopActionByTag(farm_ACTION_TAG); // 停止可能正在运行的旧攻击动画
-
-    // 攻击时，速度应为零，但我们不再取消 Player 的 update 调度。
-    // 因为 GameScene::update 依赖它来做移动计算。
-    _currentVelocity = cocos2d::Vec2::ZERO;
-    //this->unscheduleUpdate();
+    this->stopActionByTag(WALK_ACTION_TAG);
     this->_isAction = true;
-    // 2. 根据当前方向选择攻击动作
+
     cocos2d::Action* cutAction = nullptr;
     switch (this->direction) {
     case DIR_UP:    cutAction = _cutAction_up; break;
     case DIR_DOWN:  cutAction = _cutAction_down; break;
     case DIR_LEFT:  cutAction = _cutAction_left; break;
     case DIR_RIGHT: cutAction = _cutAction_right; break;
-    default: return; // 默认方向不执行
+    default: return;
     }
 
-    // 3. 运行攻击动作
     if (cutAction) {
-        // 必须使用 clone()
-        cocos2d::Action* clonedAction = cutAction->clone();
-        clonedAction->setTag(cut_ACTION_TAG);
-        this->runAction(clonedAction);
+        this->runAction(cutAction->clone());
     }
-    //this->scheduleUpdate();
+
+    // 2. 核心：计算交互坐标
+    float ts = _world->getTileWidth() * _world->getMapScale();
+    int tx = (int)(this->getPositionX() / ts);
+    int ty = (int)(this->getPositionY() / ts);
+
+    // 根据面朝方向确定目标格子坐标
+    if (direction == DIR_UP) ty++;
+    else if (direction == DIR_DOWN) ty--;
+    else if (direction == DIR_LEFT) tx--;
+    else if (direction == DIR_RIGHT) tx++;
+
+    // 3. 调用 TreeManager 砍树
+    if (_world) {
+        bool isDestroyed = TreeManager::getInstance()->removeTreeAt(tx, ty, 1);
+        if (isDestroyed) {
+            CCLOG("Tree at (%d, %d) was chopped down!", tx, ty);
+            // 这里可以添加获得木材的逻辑，例如：
+            InventoryManager::getInstance()->addItemByID(4400, 1);
+            addExperience(3, 10);
+        }
+    }
+}
+
+void Player::onInteract() {
+    // 1. 确定面前格子的 tx, ty (基于 direction 判断)
+    int tx = this->getPositionX() / (_world->getTileWidth() * _world->getMapScale());
+    int ty = this->getPositionY() / (_world->getTileWidth() * _world->getMapScale());
+
+    if (direction == DIR_UP) ty++;
+    else if (direction == DIR_DOWN) ty--;
+    else if (direction == DIR_LEFT) tx--;
+    else if (direction == DIR_RIGHT) tx++;
+
+    if (_world) {
+        _world->interactWithLand(tx, ty, this->what_in_hand_now); // 1113 是水壶
+    }
+}
+
+void Player::takeDamage(int damage) {
+    if (this->currentHP <= 0) return;
+
+    this->currentHP -= damage;
+    if (this->currentHP <= 0) {
+        CCLOG("Player exhausted! Triggering fainting...");
+
+        // 获取当前场景
+        auto currentScene = cocos2d::Director::getInstance()->getRunningScene();
+
+        // 调用你现有的复活系统
+        // "exhaustion" 会触发你在 ReviveSystem 里写的黑屏、回场景、时间跳转逻辑
+        ReviveSystem::getInstance()->triggerRevive(currentScene, "exhaustion", [this]() {
+            // 复活完成后的回调：恢复一部分体力，不至于出生就死循环
+            this->currentStamina = this->maxStamina;
+            this->currentHP = this->maxHP;
+            this->_isAction = false; // 解除锁定
+            });
+    }
+    // 受击反馈：红光闪烁
+    auto tintRed = cocos2d::TintTo::create(0.1f, 255, 100, 100);
+    auto tintBack = cocos2d::TintTo::create(0.1f, 255, 255, 255);
+    this->runAction(cocos2d::Sequence::create(tintRed, tintBack, nullptr));
+
+    if (this->currentHP <= 0) {
+        // 处理玩家死亡逻辑（如弹出游戏结束界面）
+        cocos2d::log("Player is dead!");
+    }
+}
+void Player::tryChopTree(const Vec2& front) {
+   
+
+    TreeManager* tm = TreeManager::getInstance();
+    bool dead = tm->removeTreeAt(front.x, front.y, 1);
+
+    if (dead) {
+        // 只有砍倒才给资源
+        //InventoryManager::getInstance()->addItemByID(WOOD_ID, 1);
+    }
+}
+
+void Player::addExperience(int type, int amount) {
+    switch (type) {
+        case 0: // 战斗
+            combatExp += amount;
+            checkLevelUp(combatLevel, combatExp, 0);
+            break;
+        case 1: // 耕种
+            farmingExp += amount;
+            checkLevelUp(farmingLevel, farmingExp, 1);
+            break;
+        case 2: // 钓鱼
+            fishingExp += amount;
+            checkLevelUp(fishingLevel, fishingExp, 2);
+            break;
+        case 3: // 砍树
+            foragingExp += amount;
+            checkLevelUp(foragingLevel, foragingExp ,3);
+            break;
+    }
+}
+
+void Player::checkLevelUp(int& currentLevel, int& currentExp, int type) {
+    int nextLevelExp = (currentLevel + 1) * 100;
+
+    if (currentExp >= nextLevelExp) {
+        currentExp -= nextLevelExp;
+        currentLevel++;
+
+        // --- 触发特效 ---
+        this->showLevelUpVisual(type);
+
+        // 触发属性奖励
+        this->applyLevelUpBonus(type);
+
+        CCLOG("Level Up triggered for type %d!", type);
+    }
+}
+
+void Player::applyLevelUpBonus(int type) {
+    switch (type) {
+        case 0: // 战斗奖励：增加最大血量和攻击力
+            this->maxHP += 10;
+            this->currentHP = maxHP; // 满血复原
+            this->farmPower += 2;   // 增加攻击力
+            break;
+        case 1: // 耕种奖励：减少锄地体力消耗或增加体力上限
+            this->maxStamina += 5;
+            break;
+        case 2: // 钓鱼奖励：这个通常影响 FishingGame 里的绿条长度
+            // 可以在 FishingGame 初始化时读取 player->fishingLevel
+            break;
+        case 3: // 砍树奖励：增加掉落率或体力
+            this->maxStamina += 5;
+            break;
+    }
+}
+
+void Player::showLevelUpVisual(int type) {
+    auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
+    auto origin = cocos2d::Director::getInstance()->getVisibleOrigin();
+
+
+    // 1. 根据升级类型确定提示文字
+    std::string skillName = "";
+    switch (type) {
+        case 0: skillName = " (Combat)"; break;
+        case 1: skillName = " (Farming)"; break;
+        case 2: skillName = " (Fishing)"; break;
+        case 3: skillName = " (Foraging)"; break;
+    }
+
+    std::string fullText = skillName + " LEVEL UP!";
+
+    // 2. 创建 Label
+    auto label = cocos2d::Label::createWithSystemFont(fullText, "Arial-BoldMT", 40);
+    label->setPosition(cocos2d::Vec2(origin.x + visibleSize.width / 2,
+        origin.y + visibleSize.height * 0.7f)); // 在屏幕上方 70% 处
+    label->setColor(cocos2d::Color3B::YELLOW);
+    label->enableOutline(cocos2d::Color4B::BLACK, 2); // 黑色描边更清晰
+
+    // 将标签添加到当前运行的场景中，确保它不跟随角色移动（作为 UI 显示）
+    auto scene = cocos2d::Director::getInstance()->getRunningScene();
+    scene->addChild(label, 9999);
+
+    // 3. 组合动作：缩放弹出 -> 闪烁 -> 向上飘动并消失
+    // 弹出
+    auto scaleIn = cocos2d::ScaleTo::create(0.2f, 1.5f);
+    auto scaleBack = cocos2d::ScaleTo::create(0.1f, 1.2f);
+
+    // 闪烁逻辑 (黄色和白色交替)
+    auto tintWhite = cocos2d::TintTo::create(0.1f, 255, 255, 255);
+    auto tintYellow = cocos2d::TintTo::create(0.1f, 255, 255, 0);
+    auto blink = cocos2d::Repeat::create(cocos2d::Sequence::create(tintWhite, tintYellow, nullptr), 3);
+
+    // 向上漂移并淡出
+    auto moveUp = cocos2d::MoveBy::create(1.0f, cocos2d::Vec2(0, 50));
+    auto fadeOut = cocos2d::FadeOut::create(1.0f);
+    auto spawn = cocos2d::Spawn::create(moveUp, fadeOut, nullptr); // 同时执行
+
+    // 结束后自动删除
+    auto remove = cocos2d::RemoveSelf::create();
+
+    auto finalAction = cocos2d::Sequence::create(
+        scaleIn,     // 第一步：变大
+        scaleBack,   // 第二步：稍微缩小一点
+        blink,       // 第三步：闪烁
+        spawn,       // 第四步：一边向上飘一边变透明
+        remove,      // 第五步：彻底从场景中删除自己
+        nullptr      // 必须以 nullptr 结尾
+    );
+
+    label->runAction(finalAction);
+}
+
+void Player::useStamina(int cost) {
+    this->currentStamina -= cost;
+    if (this->currentStamina < 0) this->currentStamina = 0;
+
+    CCLOG("Stamina remaining: %d", this->currentStamina);
+
+    // 检测是否晕倒
+    if (this->currentStamina <= 0) {
+        CCLOG("Player exhausted! Triggering fainting...");
+
+        // 获取当前场景
+        auto currentScene = cocos2d::Director::getInstance()->getRunningScene();
+
+        // 调用你现有的复活系统
+        // "exhaustion" 会触发你在 ReviveSystem 里写的黑屏、回场景、时间跳转逻辑
+        ReviveSystem::getInstance()->triggerRevive(currentScene, "exhaustion", [this]() {
+            // 复活完成后的回调：恢复一部分体力，不至于出生就死循环
+            this->currentStamina = this->maxStamina * 0.5f;
+            this->currentHP = this->maxHP;
+            this->_isAction = false; // 解除锁定
+            });
+    }
+}
+
+void Player::eat(int hpRestore, int staminaRestore) {
+    // 1. 更新属性值，确保不超过最大值
+    this->currentHP = std::min(this->maxHP, this->currentHP + hpRestore);
+    this->currentStamina = std::min(this->maxStamina, this->currentStamina + staminaRestore);
+
+    CCLOG("Player ate something. HP: %d/%d, Stamina: %d/%d",
+        currentHP, maxHP, currentStamina, maxStamina);
+
+    // 2. 创建提示文字
+    std::string hint = "";
+    if (hpRestore > 0) hint += "HP +" + std::to_string(hpRestore) + " ";
+    if (staminaRestore > 0) hint += "Stamina +" + std::to_string(staminaRestore);
+
+    auto label = Label::createWithSystemFont(hint, "Arial", 30);
+    label->setColor(Color3B::GREEN); // 恢复通常用绿色
+    label->enableOutline(Color4B::BLACK, 2);
+
+    // 设置初始位置在玩家头顶 (假设玩家锚点在中心)
+    label->setPosition(Vec2(this->getContentSize().width / 2, this->getContentSize().height + 20));
+    this->addChild(label, 10);
+
+    // 3. 动画效果：向上漂浮 -> 逐渐透明 -> 移除自身
+    auto moveUp = MoveBy::create(1.2f, Vec2(0, 80));      // 向上飘 80 像素
+    auto fadeOut = FadeOut::create(1.2f);               // 1.2秒内淡出
+    auto spawn = Spawn::create(moveUp, fadeOut, nullptr); // 同时执行
+
+    auto remove = RemoveSelf::create();                 // 动画结束后自动删除节点
+
+    label->runAction(Sequence::create(spawn, remove, nullptr));
 }

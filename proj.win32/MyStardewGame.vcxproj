@@ -175,6 +175,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClCompile Include="NPC2HouseLogic.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ReviveSystem.cpp" />
+    <ClCompile Include="RockManager.cpp" />
     <ClCompile Include="ShopLayer.cpp" />
     <ClCompile Include="ShopLogic.cpp" />
     <ClCompile Include="TileMap.cpp" />
@@ -208,6 +209,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ReviveSystem.h" />
+    <ClInclude Include="Rock.h" />
+    <ClInclude Include="RockManager.h" />
     <ClInclude Include="ShopLayer.h" />
     <ClInclude Include="ShopLogic.h" />
     <ClInclude Include="TileData.h" />
@@ -307,6 +310,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <Image Include="..\Resources\right_side_action.png" />
     <Image Include="..\Resources\right_side_cut.png" />
     <Image Include="..\Resources\right_side_water.png" />
+    <Image Include="..\Resources\Rock.png" />
+    <Image Include="..\Resources\RRock.png" />
     <Image Include="..\Resources\scene.jpg" />
     <Image Include="..\Resources\Shop.png" />
     <Image Include="..\Resources\slime-0.png" />

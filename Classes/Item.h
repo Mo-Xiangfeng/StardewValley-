@@ -15,9 +15,10 @@ public:
     std::string description;
     ItemType type;
     int count;
+    int price;
     int maxStack;
 
-    Item() : id(0), name(""), iconPath(""), type(ItemType::MATERIAL), count(0), maxStack(1) {}
+    Item() : id(0), name(""), iconPath(""), price(99), type(ItemType::MATERIAL), count(0), maxStack(1) {}
 
     // 必须有虚析构函数，确保子类内存正确释放
     virtual ~Item() {}
@@ -35,8 +36,8 @@ public:
 // 工具类子类
 class ToolItem : public Item {
 public:
-    int durability;
-    ToolItem() : durability(100) { type = ItemType::TOOL; }
+    int level;
+    ToolItem() : level(1) { type = ItemType::TOOL; }
 
     virtual void use() override {
     }

@@ -99,6 +99,9 @@
     <ClCompile Include="Daylight.cpp">
       <Filter>classes</Filter>
     </ClCompile>
+    <ClCompile Include="RockManager.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -201,6 +204,12 @@
       <Filter>classes</Filter>
     </ClInclude>
     <ClInclude Include="ReviveSystem.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Rock.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="RockManager.h">
       <Filter>classes</Filter>
     </ClInclude>
   </ItemGroup>
@@ -480,6 +489,12 @@
       <Filter>resource</Filter>
     </Image>
     <Image Include="..\Resources\tree.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\Rock.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\RRock.png">
       <Filter>resource</Filter>
     </Image>
   </ItemGroup>

@@ -7,7 +7,7 @@
 class HomeLogic : public MapLogic {
 public:
     void onEnter(GameWorld*, Player*) override;
-    void onInteract(Player*) override;
+    void onInteract(Player*, const cocos2d::Vec2& posInMap) override;
 };
 
 #endif

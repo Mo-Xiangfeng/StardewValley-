@@ -23,9 +23,30 @@ public:
     int currentStamina; // 当前体力值
     int luck;       // 运气值 (百分比或数值)
     int farmPower; // 攻击力
-    int direction;
-    int what_in_hand_now;
+    int direction; //方向
+    int what_in_hand_now; //手持物
+
+
+    // --- 等级属性 ---
+    int combatLevel = 0;   // 战斗等级
+    int farmingLevel = 0;  // 耕种等级
+    int fishingLevel = 0;  // 钓鱼等级
+    int foragingLevel = 0; // 采伐等级（砍树）
+
+    // --- 经验属性 ---
+    int combatExp = 0;
+    int farmingExp = 0;
+    int fishingExp = 0;
+    int foragingExp = 0;
+    //增加经验
+    void addExperience(int type, int amount);
+    //检查是否可以升级
+    void Player::checkLevelUp(int& currentLevel, int& currentExp, int type);
+    //升级后的属性奖励
+    void applyLevelUpBonus(int type);
     // 行为方法
+    void eat(int hpRestore, int staminaRestore);
+    void takeDamage(int damage);
     void start_move(int directionX, int directionY);
     void stop_move(int directionX, int directionY);
     virtual void update(float dt) override;
@@ -57,9 +78,13 @@ public:
     void farm();
     void water();
     void cut();
+    
+    void onInteract();
     void useStamina(int cost);
     bool isDead() const;
     // 构造函数和初始化方法
+    void Player::showLevelUpVisual(int type);
+    void tryChopTree(const cocos2d:: Vec2& posInMap);
     float getPlayerScale() const { return _playerScale; }
     Player();
     virtual bool initWithSpriteFrameName(const std::string& spriteFrameName) override;
@@ -71,3 +96,5 @@ private:
     GameWorld* _world = nullptr;
     cocos2d::Animation* createAnimation(const std::string& framePrefix, int frameCount, float delay);
 };
+
+

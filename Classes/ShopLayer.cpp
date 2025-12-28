@@ -182,9 +182,8 @@ ShopLayer::~ShopLayer() {
     }
 }
 
-
 void ShopLayer::createShopItem(int cropType, Vec2 position) {
-   const CropInfo& info = CropDatabase::getInstance()->getCropInfo(cropType);
+    const CropInfo& info = CropDatabase::getInstance()->getCropInfo(cropType);
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
 
@@ -229,7 +228,7 @@ void ShopLayer::createShopItem(int cropType, Vec2 position) {
 
     // 价格字体 = 物品高度的 27%
     float priceFontSize = itemHeight * 0.27f;
-    int profit = info.sellPrice - info.seedPrice;
+    int profit = info.price - info.seedPrice;
     std::string priceText = "$" + std::to_string(info.seedPrice) +
         " | +$" + std::to_string(profit);
     auto priceLabel = Label::createWithSystemFont(priceText, "Arial", priceFontSize);
@@ -294,6 +293,7 @@ void ShopLayer::onBuyButtonClicked(int cropType) {
         seedItem->name = info.name;
         seedItem->iconPath = "item/" + std::to_string(cropType) + ".png"; // 假设你的资源路径规则
         seedItem->type = ItemType::SEED;
+        seedItem->price = info.price;
         seedItem->count = 1;
         seedItem->maxStack = 99;
         seedItem->description = "种在土里可以长出" + info.name;
@@ -328,10 +328,10 @@ void ShopLayer::onBuyButtonClicked(int cropType) {
             this->addChild(hint, 100);
             hint->runAction(Sequence::create(DelayTime::create(1.0f), RemoveSelf::create(), nullptr));
 
-            //CCLOG("Purchase failed: Inventory Full. Refunded $%d", info.seedPrice);
+            CCLOG("Purchase failed: Inventory Full. Refunded $%d", info.seedPrice);
         }
     }
-}       
+}
 void ShopLayer::updateMoneyDisplay() {
     int money = MoneyManager::getInstance()->getMoney();
     moneyLabel->setString("Money: $" + std::to_string(money));

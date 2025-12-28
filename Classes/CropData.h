@@ -5,7 +5,7 @@
 #include <map>
 #include "Item.h"
 // 作物类型枚举
-enum class CropType {
+/*enum class CropType {
     PARSNIP,      // 防风草 - 春季
     CAULIFLOWER,  // 花椰菜 - 春季
     POTATO,       // 土豆 - 春季
@@ -14,7 +14,7 @@ enum class CropType {
     CORN,         // 玉米 - 夏季/秋季
     PUMPKIN,      // 南瓜 - 秋季
     WHEAT         // 小麦 - 全季节
-};
+};*/
 
 // 作物季节枚举
 enum class CropSeason {
@@ -26,19 +26,23 @@ enum class CropSeason {
 };
 
 // 作物信息结构体
-class CropInfo :public Item {
+// CropData.h
+class CropInfo : public Item {
 public:
-    std::string name;          // 作物名称（英文）             // 作物类型
-    CropSeason season;         // 适合的季节
-    int growthDays;            // 生长天数
-    int sellPrice;             // 出售价格
-    int seedPrice;             // 种子价格
-    bool canRegrow;            // 是否可重复收获
-    int regrowDays;            // 重新生长天数
+    CropSeason season;
+    int growthDays;
+    int seedPrice;
+    bool canRegrow;
+    int regrowDays;
 
-    CropInfo() :season(CropSeason::SPRING),
-        growthDays(0), sellPrice(0), seedPrice(0),
+    CropInfo() : season(CropSeason::SPRING),
+        growthDays(0), seedPrice(0),
         canRegrow(false), regrowDays(0) {
+        price = 0; type = ItemType::SEED;// 明确使用父类的 price
+    }
+
+    virtual std::shared_ptr<Item> clone() const override {
+        return std::make_shared<CropInfo>(*this);
     }
 };
 
@@ -49,6 +53,7 @@ public:
 
     void init();
     const CropInfo& getCropInfo(int type) const;
+    std::shared_ptr<CropInfo> getCrop(int id);
 
 private:
     CropDatabase();
@@ -56,4 +61,5 @@ private:
     std::map<int, std::shared_ptr<CropInfo>> crops;
     CropInfo emptyCrop;
 };
+
 #endif

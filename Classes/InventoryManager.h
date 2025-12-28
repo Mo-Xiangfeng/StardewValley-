@@ -11,8 +11,9 @@ public:
     static InventoryManager* getInstance();
 
     void initInventory(int capacity);
-
-    bool InventoryManager::removeItem(int index);
+    int getmoney(int index);
+    bool removeItem(int index, int num = 0);
+    bool InventoryManager::removeItemByID(int id, int num);
     bool addItem(std::shared_ptr<Item> newItem);
     bool addItemByID(int id, int count);
 
@@ -24,6 +25,8 @@ public:
 
     InventoryManager() : _capacity(20) {}
     static InventoryManager* _instance;
+
+    void notifyUpdate();
 
     // 数据库和背包现在都存指针
     std::map<int, std::shared_ptr<Item>> _itemDatabase;
