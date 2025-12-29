@@ -36,6 +36,7 @@ void HomeLogic::onInteract(Player* player, const Vec2& posInMap) {
 
         // 4. 触发复活/睡眠流程
         auto currentScene = Director::getInstance()->getRunningScene();
+        player->currentStamina = player->maxStamina;
         ReviveSystem::getInstance()->triggerRevive(currentScene, "Sleep", [world]() {
             // 睡眠完成后（第二天），你可以手动调用一次农场更新逻辑
             world->nextDay();

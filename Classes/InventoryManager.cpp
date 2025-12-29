@@ -116,7 +116,7 @@ void InventoryManager::loadItemDatabase() {
     cauliflower->name = "西蓝花果实";
     cauliflower->iconPath = "item/2201.png";
     cauliflower->maxStack = 99;
-    cauliflower->price = 150;
+    cauliflower->price = 180;
     cauliflower->type = ItemType::MATERIAL;
     _itemDatabase[cauliflower->id] = cauliflower;
 
@@ -125,7 +125,7 @@ void InventoryManager::loadItemDatabase() {
     potato->name = "成熟的土豆";
     potato->iconPath = "item/2202.png";
     potato->maxStack = 99;
-    potato->price = 20;
+    potato->price = 80;
     potato->type = ItemType::MATERIAL;
     _itemDatabase[potato->id] = potato;
 
@@ -134,7 +134,7 @@ void InventoryManager::loadItemDatabase() {
     tomato->name = "成熟的西红柿";
     tomato->iconPath = "item/2203.png";
     tomato->maxStack = 99;
-    tomato->price = 20;
+    tomato->price = 90;
     tomato->type = ItemType::MATERIAL;
     _itemDatabase[tomato->id] = tomato;
 
@@ -143,7 +143,7 @@ void InventoryManager::loadItemDatabase() {
     melon->name = "成熟的甜瓜";
     melon->iconPath = "item/2204.png";
     melon->maxStack = 99;
-    melon->price = 20;
+    melon->price = 120;
     melon->type = ItemType::MATERIAL;
     _itemDatabase[melon->id] = melon;
 
@@ -152,7 +152,7 @@ void InventoryManager::loadItemDatabase() {
     pumpkin->name = "成熟的南瓜";
     pumpkin->iconPath = "item/2205.png";
     pumpkin->maxStack = 99;
-    pumpkin->price = 20;
+    pumpkin->price = 200;
     pumpkin->type = ItemType::MATERIAL;
     _itemDatabase[pumpkin->id] = pumpkin;
 
@@ -161,7 +161,7 @@ void InventoryManager::loadItemDatabase() {
     wheat->name = "成熟的小麦";
     wheat->iconPath = "item/2206.png";
     wheat->maxStack = 99;
-    wheat->price = 20;
+    wheat->price = 30;
     wheat->type = ItemType::MATERIAL;
     _itemDatabase[wheat->id] = wheat;
 
