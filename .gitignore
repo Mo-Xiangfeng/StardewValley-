@@ -1,0 +1,5 @@
+build/
+.vs/
+*.db
+bin/
+obj/
