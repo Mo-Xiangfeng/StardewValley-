@@ -1,6 +1,7 @@
 #include "CropData.h"
 #include "InventoryManager.h"
 #include "map"
+#include<memory>
 CropDatabase* CropDatabase::instance = nullptr;
 
 CropDatabase::CropDatabase() {}

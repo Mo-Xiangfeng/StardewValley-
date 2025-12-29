@@ -10,7 +10,7 @@
 #include "CropData.h"
 #include "InventoryManager.h"
 #include "WeatherManager.h"
-#include "fishing_game.h"`
+#include "FishingGame.h"`
 #include "TreeManager.h"
 #include "RockManager.h"
 #include <cstdlib>
@@ -373,17 +373,17 @@ void GameWorld::switchMap(const std::string& mapId,
     }
     // 创建对应地图逻辑
     if (mapId == "Map")
-        _logic = std::make_unique<MainMapLogic>();
+        _logic.reset(new MainMapLogic());
     else if (mapId == "Home")
-        _logic = std::make_unique<HomeLogic>();
+        _logic.reset(new HomeLogic());
     else if (mapId == "Shop")
-        _logic = std::make_unique<ShopLogic>();
+        _logic.reset(new ShopLogic());
     else if (mapId == "NPC1House")
-        _logic = std::make_unique<NPC1HouseLogic>();
+        _logic.reset(new NPC1HouseLogic());
     else if (mapId == "NPC2House")
-        _logic = std::make_unique<NPC2HouseLogic>();
+        _logic.reset(new NPC2HouseLogic());
     else if (mapId == "Mine")
-        _logic = std::make_unique<MineLogic>();
+        _logic.reset(new MineLogic());
     if (_daylightLayer) {
         if (mapId != "Mine") {
             _daylightLayer->setVisible(true);  // 回到主地图，开启黑夜

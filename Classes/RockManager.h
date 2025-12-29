@@ -27,4 +27,4 @@ private:
     std::vector<Rock> _Rocks;
 };
 
-#endif#pragma once
+#endif

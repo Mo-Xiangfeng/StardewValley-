@@ -52,7 +52,7 @@ public:
     void playRockHitEffect(int tx, int ty);
     void startFishingMinigame();
     bool isFarmable(int tx, int ty);
-    bool GameWorld::isWater(int tx, int ty);
+    bool isWater(int tx, int ty);
     // 被 Player 调用：耕种或浇水
     void interactWithLand(int tx, int ty, int itemID); // 核心交互逻辑
     void nextDay(); // 每天清晨调用  
@@ -81,7 +81,7 @@ public:
     void setPlayer(Player* player);
     void update(float dt) override;
     void onInteract();
-    void GameWorld::drawFarmGrid();
+    void drawFarmGrid();
     void switchMap(const std::string& mapId,
         const std::string& entry);
     NPC* getNearbyNPC(const cocos2d::Vec2& playerPos, float radius = 64.0f);// 查找附近NPC

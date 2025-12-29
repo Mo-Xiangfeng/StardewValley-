@@ -1,5 +1,6 @@
 #include "InventoryManager.h"
 #include "CropData.h"
+#include<memory>
 InventoryManager* InventoryManager::_instance = nullptr;
 
 InventoryManager* InventoryManager::getInstance() {

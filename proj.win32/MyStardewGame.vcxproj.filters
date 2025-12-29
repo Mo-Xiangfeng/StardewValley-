@@ -108,7 +108,7 @@
     <ClCompile Include="..\Classes\WeatherManager.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\fishing_game.cpp">
+    <ClCompile Include="..\Classes\FishingGame.cpp">
       <Filter>classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -227,7 +227,7 @@
     <ClInclude Include="..\Classes\CameraController.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\fishing_game.h">
+    <ClInclude Include="..\Classes\FishingGame.h">
       <Filter>classes</Filter>
     </ClInclude>
   </ItemGroup>

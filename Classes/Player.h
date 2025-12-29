@@ -41,7 +41,7 @@ public:
     //增加经验
     void addExperience(int type, int amount);
     //检查是否可以升级
-    void Player::checkLevelUp(int& currentLevel, int& currentExp, int type);
+    void checkLevelUp(int& currentLevel, int& currentExp, int type);
     //升级后的属性奖励
     void applyLevelUpBonus(int type);
     // 行为方法
@@ -83,7 +83,7 @@ public:
     void useStamina(int cost);
     bool isDead() const;
     // 构造函数和初始化方法
-    void Player::showLevelUpVisual(int type);
+    void showLevelUpVisual(int type);
     void tryChopTree(const cocos2d:: Vec2& posInMap);
     float getPlayerScale() const { return _playerScale; }
     Player();
