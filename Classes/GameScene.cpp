@@ -14,6 +14,8 @@
 #include "DialogueBox.h"  
 #include "NPC.h"          
 #include "NPCManager.h"
+#include "audio/include/SimpleAudioEngine.h"
+
 USING_NS_CC;
 using namespace cocos2d::ui;
 Scene* GameScene::createScene()
@@ -32,14 +34,6 @@ bool GameScene::init()
 
     auto time = TimeDisplayScene::createScene();
     this->addChild(time, 10);
-
-
-
-
-
-
-
-
 
     auto StaminaContainer = Node::create();
     StaminaContainer->setPosition(Vec2(origin.x + 1750, origin.y + visibleSize.height - 1050)); // 设置整体位置
@@ -113,25 +107,6 @@ bool GameScene::init()
     hotbar->setPosition(Vec2(visibleSize.width / 2, 0));
     this->addChild(hotbar, 99);
 
-    //商店
-    /*auto shopLabel = Label::createWithSystemFont("[SHOP]", "Arial", 32);
-    shopLabel->setColor(Color3B(255, 215, 0));  // 金色
-
-    auto shopButton = MenuItemLabel::create(shopLabel, [this](Ref* sender) {
-        // 打开商店
-        auto shopLayer = ShopLayer::create();
-        this->addChild(shopLayer, 100);  // 100 是 z-order，确保在最上层
-        });
-
-    // 设置按钮位置（屏幕右上角）
-    shopButton->setPosition(Vec2(
-        origin.x + 80,
-        origin.y + visibleSize.height - 40
-    ));
-
-    auto menu = Menu::create(shopButton, nullptr);
-    menu->setPosition(Vec2::ZERO);
-    this->addChild(menu, 10);*/
 
     //建立背包空间和物品初始化
     auto inv = InventoryManager::getInstance();
@@ -148,7 +123,18 @@ bool GameScene::init()
     inv->addItemByID(1112, 1);
     inv->addItemByID(1113, 1);
     inv->addItemByID(2200, 5);
-    inv->addItemByID(2207, 1);
+    /*inv->addItemByID(2201, 1);
+    inv->addItemByID(2202, 1);
+    inv->addItemByID(2203, 1);
+    inv->addItemByID(2204, 1);
+    inv->addItemByID(2205, 1);
+    inv->addItemByID(2206, 1);
+    inv->addItemByID(4401, 1);
+    inv->addItemByID(4402, 1);
+    inv->addItemByID(4400, 1);
+    inv->addItemByID(3124, 1);
+    inv->addItemByID(3125, 1); 
+    inv->addItemByID(3126, 1);*/
 
     // 1. 初始化地图世界 (从 HelloWorldScene 迁移)
     _gameWorld = GameWorld::create("tilemap.txt", "Map.png");
@@ -255,12 +241,16 @@ void GameScene::initNPCs() {
     );
 
     if (farmer) {
+        farmer->favorability = 20;
         // 设置对话
         farmer->dialogues.clear();
         farmer->dialogues.push_back("Remember to water the crops!");
         farmer->dialogues.push_back("Hello!I am Lao Wang.");
         farmer->dialogues.push_back("Today is a fine day for farming!");
 
+        farmer->specialDialogue40 = "You know... I've been farming for 30 years. "
+            "I feel like we're becoming real friends now! "
+            "Here, take this gift as a token of our friendship.";
         // 设置日程：
         // 6:00-12:00 在农田 (假设坐标 10, 15)
        // 06:00 - 从 NPC1Door（自己家门口）出来
@@ -282,11 +272,14 @@ void GameScene::initNPCs() {
         );
 
         if (fisherman) {
+            fisherman->favorability = 0;
             fisherman->dialogues.clear();
             fisherman->dialogues.push_back("Want to learn some fishing tips?");
             fisherman->dialogues.push_back("Hello! I'm Xiao Li, the fisherman.");
             fisherman->dialogues.push_back("The fish are biting well today!");
 
+            fisherman->specialDialogue40 = "Hey friend! I caught this amazing fish today. "
+                "I want you to have it - that's what friends do!";
             fisherman->addSchedulePoint(6, 8, 30, 1, "Map");
             fisherman->addSchedulePoint(8, 10, 13, 2, "Map");
             fisherman->addSchedulePoint(12, 20, 8, 0, "Map");
@@ -307,31 +300,53 @@ void GameScene::onMouseDown(EventMouse* event)
         return;
     }
 
-    // ===== 1. 对话框优先处理（点击显示下一句）=====
-    if (_dialogueBox && _dialogueBox->isVisible()) {
-        if (_currentTalkingNPC) {
-            std::string nextDialogue = _currentTalkingNPC->getNextDialogue();
-            _dialogueBox->setText(nextDialogue);
-            CCLOG("显示下一句对话: %s", nextDialogue.c_str());
-        }
-        return;  // ← 处理完对话后直接返回
-    }
 
-    // ===== 2. 阻止动作期间的交互 =====
+    // ===== 1. 阻止动作期间的交互 =====
     if (_playerSprite && _playerSprite->_isAction) {
         return;
     }
 
-    // ===== 3. 坐标转换 =====
+    // ===== 2. 坐标转换 =====
     Vec2 clickPos = Director::getInstance()->convertToGL(event->getLocationInView());
     Vec2 worldPos = _gameWorld->convertToNodeSpace(clickPos);
 
-    // ===== 4. 商店地图特殊处理 =====
+    // ===== 3. 商店地图特殊处理 =====
     if (_gameWorld && _gameWorld->getCurrentMapId() == "Shop") {
         _gameWorld->handleInteraction(worldPos);
         return;
     }
+    // ===== 4. 对话框显示时的处理（继续对话）=====
+    if (_dialogueBox && _dialogueBox->isVisible()) {
+        if (_currentTalkingNPC) {
+            // 增加好感度
+            int oldFavorability = _currentTalkingNPC->getFavorability();
+            _currentTalkingNPC->addFavorability(5);
 
+            showFavorabilityGain(_currentTalkingNPC->npcName, 5);
+
+            // 检查是否达到 40
+            bool reachedFriend = (oldFavorability < 40 && _currentTalkingNPC->getFavorability() >= 40);
+
+            std::string nextDialogue;
+
+            if (reachedFriend && !_currentTalkingNPC->specialDialogue40.empty()) {
+                nextDialogue = _currentTalkingNPC->specialDialogue40;
+                CCLOG("[特殊对话] %s 达到 Friend 等级！", _currentTalkingNPC->npcName.c_str());
+            }
+            else {
+                nextDialogue = _currentTalkingNPC->getNextDialogue();
+            }
+
+            _dialogueBox->setText(nextDialogue);
+
+            CCLOG("显示下一句对话: %s (好感度: %d/%d - %s)",
+                nextDialogue.c_str(),
+                _currentTalkingNPC->getFavorability(),
+                _currentTalkingNPC->maxFavorability,
+                _currentTalkingNPC->getFavorabilityLevel().c_str());
+        }
+        return;  // 处理完对话后直接返回
+    }
     // ===== 5. NPC 交互检测 =====
     auto npcMgr = NPCManager::getInstance();
     for (auto& pair : npcMgr->getAllNPCs()) {
@@ -347,14 +362,41 @@ void GameScene::onMouseDown(EventMouse* event)
             float interactRadius = 64.0f * _gameWorld->getMapScale();
 
             if (distance <= interactRadius) {
-                _currentTalkingNPC = npc;
-                npc->resetDialogue();  // 从第一句开始
+                // 只有在切换 NPC 时才重置对话
+                if (_currentTalkingNPC != npc) {
+                    _currentTalkingNPC = npc;
+                    npc->resetDialogue();
+                    CCLOG("[NPC] 开始与 %s 的新对话", npc->npcName.c_str());
+                }
 
-                std::string dialogue = npc->getNextDialogue();
+                // 增加好感度
+                int oldFavorability = npc->getFavorability();
+                npc->addFavorability(5);
+
+                showFavorabilityGain(_currentTalkingNPC->npcName, 5);
+
+                // 检查是否达到 40
+                bool reachedFriend = (oldFavorability < 40 && npc->getFavorability() >= 40);
+
+                std::string dialogue;
+
+                if (reachedFriend && !npc->specialDialogue40.empty()) {
+                    dialogue = npc->specialDialogue40;
+                    CCLOG("[特殊对话] %s 达到 Friend 等级！", npc->npcName.c_str());
+                }
+                else {
+                    dialogue = npc->getNextDialogue();
+                }
+
                 _dialogueBox->init(npc->npcName, dialogue);
                 _dialogueBox->show();
 
-                CCLOG("开始与 %s 对话: %s", npc->npcName.c_str(), dialogue.c_str());
+                CCLOG("开始与 %s 对话: %s (好感度: %d/%d - %s)",
+                    npc->npcName.c_str(),
+                    dialogue.c_str(),
+                    npc->getFavorability(),
+                    npc->maxFavorability,
+                    npc->getFavorabilityLevel().c_str());
             }
             else {
                 CCLOG("太远了，走近点再点击");
@@ -365,6 +407,8 @@ void GameScene::onMouseDown(EventMouse* event)
 
     if (event->getMouseButton() == cocos2d::EventMouse::MouseButton::BUTTON_LEFT)
     {
+        CCLOG("MouseDown Event Address: %p, Button: %d", event, (int)event->getMouseButton());
+        CCLOG("999999999999999999999999999999999");
         if (_playerSprite && _playerSprite->_isAction) {
             return;
         }
@@ -404,9 +448,10 @@ void GameScene::onMouseDown(EventMouse* event)
             _playerSprite->useStamina(5);
 
         }
-        else if (_playerSprite && _playerSprite->what_in_hand_now <= 2209 && _playerSprite->what_in_hand_now >= 2200) {
+        else if (_playerSprite && _playerSprite->what_in_hand_now <= 2206 && _playerSprite->what_in_hand_now >= 2200) {
             _playerSprite->eat(10, 20);
             InventoryManager::getInstance()->removeItemByID(_playerSprite->what_in_hand_now, 1);
+            event->stopPropagation();
         }
         else {
             if (_playerSprite && !_playerSprite->_isAction) {
@@ -465,11 +510,11 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
         case EventKeyboard::KeyCode::KEY_T: _isTPressed = true; break;
         case EventKeyboard::KeyCode::KEY_E: {
             auto existingBag = this->getChildByName("BagLayerNode");
-            if (!existingBag) {
+            if (!existingBag && _playerSprite->what_in_hand_now == 0) {
                 auto bag = BagScene::create();
                 this->addChild(bag, 100, "BagLayerNode");
             }
-            else {
+            else if(existingBag){
                 existingBag->removeFromParent();
             }
             break;
@@ -560,7 +605,7 @@ void GameScene::update(float dt)
         // 2. 更新地图逻辑 (传送阵检测、Logic 更新)
         if (_gameWorld)
         {
-            _gameWorld->update(dt);
+            //_gameWorld->update(dt);
 
             // 3. 更新相机 (让画面跟随主角)
             _gameWorld->updateCamera();
@@ -614,6 +659,61 @@ void GameScene::update(float dt)
                 }
             }
         }
+}
+
+void GameScene::showFavorabilityGain(const std::string& npcName, int amount) {
+    auto visibleSize = Director::getInstance()->getVisibleSize();
+    Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
+    // 1. 创建容器节点（用于组合多个元素）
+    auto container = Node::create();
+    this->addChild(container, 10000);  // 最高层级
+
+    // 2. 创建背景（半透明黑色圆角矩形）
+    auto bg = LayerColor::create(Color4B(0, 0, 0, 180), 350, 80);
+    bg->setPosition(Vec2(-175, -40));  // 居中
+    container->addChild(bg);
+
+    //3. 创建爱心图标（如果有图片资源）
+    auto heart = Sprite::create("item/5113.png");
+    heart->setPosition(Vec2(-120, 0));
+    container->addChild(heart);
+
+
+    // 4. 创建文字：NPC 名字
+    auto nameLabel = Label::createWithSystemFont(npcName, "Arial", 28);
+    nameLabel->setColor(Color3B::WHITE);
+    nameLabel->setAnchorPoint(Vec2(0, 0.5));
+    nameLabel->setPosition(Vec2(-80, 15));
+    container->addChild(nameLabel);
+
+    // 5. 创建文字：好感度增加
+    std::string gainText = "+" + std::to_string(amount) + " Favorability";
+    auto gainLabel = Label::createWithSystemFont(gainText, "Arial", 24);
+    gainLabel->setColor(Color3B(100, 255, 100));  // 绿色
+    gainLabel->setAnchorPoint(Vec2(0, 0.5));
+    gainLabel->setPosition(Vec2(-80, -15));
+    container->addChild(gainLabel);
+
+    // 6. 设置初始位置（屏幕上方中心）
+    container->setPosition(Vec2(
+        origin.x + visibleSize.width / 2,
+        origin.y + visibleSize.height - 150
+    ));
+    container->setOpacity(0);  // 初始透明
+
+    // 7. 创建动画序列
+    auto fadeIn = FadeIn::create(0.3f);          // 淡入
+    auto delay = DelayTime::create(1.5f);        // 停留 1.5 秒
+    auto fadeOut = FadeOut::create(0.5f);        // 淡出
+    auto remove = RemoveSelf::create();          // 移除节点
+
+    auto sequence = Sequence::create(fadeIn, delay, fadeOut, remove, nullptr);
+    container->runAction(sequence);
+
+    // 8. 添加轻微的上浮动画
+    auto moveUp = MoveBy::create(2.3f, Vec2(0, 30));
+    container->runAction(moveUp);
 }
 
 GameScene::~GameScene()

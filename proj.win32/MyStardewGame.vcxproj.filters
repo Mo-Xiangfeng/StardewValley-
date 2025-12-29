@@ -15,91 +15,100 @@
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
     </ClCompile>
-    <ClCompile Include="TileMap.cpp">
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="AppDelegate.cpp">
+    <ClCompile Include="..\Classes\BagScene.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="HelloWorldScene.cpp">
+    <ClCompile Include="..\Classes\CropData.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="GameWorld.cpp">
+    <ClCompile Include="..\Classes\Daylight.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="..\Classes\DiagueBox.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="CameraController.cpp">
+    <ClCompile Include="..\Classes\GameScene.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="MapPortal.cpp">
+    <ClCompile Include="..\Classes\GameWorld.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="MainMapLogic.cpp">
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="HomeLogic.cpp">
+    <ClCompile Include="..\Classes\HomeLogic.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="ShopLogic.cpp">
+    <ClCompile Include="..\Classes\Hotbar.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="NPC1HouseLogic.cpp">
+    <ClCompile Include="..\Classes\InventoryManager.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="NPC2HouseLogic.cpp">
+    <ClCompile Include="..\Classes\MainMapLogic.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="MineLogic.cpp">
+    <ClCompile Include="..\Classes\MapPortal.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="BagScene.cpp">
+    <ClCompile Include="..\Classes\MineLogic.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="CropData.cpp">
+    <ClCompile Include="..\Classes\MoneyManager.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="TimeDisplayScene.cpp">
+    <ClCompile Include="..\Classes\Monster.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="TimeManager.cpp">
+    <ClCompile Include="..\Classes\NPC.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="WeatherManager.cpp">
+    <ClCompile Include="..\Classes\NPC1HouseLogic.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="InventoryManager.cpp">
+    <ClCompile Include="..\Classes\NPC2HouseLogic.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="MoneyManager.cpp">
+    <ClCompile Include="..\Classes\NPCManager.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="ShopLayer.cpp">
+    <ClCompile Include="..\Classes\Pathfinding.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene.cpp">
+    <ClCompile Include="..\Classes\Player.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="Monster.cpp">
+    <ClCompile Include="..\Classes\ReviveSystem.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="Hotbar.cpp">
+    <ClCompile Include="..\Classes\RockManager.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="fishing_game.cpp">
+    <ClCompile Include="..\Classes\ShopLayer.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="TreeManager.cpp">
+    <ClCompile Include="..\Classes\ShopLogic.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="ReviveSystem.cpp">
+    <ClCompile Include="..\Classes\TileMap.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="Daylight.cpp">
+    <ClCompile Include="..\Classes\TimeDisplayScene.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="RockManager.cpp">
+    <ClCompile Include="..\Classes\TimeManager.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TreeManager.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\WeatherManager.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\fishing_game.cpp">
       <Filter>classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,109 +116,118 @@
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
+    <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="TileMap.h">
+    <ClInclude Include="..\Classes\BagScene.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="TileType.h">
+    <ClInclude Include="..\Classes\CropData.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="AppDelegate.h">
+    <ClInclude Include="..\Classes\Daylight.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="HelloWorldScene.h">
+    <ClInclude Include="..\Classes\DialogueBox.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="GameWorld.h">
+    <ClInclude Include="..\Classes\GameScene.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="..\Classes\GameWorld.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="CameraController.h">
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="MapPortal.h">
+    <ClInclude Include="..\Classes\HomeLogic.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="MapLogic.h">
+    <ClInclude Include="..\Classes\Hotbar.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="MainMapLogic.h">
+    <ClInclude Include="..\Classes\InventoryManager.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="HomeLogic.h">
+    <ClInclude Include="..\Classes\Item.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="ShopLogic.h">
+    <ClInclude Include="..\Classes\MainMapLogic.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="NPC1HouseLogic.h">
+    <ClInclude Include="..\Classes\MapLogic.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="NPC2HouseLogic.h">
+    <ClInclude Include="..\Classes\MapPortal.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="MineLogic.h">
+    <ClInclude Include="..\Classes\MineLogic.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene.h">
+    <ClInclude Include="..\Classes\MoneyManager.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="BagScene.h">
+    <ClInclude Include="..\Classes\Monster.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="CropData.h">
+    <ClInclude Include="..\Classes\NPC.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="TimeDisplayScene.h">
+    <ClInclude Include="..\Classes\NPC1HouseLogic.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="TimeManager.h">
+    <ClInclude Include="..\Classes\NPC2HouseLogic.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="WeatherManager.h">
+    <ClInclude Include="..\Classes\NPCManager.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="InventoryManager.h">
+    <ClInclude Include="..\Classes\Pathfinding.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="MoneyManager.h">
+    <ClInclude Include="..\Classes\Player.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="ShopLayer.h">
+    <ClInclude Include="..\Classes\ReviveSystem.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="Monster.h">
+    <ClInclude Include="..\Classes\Rock.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="Hotbar.h">
+    <ClInclude Include="..\Classes\RockManager.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
+    <ClInclude Include="..\Classes\ShopLayer.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="TileData.h">
+    <ClInclude Include="..\Classes\ShopLogic.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="fishing_game.h">
+    <ClInclude Include="..\Classes\TileMap.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="Tree.h">
+    <ClInclude Include="..\Classes\TileType.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="TreeManager.h">
+    <ClInclude Include="..\Classes\TimeDisplayScene.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="ReviveSystem.h">
+    <ClInclude Include="..\Classes\TimeManager.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="Rock.h">
+    <ClInclude Include="..\Classes\Tree.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="RockManager.h">
+    <ClInclude Include="..\Classes\TreeManager.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\WeatherManager.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CameraController.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\fishing_game.h">
       <Filter>classes</Filter>
     </ClInclude>
   </ItemGroup>
@@ -497,6 +515,36 @@
     <Image Include="..\Resources\RRock.png">
       <Filter>resource</Filter>
     </Image>
+    <Image Include="..\Resources\Ability.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\HP_bar.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\resistance_bar.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\UI1.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\ExitDesktop.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\ExitPressedDesktop.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\ExitPressedTitile.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\ExitTitile.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\Sacrifice_Normal.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\Sacrifice_Pressed.png">
+      <Filter>resource</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Resources\Home.txt">
@@ -517,5 +565,13 @@
     <Text Include="..\Resources\tilemap.txt">
       <Filter>resource</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\Resources\Spring.mp3">
+      <Filter>resource</Filter>
+    </Media>
+    <Media Include="..\Resources\stardew.mp3">
+      <Filter>resource</Filter>
+    </Media>
   </ItemGroup>
 </Project>

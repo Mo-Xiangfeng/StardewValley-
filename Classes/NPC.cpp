@@ -21,6 +21,8 @@ bool NPC::init(const std::string& id, const std::string& name, const std::string
     this->npcName = name;
     this->setScale(4.0f);
 
+    this->favorability = 0;          
+    this->maxFavorability = 100;     
     // 添加名字标签
     auto nameLabel = Label::createWithSystemFont(name, "Arial", 12);
     nameLabel->setPosition(Vec2(this->getContentSize().width / 2,
@@ -345,4 +347,44 @@ void NPC::setTilePosition(int tx, int ty) {
 
     CCLOG("[NPC] %s: Teleported to tile (%d, %d) -> pixel (%.2f, %.2f)",
         npcName.c_str(), tx, ty, x, y);
+}
+
+void NPC::addFavorability(int amount) {
+    int oldFavorability = favorability;  // 记录旧值
+    favorability += amount;
+
+    if (favorability > maxFavorability) {
+        favorability = maxFavorability;
+    }
+    if (favorability < 0) {
+        favorability = 0;
+    }
+
+    CCLOG("[NPC] %s 的好感度变为: %d/%d (%s)",
+        npcName.c_str(),
+        favorability,
+        maxFavorability,
+        getFavorabilityLevel().c_str());
+
+    // 检测是否达到 40（Friend 等级）
+    if (oldFavorability < 40 && favorability >= 40) {
+        CCLOG("[NPC] %s 达到 Friend 等级！触发特殊对话！", npcName.c_str());
+    }
+}
+
+
+std::string NPC::getFavorabilityLevel() const {
+    if (favorability >= 80) return "Best Friend";      // 挚友
+    if (favorability >= 60) return "Good Friend";      // 好友
+    if (favorability >= 40) return "Friend";           // 朋友
+    if (favorability >= 20) return "Acquaintance";     // 熟人
+    return "Stranger";  // 陌生人
+}
+
+bool NPC::checkFavorabilityMilestone(int threshold) {
+    // 检查是否刚好达到这个阈值
+    // 例如：从 35 → 40 时返回 true
+    int oldFav = favorability - 5;  // 假设每次增加 5
+
+    return (oldFav < threshold && favorability >= threshold);
 }

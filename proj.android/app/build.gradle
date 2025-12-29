@@ -3,12 +3,13 @@ import org.gradle.internal.os.OperatingSystem
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
+
+    compileSdkVersion 30
 
     defaultConfig {
         applicationId "com.yourname.stardew"
         minSdkVersion PROP_MIN_SDK_VERSION
-        targetSdkVersion PROP_TARGET_SDK_VERSION
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -34,12 +35,16 @@ android {
             else if (PROP_BUILD_TYPE == 'cmake') {
                 cmake {
                     targets 'MyGame'
-                    arguments "-DCMAKE_FIND_ROOT_PATH=", "-DANDROID_STL=c++_static", "-DANDROID_TOOLCHAIN=clang", "-DANDROID_ARM_NEON=TRUE"
-                    cppFlags "-frtti -fexceptions -fsigned-char"
+                    arguments "-DCMAKE_FIND_ROOT_PATH=",
+                            "-DANDROID_STL=c++_static",
+                            "-DANDROID_TOOLCHAIN=clang",
+                            "-DANDROID_ARM_NEON=TRUE",
+                    "-DCMAKE_MAKE_PROGRAM=D:/Users/AndroidSDK/Sdk/cmake/3.10.2.4988404/bin/ninja.exe"
+                    cppFlags "-std=c++14 -frtti -fexceptions -fsigned-char"
                 }
+
             }
         }
-
         ndk {
             abiFilters = []
             abiFilters.addAll(PROP_APP_ABI.split(':').collect{it as String})
@@ -62,6 +67,8 @@ android {
         else if (PROP_BUILD_TYPE == 'cmake') {
             cmake {
                 path "../../CMakeLists.txt"
+
+
             }
         }
     }

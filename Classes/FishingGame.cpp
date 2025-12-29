@@ -1,5 +1,5 @@
 #include "cocos2d.h"
-#include "fishing_game.h"
+#include "FishingGame.h"
 #include "HelloWorldScene.h"
 #include "ui/CocosGUI.h"
 

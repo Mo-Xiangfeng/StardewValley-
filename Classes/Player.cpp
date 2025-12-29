@@ -477,7 +477,7 @@ void Player::cut()
         if (isDestroyed) {
             CCLOG("Tree at (%d, %d) was chopped down!", tx, ty);
             // 这里可以添加获得木材的逻辑，例如：
-            InventoryManager::getInstance()->addItemByID(4400, 1);
+            InventoryManager::getInstance()->addItemByID(4400, foragingLevel + 1);
             addExperience(3, 10);
         }
     }

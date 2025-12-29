@@ -9,7 +9,7 @@
 class InventoryManager {
 public:
     static InventoryManager* getInstance();
-
+    bool hasAllDatabaseItems();
     void initInventory(int capacity);
     int getmoney(int index);
     bool removeItem(int index, int num = 0);

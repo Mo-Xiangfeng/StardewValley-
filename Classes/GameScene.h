@@ -19,6 +19,7 @@ public:
 
     GameWorld* getGameWorld() const { return _gameWorld; }
     Player* getPlayer() const { return _playerSprite; }
+    void showFavorabilityGain(const std::string& npcName, int amount);
 private:
     // 【修改点 1】：动画精灵
     Player* _playerSprite;

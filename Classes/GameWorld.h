@@ -47,6 +47,7 @@ public:
     MapLogic* getLogic() const {
         return _logic.get();
     }
+    void updateWeatherVisuals();
     void playTreeHitEffect(int tx, int ty);
     void playRockHitEffect(int tx, int ty);
     void startFishingMinigame();
@@ -85,6 +86,8 @@ public:
         const std::string& entry);
     NPC* getNearbyNPC(const cocos2d::Vec2& playerPos, float radius = 64.0f);// 查找附近NPC
 private:
+    cocos2d::Node* _cropLayer = nullptr; // 专门存放作物的层
+    std::unordered_map<std::string, cocos2d::Sprite*> _cropSprites; // Key 为坐标字符串 "tx_ty"
     std::unordered_map<std::string, LandTileData> _farmlandData;
     std::string getLandKey(int tx, int ty) { return std::to_string(tx) + "_" + std::to_string(ty); }
     cocos2d::Node* _treeLayer = nullptr; // 专门存放树木的容器
@@ -106,6 +109,8 @@ private:
     MapPortal* _currentPortal = nullptr;
     float _portalStayTime = 0.0f;
     Daylight* _daylightLayer = nullptr;
+    cocos2d::ParticleSystemQuad* _weatherParticle = nullptr;
+
 };
 
 #endif

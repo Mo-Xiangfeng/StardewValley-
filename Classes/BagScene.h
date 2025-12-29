@@ -32,5 +32,6 @@ private:
     float _slotSize = 85.0f;
     float _padding = 5.0f;
     const int _rows = 2, _cols = 10;
+    void onSacrifice(cocos2d::Ref* sender);
 };
 #endif

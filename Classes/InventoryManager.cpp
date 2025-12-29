@@ -112,31 +112,58 @@ void InventoryManager::loadItemDatabase() {
     _itemDatabase[parsnip->id] = parsnip;
 
     auto cauliflower = std::make_shared<Item>();
-    cauliflower->id = 2207;
+    cauliflower->id = 2201;
     cauliflower->name = "西蓝花果实";
-    cauliflower->iconPath = "item/2207.png";
+    cauliflower->iconPath = "item/2201.png";
     cauliflower->maxStack = 99;
-    cauliflower->price = 150;
+    cauliflower->price = 180;
     cauliflower->type = ItemType::MATERIAL;
     _itemDatabase[cauliflower->id] = cauliflower;
-
-    auto wheat = std::make_shared<Item>();
-    wheat->id = 2201;
-    wheat->name = "成熟的小麦";
-    wheat->iconPath = "item/2201.png";
-    wheat->maxStack = 99;
-    wheat->price = 20;
-    wheat->type = ItemType::MATERIAL;
-    _itemDatabase[wheat->id] = wheat;
 
     auto potato = std::make_shared<Item>();
     potato->id = 2202;
     potato->name = "成熟的土豆";
     potato->iconPath = "item/2202.png";
     potato->maxStack = 99;
-    potato->price = 20;
+    potato->price = 80;
     potato->type = ItemType::MATERIAL;
     _itemDatabase[potato->id] = potato;
+
+    auto tomato = std::make_shared<Item>();
+    tomato->id = 2203;
+    tomato->name = "成熟的西红柿";
+    tomato->iconPath = "item/2203.png";
+    tomato->maxStack = 99;
+    tomato->price = 90;
+    tomato->type = ItemType::MATERIAL;
+    _itemDatabase[tomato->id] = tomato;
+
+    auto melon = std::make_shared<Item>();
+    melon->id = 2204;
+    melon->name = "成熟的甜瓜";
+    melon->iconPath = "item/2204.png";
+    melon->maxStack = 99;
+    melon->price = 120;
+    melon->type = ItemType::MATERIAL;
+    _itemDatabase[melon->id] = melon;
+
+    auto pumpkin = std::make_shared<Item>();
+    pumpkin->id = 2205;
+    pumpkin->name = "成熟的南瓜";
+    pumpkin->iconPath = "item/2205.png";
+    pumpkin->maxStack = 99;
+    pumpkin->price = 200;
+    pumpkin->type = ItemType::MATERIAL;
+    _itemDatabase[pumpkin->id] = pumpkin;
+
+    auto wheat = std::make_shared<Item>();
+    wheat->id = 2206;
+    wheat->name = "成熟的小麦";
+    wheat->iconPath = "item/2206.png";
+    wheat->maxStack = 99;
+    wheat->price = 30;
+    wheat->type = ItemType::MATERIAL;
+    _itemDatabase[wheat->id] = wheat;
 
     auto axe = std::make_shared<ToolItem>();
     axe->id = 1110;
@@ -232,4 +259,38 @@ int InventoryManager::getmoney(int index) {
 void InventoryManager::notifyUpdate() {
     // 发送一个自定义事件，名字可以叫 "inventory_changed"
     cocos2d::Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("inventory_changed");
+}
+
+bool InventoryManager::hasAllDatabaseItems() {
+    // 使用传统的迭代器遍历 std::map
+    std::map<int, std::shared_ptr<Item>>::iterator it;
+
+    for (it = _itemDatabase.begin(); it != _itemDatabase.end(); ++it) {
+        // it->first 是 Key (物品ID), it->second 是 Value (物品对象指针)
+        int dbID = it->first;
+
+        // 过滤掉 ID 为 0 的无效物品
+        if (dbID <= 0) continue;
+
+        bool found = false;
+
+        // 使用原始下标遍历背包 vector
+        for (int i = 0; i < (int)_inventory.size(); ++i) {
+            if (_inventory[i] != NULL && _inventory[i]->id == dbID) {
+                // 只要背包里有这个 ID，且数量大于 0 (假设有就是至少1个)
+                if (_inventory[i]->count > 0) {
+                    found = true;
+                    break;
+                }
+            }
+        }
+
+        // 只要有一个数据库里的物品没找到，立即返回失败
+        if (!found) {
+            CCLOG("Sacrifice Failed: Missing Item ID %d", dbID);
+            return false;
+        }
+    }
+
+    return true; // 全部通过
 }

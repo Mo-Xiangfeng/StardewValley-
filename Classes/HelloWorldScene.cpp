@@ -1,6 +1,7 @@
 #include "HelloWorldScene.h"
 #include "GameScene.h"
-
+#include "audio/include/SimpleAudioEngine.h"
+using namespace CocosDenshion;
 USING_NS_CC;
 
 Scene* HelloWorldScene::createScene() {
@@ -9,7 +10,21 @@ Scene* HelloWorldScene::createScene() {
 
 bool HelloWorldScene::init() {
     if (!Scene::init()) return false;
+    // 播放背景音乐
+    // 参数1: 音乐文件路径； 参数2: 是否循环播放
+    auto audio = SimpleAudioEngine::getInstance();
+    audio->playBackgroundMusic("stardew.mp3", true);
+    audio->setBackgroundMusicVolume(0.5f); // 设置音量 (0.0 ~ 1.0)
 
+    // 修改开始按钮的回调
+    auto startItem = MenuItemImage::create(
+        "StartButton.png",
+        "StartPressedButton.png",
+        [](Ref* sender) {
+
+            auto scene = GameScene::createScene();
+            Director::getInstance()->replaceScene(TransitionFade::create(0.8f, scene));
+        });
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -27,17 +42,6 @@ bool HelloWorldScene::init() {
         this->addChild(background, -1);
     }
 
-
-
-    // 显示一个简单的启动文本
-    auto startItem = MenuItemImage::create(
-        "StartButton.png",   // 未点击状态
-        "StartPressedButton.png", // 点击状态
-        [](Ref* sender) {
-            // 点击后的回调：进入游戏场景
-            auto scene = GameScene::createScene();
-            Director::getInstance()->replaceScene(TransitionFade::create(0.8f, scene));
-        });
 
     // 3. 创建“退出游戏”按钮
     auto exitItem = MenuItemImage::create(

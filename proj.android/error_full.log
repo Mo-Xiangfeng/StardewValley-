@@ -1,0 +1,849 @@
+Initialized native services in: C:\Users\lcr20\.gradle\native
+The client will now receive all logging from the daemon (pid: 4324). The daemon log file: C:\Users\lcr20\.gradle\daemon\4.6\daemon-4324.out.log
+Starting 19th build in daemon [uptime: 58 mins 10.6 secs, performance: 100%]
+Using 16 worker leases.
+Starting Build
+Settings evaluated using settings file 'D:\Users\MyProjects\MyStardewGame\proj.android\settings.gradle'.
+Projects loaded. Root project using build file 'D:\Users\MyProjects\MyStardewGame\proj.android\build.gradle'.
+Included projects: [root project 'proj.android', project ':libcocos2dx', project ':MyStardewGame']
+Evaluating root project 'proj.android' using build file 'D:\Users\MyProjects\MyStardewGame\proj.android\build.gradle'.
+Evaluating project ':libcocos2dx' using build file 'D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build.gradle'.
+Creating configuration androidTestUtil
+Creating configuration compile
+Creating configuration publish
+Creating configuration provided
+Creating configuration api
+Creating configuration implementation
+Creating configuration runtimeOnly
+Creating configuration compileOnly
+Creating configuration wearApp
+Creating configuration annotationProcessor
+Creating configuration androidTestCompile
+Creating configuration androidTestPublish
+Creating configuration androidTestProvided
+Creating configuration androidTestApi
+Creating configuration androidTestImplementation
+Creating configuration androidTestRuntimeOnly
+Creating configuration androidTestCompileOnly
+Creating configuration androidTestWearApp
+Creating configuration androidTestAnnotationProcessor
+Creating configuration testCompile
+Creating configuration testPublish
+Creating configuration testProvided
+Creating configuration testApi
+Creating configuration testImplementation
+Creating configuration testRuntimeOnly
+Creating configuration testCompileOnly
+Creating configuration testWearApp
+Creating configuration testAnnotationProcessor
+Creating configuration debugCompile
+Creating configuration debugPublish
+Creating configuration debugProvided
+Creating configuration debugApi
+Creating configuration debugImplementation
+Creating configuration debugRuntimeOnly
+Creating configuration debugCompileOnly
+Creating configuration debugWearApp
+Creating configuration debugAnnotationProcessor
+Creating configuration androidTestDebugCompile
+Creating configuration androidTestDebugPublish
+Creating configuration androidTestDebugProvided
+Creating configuration androidTestDebugApi
+Creating configuration androidTestDebugImplementation
+Creating configuration androidTestDebugRuntimeOnly
+Creating configuration androidTestDebugCompileOnly
+Creating configuration androidTestDebugWearApp
+Creating configuration androidTestDebugAnnotationProcessor
+Creating configuration testDebugCompile
+Creating configuration testDebugPublish
+Creating configuration testDebugProvided
+Creating configuration testDebugApi
+Creating configuration testDebugImplementation
+Creating configuration testDebugRuntimeOnly
+Creating configuration testDebugCompileOnly
+Creating configuration testDebugWearApp
+Creating configuration testDebugAnnotationProcessor
+Creating configuration releaseCompile
+Creating configuration releasePublish
+Creating configuration releaseProvided
+Creating configuration releaseApi
+Creating configuration releaseImplementation
+Creating configuration releaseRuntimeOnly
+Creating configuration releaseCompileOnly
+Creating configuration releaseWearApp
+Creating configuration releaseAnnotationProcessor
+Creating configuration testReleaseCompile
+Creating configuration testReleasePublish
+Creating configuration testReleaseProvided
+Creating configuration testReleaseApi
+Creating configuration testReleaseImplementation
+Creating configuration testReleaseRuntimeOnly
+Creating configuration testReleaseCompileOnly
+Creating configuration testReleaseWearApp
+Creating configuration testReleaseAnnotationProcessor
+Parsing the SDK, no caching allowed
+SDK initialized in 507 ms
+Using incremental javac compilation for :libcocos2dx debug.
+Using incremental javac compilation for :libcocos2dx debugUnitTest.
+Using incremental javac compilation for :libcocos2dx release.
+Using incremental javac compilation for :libcocos2dx releaseUnitTest.
+Using incremental javac compilation for :libcocos2dx debugAndroidTest.
+Evaluating project ':MyStardewGame' using build file 'D:\Users\MyProjects\MyStardewGame\proj.android\app\build.gradle'.
+Creating configuration androidTestUtil
+Creating configuration compile
+Creating configuration apk
+Creating configuration provided
+Creating configuration api
+Creating configuration implementation
+Creating configuration runtimeOnly
+Creating configuration compileOnly
+Creating configuration wearApp
+Creating configuration annotationProcessor
+Creating configuration androidTestCompile
+Creating configuration androidTestApk
+Creating configuration androidTestProvided
+Creating configuration androidTestApi
+Creating configuration androidTestImplementation
+Creating configuration androidTestRuntimeOnly
+Creating configuration androidTestCompileOnly
+Creating configuration androidTestWearApp
+Creating configuration androidTestAnnotationProcessor
+Creating configuration testCompile
+Creating configuration testApk
+Creating configuration testProvided
+Creating configuration testApi
+Creating configuration testImplementation
+Creating configuration testRuntimeOnly
+Creating configuration testCompileOnly
+Creating configuration testWearApp
+Creating configuration testAnnotationProcessor
+Creating configuration debugCompile
+Creating configuration debugApk
+Creating configuration debugProvided
+Creating configuration debugApi
+Creating configuration debugImplementation
+Creating configuration debugRuntimeOnly
+Creating configuration debugCompileOnly
+Creating configuration debugWearApp
+Creating configuration debugAnnotationProcessor
+Creating configuration androidTestDebugCompile
+Creating configuration androidTestDebugApk
+Creating configuration androidTestDebugProvided
+Creating configuration androidTestDebugApi
+Creating configuration androidTestDebugImplementation
+Creating configuration androidTestDebugRuntimeOnly
+Creating configuration androidTestDebugCompileOnly
+Creating configuration androidTestDebugWearApp
+Creating configuration androidTestDebugAnnotationProcessor
+Creating configuration testDebugCompile
+Creating configuration testDebugApk
+Creating configuration testDebugProvided
+Creating configuration testDebugApi
+Creating configuration testDebugImplementation
+Creating configuration testDebugRuntimeOnly
+Creating configuration testDebugCompileOnly
+Creating configuration testDebugWearApp
+Creating configuration testDebugAnnotationProcessor
+Creating configuration releaseCompile
+Creating configuration releaseApk
+Creating configuration releaseProvided
+Creating configuration releaseApi
+Creating configuration releaseImplementation
+Creating configuration releaseRuntimeOnly
+Creating configuration releaseCompileOnly
+Creating configuration releaseWearApp
+Creating configuration releaseAnnotationProcessor
+Creating configuration testReleaseCompile
+Creating configuration testReleaseApk
+Creating configuration testReleaseProvided
+Creating configuration testReleaseApi
+Creating configuration testReleaseImplementation
+Creating configuration testReleaseRuntimeOnly
+Creating configuration testReleaseCompileOnly
+Creating configuration testReleaseWearApp
+Creating configuration testReleaseAnnotationProcessor
+Parsing the SDK, no caching allowed
+SDK initialized in 0 ms
+Support for CMake 3.7 and higher is a preview feature. To report a bug, see https://developer.android.com/studio/report-bugs.html
+Using incremental javac compilation for :MyStardewGame debug.
+Using incremental javac compilation for :MyStardewGame debugUnitTest.
+Support for CMake 3.7 and higher is a preview feature. To report a bug, see https://developer.android.com/studio/report-bugs.html
+Using incremental javac compilation for :MyStardewGame release.
+Using incremental javac compilation for :MyStardewGame releaseUnitTest.
+Using incremental javac compilation for :MyStardewGame debugAndroidTest.
+All projects evaluated.
+Selected primary task 'assembleDebug' from project :
+Tasks to be executed: [task ':libcocos2dx:preBuild', task ':libcocos2dx:preDebugBuild', task ':libcocos2dx:compileDebugAidl', task ':libcocos2dx:compileDebugRenderscript', task ':libcocos2dx:checkDebugManifest', task ':libcocos2dx:generateDebugBuildConfig', task ':libcocos2dx:generateDebugResValues', task ':libcocos2dx:generateDebugResources', task ':libcocos2dx:packageDebugResources', task ':libcocos2dx:platformAttrExtractor', task ':libcocos2dx:processDebugManifest', task ':libcocos2dx:generateDebugRFile', task ':libcocos2dx:prepareLintJar', task ':libcocos2dx:generateDebugSources', task ':libcocos2dx:javaPreCompileDebug', task ':libcocos2dx:compileDebugJavaWithJavac', task ':libcocos2dx:extractDebugAnnotations', task ':libcocos2dx:mergeDebugConsumerProguardFiles', task ':libcocos2dx:mergeDebugShaders', task ':libcocos2dx:compileDebugShaders', task ':libcocos2dx:generateDebugAssets', task ':libcocos2dx:packageDebugAssets', task ':libcocos2dx:packageDebugRenderscript', task ':libcocos2dx:processDebugJavaRes', task ':libcocos2dx:transformResourcesWithMergeJavaResForDebug', task ':libcocos2dx:transformClassesAndResourcesWithSyncLibJarsForDebug', task ':libcocos2dx:compileDebugNdk', task ':libcocos2dx:mergeDebugJniLibFolders', task ':libcocos2dx:transformNativeLibsWithMergeJniLibsForDebug', task ':libcocos2dx:transformNativeLibsWithStripDebugSymbolForDebug', task ':libcocos2dx:transformNativeLibsWithSyncJniLibsForDebug', task ':libcocos2dx:bundleDebug', task ':libcocos2dx:compileDebugSources', task ':libcocos2dx:assembleDebug', task ':libcocos2dx:transformClassesAndResourcesWithPrepareIntermediateJarsForDebug', task ':MyStardewGame:preBuild', task ':MyStardewGame:preDebugBuild', task ':MyStardewGame:compileDebugAidl', task ':MyStardewGame:compileDebugRenderscript', task ':MyStardewGame:checkDebugManifest', task ':MyStardewGame:generateDebugBuildConfig', task ':MyStardewGame:prepareLintJar', task ':MyStardewGame:mainApkListPersistenceDebug', task ':MyStardewGame:generateDebugResValues', task ':MyStardewGame:generateDebugResources', task ':MyStardewGame:mergeDebugResources', task ':MyStardewGame:createDebugCompatibleScreenManifests', task ':MyStardewGame:processDebugManifest', task ':MyStardewGame:splitsDiscoveryTaskDebug', task ':MyStardewGame:processDebugResources', task ':MyStardewGame:generateDebugSources', task ':MyStardewGame:javaPreCompileDebug', task ':MyStardewGame:compileDebugJavaWithJavac', task ':MyStardewGame:generateJsonModelDebug', task ':MyStardewGame:externalNativeBuildDebug', task ':MyStardewGame:compileDebugSources', task ':MyStardewGame:mergeDebugShaders', task ':MyStardewGame:compileDebugShaders', task ':MyStardewGame:generateDebugAssets', task ':MyStardewGame:mergeDebugAssets', task ':MyStardewGame:transformClassesWithDexBuilderForDebug', task ':MyStardewGame:transformDexArchiveWithExternalLibsDexMergerForDebug', task ':MyStardewGame:transformDexArchiveWithDexMergerForDebug', task ':libcocos2dx:transformNativeLibsWithIntermediateJniLibsForDebug', task ':MyStardewGame:mergeDebugJniLibFolders', task ':MyStardewGame:transformNativeLibsWithMergeJniLibsForDebug', task ':MyStardewGame:transformNativeLibsWithStripDebugSymbolForDebug', task ':MyStardewGame:processDebugJavaRes', task ':MyStardewGame:transformResourcesWithMergeJavaResForDebug', task ':MyStardewGame:validateSigningDebug', task ':MyStardewGame:packageDebug', task ':MyStardewGame:assembleDebug']
+:libcocos2dx:preBuild (Thread[Task worker for ':',5,main]) started.
+:libcocos2dx:preBuild
+Skipping task ':libcocos2dx:preBuild' as it has no actions.
+:libcocos2dx:preBuild UP-TO-DATE
+:libcocos2dx:preBuild (Thread[Task worker for ':',5,main]) completed. Took 0.0 secs.
+:libcocos2dx:preDebugBuild (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:preDebugBuild
+Skipping task ':libcocos2dx:preDebugBuild' as it has no actions.
+:libcocos2dx:preDebugBuild UP-TO-DATE
+:libcocos2dx:preDebugBuild (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:compileDebugAidl (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:compileDebugAidl
+Skipping task ':libcocos2dx:compileDebugAidl' as it is up-to-date.
+:libcocos2dx:compileDebugAidl UP-TO-DATE
+:libcocos2dx:compileDebugAidl (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.011 secs.
+:libcocos2dx:compileDebugRenderscript (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:compileDebugRenderscript
+Skipping task ':libcocos2dx:compileDebugRenderscript' as it is up-to-date.
+:libcocos2dx:compileDebugRenderscript UP-TO-DATE
+:libcocos2dx:compileDebugRenderscript (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.001 secs.
+:libcocos2dx:checkDebugManifest (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:checkDebugManifest
+Skipping task ':libcocos2dx:checkDebugManifest' as it is up-to-date.
+:libcocos2dx:checkDebugManifest UP-TO-DATE
+:libcocos2dx:checkDebugManifest (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:generateDebugBuildConfig (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:generateDebugBuildConfig
+Skipping task ':libcocos2dx:generateDebugBuildConfig' as it is up-to-date.
+:libcocos2dx:generateDebugBuildConfig UP-TO-DATE
+:libcocos2dx:generateDebugBuildConfig (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.001 secs.
+:libcocos2dx:generateDebugResValues (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:generateDebugResValues
+Skipping task ':libcocos2dx:generateDebugResValues' as it is up-to-date.
+:libcocos2dx:generateDebugResValues UP-TO-DATE
+:libcocos2dx:generateDebugResValues (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:generateDebugResources (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:generateDebugResources
+Skipping task ':libcocos2dx:generateDebugResources' as it has no actions.
+:libcocos2dx:generateDebugResources UP-TO-DATE
+:libcocos2dx:generateDebugResources (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:packageDebugResources (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:packageDebugResources
+Skipping task ':libcocos2dx:packageDebugResources' as it is up-to-date.
+:libcocos2dx:packageDebugResources UP-TO-DATE
+:libcocos2dx:packageDebugResources (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.001 secs.
+:libcocos2dx:platformAttrExtractor (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:platformAttrExtractor
+Skipping task ':libcocos2dx:platformAttrExtractor' as it is up-to-date.
+:libcocos2dx:platformAttrExtractor UP-TO-DATE
+:libcocos2dx:platformAttrExtractor (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:processDebugManifest (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:processDebugManifest
+Skipping task ':libcocos2dx:processDebugManifest' as it is up-to-date.
+:libcocos2dx:processDebugManifest UP-TO-DATE
+:libcocos2dx:processDebugManifest (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:generateDebugRFile (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:generateDebugRFile
+Task ':libcocos2dx:generateDebugRFile' is not up-to-date because:
+  Output property 'sourceOutputDirectory' file D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\generated\source\r\debug has been removed.
+  Output property 'sourceOutputDirectory' file D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\generated\source\r\debug\org has been removed.
+  Output property 'sourceOutputDirectory' file D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\generated\source\r\debug\org\cocos2dx has been removed.
+All input files are considered out-of-date for incremental task ':libcocos2dx:generateDebugRFile'.
+Unable do incremental execution: full task run
+:libcocos2dx:generateDebugRFile (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.02 secs.
+:libcocos2dx:prepareLintJar (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:prepareLintJar
+Skipping task ':libcocos2dx:prepareLintJar' as it is up-to-date.
+:libcocos2dx:prepareLintJar UP-TO-DATE
+:libcocos2dx:prepareLintJar (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:generateDebugSources (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:generateDebugSources
+Skipping task ':libcocos2dx:generateDebugSources' as it has no actions.
+:libcocos2dx:generateDebugSources (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:javaPreCompileDebug (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:javaPreCompileDebug
+Skipping task ':libcocos2dx:javaPreCompileDebug' as it is up-to-date.
+:libcocos2dx:javaPreCompileDebug UP-TO-DATE
+:libcocos2dx:javaPreCompileDebug (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.001 secs.
+:libcocos2dx:compileDebugJavaWithJavac (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:compileDebugJavaWithJavac
+file or directory 'D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\src\main\java', not found
+file or directory 'D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\src\main\java', not found
+file or directory 'D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\src\debug\java', not found
+Task ':libcocos2dx:compileDebugJavaWithJavac' is not up-to-date because:
+  Output property 'annotationProcessorOutputFolder' file D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\generated\source\apt\debug has been removed.
+  Output property 'destinationDir' file D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\intermediates\classes\debug has been removed.
+  Output property 'destinationDir' file D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\intermediates\classes\debug\com has been removed.
+All input files are considered out-of-date for incremental task ':libcocos2dx:compileDebugJavaWithJavac'.
+Compiling with source level 1.7 and target level 1.7.
+:libcocos2dx:compileDebugJavaWithJavac - is not incremental (e.g. outputs have changed, no previous execution, etc.).
+file or directory 'D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\src\main\java', not found
+file or directory 'D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\src\debug\java', not found
+Compiling with JDK Java compiler API.
+Class dependency analysis for incremental compilation took 0.024 secs.
+Created jar classpath snapshot for incremental compilation in 0.001 secs.
+Written jar classpath snapshot for incremental compilation in 0.0 secs.
+:libcocos2dx:compileDebugJavaWithJavac (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.447 secs.
+:libcocos2dx:extractDebugAnnotations (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:extractDebugAnnotations
+file or directory 'D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\src\main\java', not found
+file or directory 'D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\src\main\java', not found
+file or directory 'D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\src\debug\java', not found
+Task ':libcocos2dx:extractDebugAnnotations' is not up-to-date because:
+  Output property 'destinationDir' file D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\intermediates\annotations\debug has been removed.
+  Output property 'typedefFile' file D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\intermediates\extractedTypedefs\debug\typedefs.txt has been removed.
+file or directory 'D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\src\main\java', not found
+file or directory 'D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\src\debug\java', not found
+:libcocos2dx:extractDebugAnnotations (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.064 secs.
+:libcocos2dx:mergeDebugConsumerProguardFiles (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:mergeDebugConsumerProguardFiles
+Skipping task ':libcocos2dx:mergeDebugConsumerProguardFiles' as it is up-to-date.
+:libcocos2dx:mergeDebugConsumerProguardFiles UP-TO-DATE
+:libcocos2dx:mergeDebugConsumerProguardFiles (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:mergeDebugShaders (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:mergeDebugShaders
+Skipping task ':libcocos2dx:mergeDebugShaders' as it is up-to-date.
+:libcocos2dx:mergeDebugShaders UP-TO-DATE
+:libcocos2dx:mergeDebugShaders (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:compileDebugShaders (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:compileDebugShaders
+Skipping task ':libcocos2dx:compileDebugShaders' as it is up-to-date.
+:libcocos2dx:compileDebugShaders UP-TO-DATE
+:libcocos2dx:compileDebugShaders (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:generateDebugAssets (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:generateDebugAssets
+Skipping task ':libcocos2dx:generateDebugAssets' as it has no actions.
+:libcocos2dx:generateDebugAssets UP-TO-DATE
+:libcocos2dx:generateDebugAssets (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:packageDebugAssets (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:packageDebugAssets
+Skipping task ':libcocos2dx:packageDebugAssets' as it is up-to-date.
+:libcocos2dx:packageDebugAssets UP-TO-DATE
+:libcocos2dx:packageDebugAssets (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:packageDebugRenderscript (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:packageDebugRenderscript
+Skipping task ':libcocos2dx:packageDebugRenderscript' as it has no source files and no previous output files.
+:libcocos2dx:packageDebugRenderscript NO-SOURCE
+:libcocos2dx:packageDebugRenderscript (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:processDebugJavaRes (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:processDebugJavaRes
+Skipping task ':libcocos2dx:processDebugJavaRes' as it has no source files and no previous output files.
+:libcocos2dx:processDebugJavaRes NO-SOURCE
+:libcocos2dx:processDebugJavaRes (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:transformResourcesWithMergeJavaResForDebug (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:transformResourcesWithMergeJavaResForDebug
+Task ':libcocos2dx:transformResourcesWithMergeJavaResForDebug' is not up-to-date because:
+  Output property 'otherFolderOutputs.otherFolderOutput1' file D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\intermediates\incremental\debug-mergeJavaRes\zip-cache has been removed.
+  Output property 'streamOutputFolder' file D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\intermediates\transforms\mergeJavaRes\debug has been removed.
+  Output property 'streamOutputFolder' file D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\intermediates\transforms\mergeJavaRes\debug\0.jar has been removed.
+All input files are considered out-of-date for incremental task ':libcocos2dx:transformResourcesWithMergeJavaResForDebug'.
+:libcocos2dx:transformResourcesWithMergeJavaResForDebug (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.016 secs.
+:libcocos2dx:transformClassesAndResourcesWithSyncLibJarsForDebug (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:transformClassesAndResourcesWithSyncLibJarsForDebug
+Task ':libcocos2dx:transformClassesAndResourcesWithSyncLibJarsForDebug' is not up-to-date because:
+  Output property 'otherFileOutputs.otherFileOutput1' file D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\intermediates\packaged-classes\debug\classes.jar has been removed.
+  Output property 'otherFolderOutputs.otherFolderOutput1' file D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\intermediates\packaged-classes\debug\libs has been removed.
+  Output property 'otherFolderOutputs.otherFolderOutput1' file D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\intermediates\packaged-classes\debug\libs\android-async-http-1.4.9.jar has been removed.
+All input files are considered out-of-date for incremental task ':libcocos2dx:transformClassesAndResourcesWithSyncLibJarsForDebug'.
+:libcocos2dx:transformClassesAndResourcesWithSyncLibJarsForDebug (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.205 secs.
+:libcocos2dx:compileDebugNdk (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:compileDebugNdk
+Skipping task ':libcocos2dx:compileDebugNdk' as it has no source files and no previous output files.
+:libcocos2dx:compileDebugNdk NO-SOURCE
+:libcocos2dx:compileDebugNdk (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:mergeDebugJniLibFolders (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:mergeDebugJniLibFolders
+Skipping task ':libcocos2dx:mergeDebugJniLibFolders' as it is up-to-date.
+:libcocos2dx:mergeDebugJniLibFolders UP-TO-DATE
+:libcocos2dx:mergeDebugJniLibFolders (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:transformNativeLibsWithMergeJniLibsForDebug (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:transformNativeLibsWithMergeJniLibsForDebug
+Skipping task ':libcocos2dx:transformNativeLibsWithMergeJniLibsForDebug' as it is up-to-date.
+:libcocos2dx:transformNativeLibsWithMergeJniLibsForDebug UP-TO-DATE
+:libcocos2dx:transformNativeLibsWithMergeJniLibsForDebug (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:transformNativeLibsWithStripDebugSymbolForDebug (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:transformNativeLibsWithStripDebugSymbolForDebug
+Skipping task ':libcocos2dx:transformNativeLibsWithStripDebugSymbolForDebug' as it is up-to-date.
+:libcocos2dx:transformNativeLibsWithStripDebugSymbolForDebug UP-TO-DATE
+:libcocos2dx:transformNativeLibsWithStripDebugSymbolForDebug (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:transformNativeLibsWithSyncJniLibsForDebug (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:transformNativeLibsWithSyncJniLibsForDebug
+Skipping task ':libcocos2dx:transformNativeLibsWithSyncJniLibsForDebug' as it is up-to-date.
+:libcocos2dx:transformNativeLibsWithSyncJniLibsForDebug UP-TO-DATE
+:libcocos2dx:transformNativeLibsWithSyncJniLibsForDebug (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:bundleDebug (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:bundleDebug
+Task ':libcocos2dx:bundleDebug' is not up-to-date because:
+  Output property 'archivePath' file D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\outputs\aar\libcocos2dx-debug.aar has been removed.
+:libcocos2dx:bundleDebug (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.068 secs.
+:libcocos2dx:compileDebugSources (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:compileDebugSources
+Skipping task ':libcocos2dx:compileDebugSources' as it has no actions.
+:libcocos2dx:compileDebugSources (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:assembleDebug (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:assembleDebug
+Skipping task ':libcocos2dx:assembleDebug' as it has no actions.
+:libcocos2dx:assembleDebug (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:libcocos2dx:transformClassesAndResourcesWithPrepareIntermediateJarsForDebug (Thread[Task worker for ':' Thread 11,5,main]) started.
+:libcocos2dx:transformClassesAndResourcesWithPrepareIntermediateJarsForDebug
+Task ':libcocos2dx:transformClassesAndResourcesWithPrepareIntermediateJarsForDebug' is not up-to-date because:
+  Output property 'otherFileOutputs.otherFileOutput1' file D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\intermediates\intermediate-jars\debug\classes.jar has been removed.
+  Output property 'otherFileOutputs.otherFileOutput2' file D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\intermediates\intermediate-jars\debug\res.jar has been removed.
+All input files are considered out-of-date for incremental task ':libcocos2dx:transformClassesAndResourcesWithPrepareIntermediateJarsForDebug'.
+:libcocos2dx:transformClassesAndResourcesWithPrepareIntermediateJarsForDebug (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.037 secs.
+:MyStardewGame:preBuild (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:preBuild
+Skipping task ':MyStardewGame:preBuild' as it has no actions.
+:MyStardewGame:preBuild UP-TO-DATE
+:MyStardewGame:preBuild (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:MyStardewGame:preDebugBuild (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:preDebugBuild
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\libs', not found
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\libs', not found
+Skipping task ':MyStardewGame:preDebugBuild' as it is up-to-date.
+:MyStardewGame:preDebugBuild UP-TO-DATE
+:MyStardewGame:preDebugBuild (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.004 secs.
+:MyStardewGame:compileDebugAidl (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:compileDebugAidl
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\libs', not found
+Skipping task ':MyStardewGame:compileDebugAidl' as it is up-to-date.
+:MyStardewGame:compileDebugAidl UP-TO-DATE
+:MyStardewGame:compileDebugAidl (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.001 secs.
+:MyStardewGame:compileDebugRenderscript (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:compileDebugRenderscript
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\libs', not found
+Skipping task ':MyStardewGame:compileDebugRenderscript' as it is up-to-date.
+:MyStardewGame:compileDebugRenderscript UP-TO-DATE
+:MyStardewGame:compileDebugRenderscript (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.001 secs.
+:MyStardewGame:checkDebugManifest (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:checkDebugManifest
+Skipping task ':MyStardewGame:checkDebugManifest' as it is up-to-date.
+:MyStardewGame:checkDebugManifest UP-TO-DATE
+:MyStardewGame:checkDebugManifest (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:MyStardewGame:generateDebugBuildConfig (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:generateDebugBuildConfig
+Skipping task ':MyStardewGame:generateDebugBuildConfig' as it is up-to-date.
+:MyStardewGame:generateDebugBuildConfig UP-TO-DATE
+:MyStardewGame:generateDebugBuildConfig (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.001 secs.
+:MyStardewGame:prepareLintJar (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:prepareLintJar
+Skipping task ':MyStardewGame:prepareLintJar' as it is up-to-date.
+:MyStardewGame:prepareLintJar UP-TO-DATE
+:MyStardewGame:prepareLintJar (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:MyStardewGame:mainApkListPersistenceDebug (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:mainApkListPersistenceDebug
+Skipping task ':MyStardewGame:mainApkListPersistenceDebug' as it is up-to-date.
+:MyStardewGame:mainApkListPersistenceDebug UP-TO-DATE
+:MyStardewGame:mainApkListPersistenceDebug (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:MyStardewGame:generateDebugResValues (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:generateDebugResValues
+Skipping task ':MyStardewGame:generateDebugResValues' as it is up-to-date.
+:MyStardewGame:generateDebugResValues UP-TO-DATE
+:MyStardewGame:generateDebugResValues (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:MyStardewGame:generateDebugResources (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:generateDebugResources
+Skipping task ':MyStardewGame:generateDebugResources' as it has no actions.
+:MyStardewGame:generateDebugResources UP-TO-DATE
+:MyStardewGame:generateDebugResources (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:MyStardewGame:mergeDebugResources (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:mergeDebugResources
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\libs', not found
+Skipping task ':MyStardewGame:mergeDebugResources' as it is up-to-date.
+:MyStardewGame:mergeDebugResources UP-TO-DATE
+:MyStardewGame:mergeDebugResources (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.005 secs.
+:MyStardewGame:createDebugCompatibleScreenManifests (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:createDebugCompatibleScreenManifests
+Skipping task ':MyStardewGame:createDebugCompatibleScreenManifests' as it is up-to-date.
+:MyStardewGame:createDebugCompatibleScreenManifests UP-TO-DATE
+:MyStardewGame:createDebugCompatibleScreenManifests (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:MyStardewGame:processDebugManifest (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:processDebugManifest
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\libs', not found
+Skipping task ':MyStardewGame:processDebugManifest' as it is up-to-date.
+:MyStardewGame:processDebugManifest UP-TO-DATE
+:MyStardewGame:processDebugManifest (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.002 secs.
+:MyStardewGame:splitsDiscoveryTaskDebug (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:splitsDiscoveryTaskDebug
+Skipping task ':MyStardewGame:splitsDiscoveryTaskDebug' as it is up-to-date.
+:MyStardewGame:splitsDiscoveryTaskDebug UP-TO-DATE
+:MyStardewGame:splitsDiscoveryTaskDebug (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:MyStardewGame:processDebugResources (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:processDebugResources
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\libs', not found
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\libs', not found
+Task ':MyStardewGame:processDebugResources' is not up-to-date because:
+  Output property 'incrementalFolder' file D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\incremental\processDebugResources has been removed.
+  Output property 'incrementalFolder' file D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\incremental\processDebugResources\aapt-temp has been removed.
+  Output property 'resPackageOutputFolder' file D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\res\debug has been removed.
+All input files are considered out-of-date for incremental task ':MyStardewGame:processDebugResources'.
+Unable do incremental execution: full task run
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\libs', not found
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\libs', not found
+Aapt2QueuedResourceProcessor is using D:\Users\AndroidSDK\Sdk\build-tools\27.0.3\aapt2.exe
+
+Request to incrementing alive workforce from 0. Current workforce (dead or alive) 0
+Trying to start D:\Users\AndroidSDK\Sdk\build-tools\27.0.3\aapt2.exe
+Trying to start D:\Users\AndroidSDK\Sdk\build-tools\27.0.3\aapt2.exe
+Trying to start D:\Users\AndroidSDK\Sdk\build-tools\27.0.3\aapt2.exe
+Trying to start D:\Users\AndroidSDK\Sdk\build-tools\27.0.3\aapt2.exe
+Trying to start D:\Users\AndroidSDK\Sdk\build-tools\27.0.3\aapt2.exe
+Trying to start D:\Users\AndroidSDK\Sdk\build-tools\27.0.3\aapt2.exe
+Trying to start D:\Users\AndroidSDK\Sdk\build-tools\27.0.3\aapt2.exe
+Trying to start D:\Users\AndroidSDK\Sdk\build-tools\27.0.3\aapt2.exe
+thread-pool size=8
+Started 289596400
+Started 818856088
+Started 1407378344
+Started 353079219
+Started 942622138
+Started 1041097337
+Slave 289596400 is ready
+AAPT2 processed(289596400) linking job:QueuedJob{
+title=Linking, 
+task={config=AaptPackageConfig(manifestFile=D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\manifests\full\debug\AndroidManifest.xml, options=AaptOptions(noCompress=null, failOnMissingConfigEntry=false, additionalParameters=null), androidJarPath=D:\Users\AndroidSDK\Sdk\platforms\android-30\android.jar, variantType=DEFAULT, sourceOutputDir=D:\Users\MyProjects\MyStardewGame\proj.android\app\build\generated\source\r\debug, resourceOutputApk=D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\res\debug\resources-debug.ap_, librarySymbolTableFiles=[D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\intermediates\res\symbol-table-with-package\debug\package-aware-r.txt], symbolOutputDir=D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\symbols\debug, verbose=false, resourceDirs=[D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\res\merged\debug], proguardOutputFile=null, mainDexListProguardOutputFile=null, splits=[], debuggable=true, customPackageForR=com.yourname.stardew, pseudoLocalize=false, preferredDensity=null, resourceConfigs=[], generateProtos=false, imports=[], packageId=null, dependentFeatures=[], listResourceFiles=false, staticLibrary=false, staticLibraryDependencies=[], intermediateDir=null)}, 
+future=com.google.common.util.concurrent.SettableFuture@1f851fa8}
+Slave 818856088 is ready
+Started 1731407639
+Slave 1407378344 is ready
+Started 1839683154
+Slave 353079219 is ready
+Slave 942622138 is ready
+Slave 1041097337 is ready
+Slave 1731407639 is ready
+Slave 1839683154 is ready
+AAPT1 err(Facade for 289596400): Done -> QueuedJob{
+title=Linking, 
+task={config=AaptPackageConfig(manifestFile=D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\manifests\full\debug\AndroidManifest.xml, options=AaptOptions(noCompress=null, failOnMissingConfigEntry=false, additionalParameters=null), androidJarPath=D:\Users\AndroidSDK\Sdk\platforms\android-30\android.jar, variantType=DEFAULT, sourceOutputDir=D:\Users\MyProjects\MyStardewGame\proj.android\app\build\generated\source\r\debug, resourceOutputApk=D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\res\debug\resources-debug.ap_, librarySymbolTableFiles=[D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\intermediates\res\symbol-table-with-package\debug\package-aware-r.txt], symbolOutputDir=D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\symbols\debug, verbose=false, resourceDirs=[D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\res\merged\debug], proguardOutputFile=null, mainDexListProguardOutputFile=null, splits=[], debuggable=true, customPackageForR=com.yourname.stardew, pseudoLocalize=false, preferredDensity=null, resourceConfigs=[], generateProtos=false, imports=[], packageId=null, dependentFeatures=[], listResourceFiles=false, staticLibrary=false, staticLibraryDependencies=[], intermediateDir=null)}, 
+future=com.google.common.util.concurrent.SettableFuture@1f851fa8}
+AAPT warning(954859845), Job(QueuedJob{
+title=Linking, 
+task={config=AaptPackageConfig(manifestFile=D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\manifests\full\debug\AndroidManifest.xml, options=AaptOptions(noCompress=null, failOnMissingConfigEntry=false, additionalParameters=null), androidJarPath=D:\Users\AndroidSDK\Sdk\platforms\android-30\android.jar, variantType=DEFAULT, sourceOutputDir=D:\Users\MyProjects\MyStardewGame\proj.android\app\build\generated\source\r\debug, resourceOutputApk=D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\res\debug\resources-debug.ap_, librarySymbolTableFiles=[D:\Users\MyProjects\MyStardewGame\cocos2d\cocos\platform\android\libcocos2dx\build\intermediates\res\symbol-table-with-package\debug\package-aware-r.txt], symbolOutputDir=D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\symbols\debug, verbose=false, resourceDirs=[D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\res\merged\debug], proguardOutputFile=null, mainDexListProguardOutputFile=null, splits=[], debuggable=true, customPackageForR=com.yourname.stardew, pseudoLocalize=false, preferredDensity=null, resourceConfigs=[], generateProtos=false, imports=[], packageId=null, dependentFeatures=[], listResourceFiles=false, staticLibrary=false, staticLibraryDependencies=[], intermediateDir=null)}, 
+future=com.google.common.util.concurrent.SettableFuture@1f851fa8}): Done
+Aapt output file D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\res\debug\resources-debug.ap_
+Thread(queued-resource-processor_72): Death requested
+Thread(queued-resource-processor_71): Death requested
+Thread(queued-resource-processor_65): Death requested
+Thread(queued-resource-processor_66): Death requested
+Thread(queued-resource-processor_67): Death requested
+Thread(queued-resource-processor_72): destruction
+Thread(queued-resource-processor_68): Death requested
+Thread(queued-resource-processor_69): Death requested
+Thread(queued-resource-processor_70): Death requested
+Thread(queued-resource-processor_69): destruction
+Thread(queued-resource-processor_68): destruction
+Thread(queued-resource-processor_67): destruction
+Thread(queued-resource-processor_66): destruction
+Thread(queued-resource-processor_65): destruction
+Thread(queued-resource-processor_71): destruction
+Thread(queued-resource-processor_70): destruction
+Process (942622138) processed 0 files
+Thread(queued-resource-processor_69): Process(942622138), after shutdown queue_size=7
+Process (1041097337) processed 0 files
+Thread(queued-resource-processor_68): Process(1041097337), after shutdown queue_size=6
+Process (1731407639) processed 0 files
+Process (1839683154) processed 0 files
+Process (818856088) processed 0 files
+Thread(queued-resource-processor_66): Process(1839683154), after shutdown queue_size=4
+Thread(queued-resource-processor_67): Process(1731407639), after shutdown queue_size=5
+Process (1407378344) processed 0 files
+Thread(queued-resource-processor_72): Process(818856088), after shutdown queue_size=3
+Thread(queued-resource-processor_70): Process(1407378344), after shutdown queue_size=2
+Process (353079219) processed 0 files
+Thread(queued-resource-processor_71): Process(353079219), after shutdown queue_size=1
+Process (289596400) processed 1 files
+Thread(queued-resource-processor_65): Process(289596400), after shutdown queue_size=0
+Shutdown finished in 11ms
+:MyStardewGame:processDebugResources (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.727 secs.
+:MyStardewGame:generateDebugSources (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:generateDebugSources
+Skipping task ':MyStardewGame:generateDebugSources' as it has no actions.
+:MyStardewGame:generateDebugSources (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:MyStardewGame:javaPreCompileDebug (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:javaPreCompileDebug
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\libs', not found
+Task ':MyStardewGame:javaPreCompileDebug' is not up-to-date because:
+  Output property 'processorListFile' file D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\javaPrecompile\debug\annotationProcessors.json has been removed.
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\libs', not found
+:MyStardewGame:javaPreCompileDebug (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.003 secs.
+:MyStardewGame:compileDebugJavaWithJavac (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:compileDebugJavaWithJavac
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\src\main\java', not found
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\libs', not found
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\src\main\java', not found
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\src\debug\java', not found
+Task ':MyStardewGame:compileDebugJavaWithJavac' is not up-to-date because:
+  Output property 'annotationProcessorOutputFolder' file D:\Users\MyProjects\MyStardewGame\proj.android\app\build\generated\source\apt\debug has been removed.
+  Output property 'destinationDir' file D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\classes\debug has been removed.
+  Output property 'destinationDir' file D:\Users\MyProjects\MyStardewGame\proj.android\app\build\intermediates\classes\debug\com has been removed.
+All input files are considered out-of-date for incremental task ':MyStardewGame:compileDebugJavaWithJavac'.
+Compiling with source level 1.7 and target level 1.7.
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\libs', not found
+:MyStardewGame:compileDebugJavaWithJavac - is not incremental (e.g. outputs have changed, no previous execution, etc.).
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\src\main\java', not found
+file or directory 'D:\Users\MyProjects\MyStardewGame\proj.android\app\src\debug\java', not found
+Compiling with JDK Java compiler API.
+Class dependency analysis for incremental compilation took 0.004 secs.
+Created jar classpath snapshot for incremental compilation in 0.0 secs.
+Written jar classpath snapshot for incremental compilation in 0.0 secs.
+:MyStardewGame:compileDebugJavaWithJavac (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.076 secs.
+:MyStardewGame:generateJsonModelDebug (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:generateJsonModelDebug
+Skipping task ':MyStardewGame:generateJsonModelDebug' as it is up-to-date.
+:MyStardewGame:generateJsonModelDebug UP-TO-DATE
+:MyStardewGame:generateJsonModelDebug (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 0.0 secs.
+:MyStardewGame:externalNativeBuildDebug (Thread[Task worker for ':' Thread 11,5,main]) started.
+:MyStardewGame:externalNativeBuildDebug
+Task ':MyStardewGame:externalNativeBuildDebug' is not up-to-date because:
+  Task has not declared any outputs.
+externalNativeBuildDebug: starting build
+externalNativeBuildDebug: reading expected JSONs
+externalNativeBuildDebug: done reading expected JSONs
+externalNativeBuildDebug: executing build commands for targets: 'MyGame'
+externalNativeBuildDebug: evaluate miniconfig
+externalNativeBuildDebug: evaluate library ext_md5-Debug-armeabi-v7a
+externalNativeBuildDebug: not building target ext_md5 because it isn't in targets set
+externalNativeBuildDebug: evaluate library ext_xxhash-Debug-armeabi-v7a
+externalNativeBuildDebug: not building target ext_xxhash because it isn't in targets set
+externalNativeBuildDebug: evaluate library ext_tremolo-Debug-armeabi-v7a
+externalNativeBuildDebug: not building target ext_tremolo because it isn't in targets set
+externalNativeBuildDebug: evaluate library ext_clipper-Debug-armeabi-v7a
+externalNativeBuildDebug: not building target ext_clipper because it isn't in targets set
+externalNativeBuildDebug: evaluate library ext_recast-Debug-armeabi-v7a
+externalNativeBuildDebug: not building target ext_recast because it isn't in targets set
+externalNativeBuildDebug: evaluate library ext_convertUTF-Debug-armeabi-v7a
+externalNativeBuildDebug: not building target ext_convertUTF because it isn't in targets set
+externalNativeBuildDebug: evaluate library ext_poly2tri-Debug-armeabi-v7a
+externalNativeBuildDebug: not building target ext_poly2tri because it isn't in targets set
+externalNativeBuildDebug: evaluate library ext_tinyxml2-Debug-armeabi-v7a
+externalNativeBuildDebug: not building target ext_tinyxml2 because it isn't in targets set
+externalNativeBuildDebug: evaluate library cpp_android_spec-Debug-armeabi-v7a
+externalNativeBuildDebug: not building target cpp_android_spec because it isn't in targets set
+externalNativeBuildDebug: evaluate library MyGame-Debug-armeabi-v7a
+externalNativeBuildDebug: about to build D:\Users\AndroidSDK\Sdk\cmake\3.10.2.4988404\bin\cmake.exe --build D:\Users\MyProjects\MyStardewGame\proj.android\app\.externalNativeBuild\cmake\debug\armeabi-v7a --target MyGame
+externalNativeBuildDebug: evaluate library cocos2d-Debug-armeabi-v7a
+externalNativeBuildDebug: not building target cocos2d because it isn't in targets set
+externalNativeBuildDebug: evaluate library ext_unzip-Debug-armeabi-v7a
+externalNativeBuildDebug: not building target ext_unzip because it isn't in targets set
+externalNativeBuildDebug: evaluate library ext_xxtea-Debug-armeabi-v7a
+externalNativeBuildDebug: not building target ext_xxtea because it isn't in targets set
+externalNativeBuildDebug: evaluate library external-Debug-armeabi-v7a
+externalNativeBuildDebug: not building target external because it isn't in targets set
+externalNativeBuildDebug: evaluate library ext_edtaa3func-Debug-armeabi-v7a
+externalNativeBuildDebug: not building target ext_edtaa3func because it isn't in targets set
+externalNativeBuildDebug: evaluate library ext_cpufeatures-Debug-armeabi-v7a
+externalNativeBuildDebug: not building target ext_cpufeatures because it isn't in targets set
+externalNativeBuildDebug: evaluate library ext_pvmp3dec-Debug-armeabi-v7a
+externalNativeBuildDebug: not building target ext_pvmp3dec because it isn't in targets set
+Build MyGame armeabi-v7a
+externalNativeBuildDebug: Executable : D:\Users\AndroidSDK\Sdk\cmake\3.10.2.4988404\bin\cmake.exe
+arguments : 
+--build
+D:\Users\MyProjects\MyStardewGame\proj.android\app\.externalNativeBuild\cmake\debug\armeabi-v7a
+--target
+MyGame
+jvmArgs : 
+
+
+Executable : D:\Users\AndroidSDK\Sdk\cmake\3.10.2.4988404\bin\cmake.exe
+arguments : 
+--build
+D:\Users\MyProjects\MyStardewGame\proj.android\app\.externalNativeBuild\cmake\debug\armeabi-v7a
+--target
+MyGame
+jvmArgs : 
+
+
+Starting process 'command 'D:\Users\AndroidSDK\Sdk\cmake\3.10.2.4988404\bin\cmake.exe''. Working directory: D:\Users\MyProjects\MyStardewGame\proj.android\app Command: D:\Users\AndroidSDK\Sdk\cmake\3.10.2.4988404\bin\cmake.exe --build D:\Users\MyProjects\MyStardewGame\proj.android\app\.externalNativeBuild\cmake\debug\armeabi-v7a --target MyGame
+Successfully started process 'command 'D:\Users\AndroidSDK\Sdk\cmake\3.10.2.4988404\bin\cmake.exe''
+[1/576] Building C object engine/cocos/core/CMakeFiles/cocos2d.dir/editor-support/spine/VertexEffect.c.o
+[2/576] Building C object engine/cocos/core/CMakeFiles/cocos2d.dir/editor-support/spine/VertexAttachment.c.o
+[3/576] Building C object engine/cocos/core/CMakeFiles/cocos2d.dir/editor-support/spine/extension.c.o
+[4/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/GUI/CCControlExtension/CCControlHuePicker.cpp.o
+[5/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/GUI/CCControlExtension/CCControlPotentiometer.cpp.o
+[6/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/GUI/CCControlExtension/CCControlUtils.cpp.o
+[7/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/GUI/CCControlExtension/CCControlSaturationBrightnessPicker.cpp.o
+[8/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/GUI/CCControlExtension/CCControlColourPicker.cpp.o
+[9/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/GUI/CCControlExtension/CCControlSlider.cpp.o
+[10/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/GUI/CCControlExtension/CCControlSwitch.cpp.o
+[11/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/GUI/CCControlExtension/CCInvocation.cpp.o
+[12/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/assets-manager/CCEventAssetsManagerEx.cpp.o
+[13/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/GUI/CCControlExtension/CCControlStepper.cpp.o
+[14/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/GUI/CCControlExtension/CCControl.cpp.o
+[15/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/CCParticle3DEmitter.cpp.o
+[16/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/GUI/CCControlExtension/CCControlButton.cpp.o
+[17/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/assets-manager/CCEventListenerAssetsManagerEx.cpp.o
+[18/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/assets-manager/AssetsManager.cpp.o
+[19/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/GUI/CCScrollView/CCScrollView.cpp.o
+[20/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/assets-manager/Manifest.cpp.o
+[21/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/GUI/CCScrollView/CCTableViewCell.cpp.o
+[22/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/CCParticle3DAffector.cpp.o
+[23/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUForceField.cpp.o
+[24/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/physics-nodes/CCPhysicsDebugNode.cpp.o
+[25/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/editor-support/spine/spine-cocos2dx.cpp.o
+[26/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/assets-manager/AssetsManagerEx.cpp.o
+[27/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/GUI/CCScrollView/CCTableView.cpp.o
+[28/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUDynamicAttribute.cpp.o
+[29/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUDynamicAttributeTranslator.cpp.o
+[30/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUScriptParser.cpp.o
+[31/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUMaterialTranslator.cpp.o
+[32/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/physics-nodes/CCPhysicsSprite.cpp.o
+[33/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUPlane.cpp.o
+[34/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUScriptLexer.cpp.o
+[35/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/CCParticleSystem3D.cpp.o
+[36/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUNoise.cpp.o
+[37/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUMaterialManager.cpp.o
+[38/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/CCParticle3DRender.cpp.o
+[39/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUSphere.cpp.o
+[40/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUSimpleSpline.cpp.o
+[41/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUTechniqueTranslator.cpp.o
+[42/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPURendererTranslator.cpp.o
+[43/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUUtil.cpp.o
+[44/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUScriptTranslator.cpp.o
+[45/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUAlignAffector.cpp.o
+[46/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUListener.cpp.o
+[47/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUParticleSystem3DTranslator.cpp.o
+[48/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUAffectorTranslator.cpp.o
+[49/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUTranslateManager.cpp.o
+[50/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUBaseCollider.cpp.o
+[51/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUAlignAffectorTranslator.cpp.o
+[52/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUScriptCompiler.cpp.o
+[53/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUAffectorManager.cpp.o
+[54/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUAffector.cpp.o
+[55/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUBaseColliderTranslator.cpp.o
+[56/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUBaseForceAffectorTranslator.cpp.o
+[57/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/cocos2d.cpp.o
+[58/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUBoxCollider.cpp.o
+[59/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUCollisionAvoidanceAffectorTranslator.cpp.o
+[60/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUCollisionAvoidanceAffector.cpp.o
+[61/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUBaseForceAffector.cpp.o
+[62/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUBoxColliderTranslator.cpp.o
+[63/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUParticleSystem3D.cpp.o
+[64/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/__/extensions/Particle3D/PU/CCPUColorAffector.cpp.o
+[65/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCActionCamera.cpp.o
+[66/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCActionGrid3D.cpp.o
+[67/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCActionInstant.cpp.o
+[68/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCAction.cpp.o
+[69/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCActionCatmullRom.cpp.o
+[70/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCActionEase.cpp.o
+[71/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCActionGrid.cpp.o
+[72/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCClippingNode.cpp.o
+[73/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCActionManager.cpp.o
+[74/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCActionInterval.cpp.o
+[75/576] Building CXX object CMakeFiles/MyGame.dir/Classes/TimeManager.cpp.o
+[76/576] Building CXX object CMakeFiles/MyGame.dir/Classes/WeatherManager.cpp.o
+[77/576] Building CXX object CMakeFiles/MyGame.dir/proj.android/app/jni/hellocpp/main.cpp.o
+[78/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCCamera.cpp.o
+[79/576] Building CXX object CMakeFiles/MyGame.dir/Classes/TreeManager.cpp.o
+[80/576] Building CXX object CMakeFiles/MyGame.dir/Classes/TimeDisplayScene.cpp.o
+In file included from ../../../../../../Classes/TimeDisplayScene.cpp:1:
+../../../../../../Classes/TimeDisplayScene.h:13:18: warning: 'init' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+    virtual bool init();
+                 ^
+../../../../../../cocos2d/cocos/2d/CCScene.h:142:10: note: overridden virtual function is here
+    bool init() override;
+         ^
+1 warning generated.
+[81/576] Building CXX object CMakeFiles/MyGame.dir/Classes/GameWorld.cpp.o
+FAILED: CMakeFiles/MyGame.dir/Classes/GameWorld.cpp.o 
+D:\Users\AndroidSDK\Sdk\ndk\21.3.6528147\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe --target=armv7-none-linux-androideabi16 --gcc-toolchain=D:/Users/AndroidSDK/Sdk/ndk/21.3.6528147/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Users/AndroidSDK/Sdk/ndk/21.3.6528147/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -DANDROID -DCOCOS2D_DEBUG=1 -DLWS_WITH_LIBUV -DMyGame_EXPORTS -DUSE_FILE32API -I../../../../../../Classes -I../../../../../../cocos2d/cocos/audio/include -I../../../../../../cocos2d -I../../../../../../cocos2d/cocos -I../../../../../../cocos2d/extensions -I../../../../../../cocos2d/cocos/platform -I../../../../../../cocos2d/cocos/base -I../../../../../../cocos2d/cocos/editor-support -I../../../../../../cocos2d/cocos/platform/android -isystem ../../../../../../cocos2d/external/Box2D/include -isystem ../../../../../../cocos2d/external/chipmunk/include -isystem ../../../../../../cocos2d/external/freetype2/include/android/freetype2 -I../../../../../../cocos2d/external/recast/.. -isystem ../../../../../../cocos2d/external/jpeg/include/android -isystem ../../../../../../cocos2d/external/uv/include -isystem ../../../../../../cocos2d/external/webp/include/android -isystem ../../../../../../cocos2d/external/bullet/include -isystem ../../../../../../cocos2d/external/bullet/include/bullet -isystem ../../../../../../cocos2d/external/openssl/include/android -isystem ../../../../../../cocos2d/external/tiff/include/android -isystem ../../../../../../cocos2d/external/websockets/include/android -I../../../../../../cocos2d/external/tinyxml2/. -I../../../../../../cocos2d/external/xxhash/. -I../../../../../../cocos2d/external/xxtea/. -I../../../../../../cocos2d/external/clipper/. -I../../../../../../cocos2d/external/edtaa3func/. -I../../../../../../cocos2d/external/ConvertUTF/. -I../../../../../../cocos2d/external/poly2tri/.. -I../../../../../../cocos2d/external/md5/.. -isystem ../../../../../../cocos2d/external/curl/include/android -isystem ../../../../../../cocos2d/external/png/include/android -ID:/Users/AndroidSDK/Sdk/ndk/21.3.6528147/sources/android/cpufeatures -I../../../../../../cocos2d/external/android-specific/pvmp3dec/include -I../../../../../../cocos2d/external/android-specific/pvmp3dec/src -I../../../../../../cocos2d/external/android-specific/tremolo/. -isystem ../../../../../../cocos2d/external/zlib/include -I../../../../../../cocos2d/external/unzip/. -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -fsigned-char -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11 -MD -MT CMakeFiles/MyGame.dir/Classes/GameWorld.cpp.o -MF CMakeFiles\MyGame.dir\Classes\GameWorld.cpp.o.d -o CMakeFiles/MyGame.dir/Classes/GameWorld.cpp.o -c ../../../../../../Classes/GameWorld.cpp
+In file included from ../../../../../../Classes/GameWorld.cpp:9:
+../../../../../../Classes/GameScene.h:15:18: warning: 'init' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+    virtual bool init();
+                 ^
+../../../../../../cocos2d/cocos/2d/CCScene.h:142:10: note: overridden virtual function is here
+    bool init() override;
+         ^
+../../../../../../Classes/GameWorld.cpp:13:25: warning: extra tokens at end of #include directive [-Wextra-tokens]
+#include "FishingGame.h"`
+                        ^
+                        //
+../../../../../../Classes/GameWorld.cpp:373:23: error: no member named 'make_unique' in namespace 'std'
+        _logic = std::make_unique<MainMapLogic>();
+                 ~~~~~^
+../../../../../../Classes/GameWorld.cpp:373:35: error: 'MainMapLogic' does not refer to a value
+        _logic = std::make_unique<MainMapLogic>();
+                                  ^
+../../../../../../Classes/MainMapLogic.h:6:7: note: declared here
+class MainMapLogic : public MapLogic {
+      ^
+../../../../../../Classes/GameWorld.cpp:373:49: error: expected expression
+        _logic = std::make_unique<MainMapLogic>();
+                                                ^
+../../../../../../Classes/GameWorld.cpp:375:23: error: no member named 'make_unique' in namespace 'std'
+        _logic = std::make_unique<HomeLogic>();
+                 ~~~~~^
+../../../../../../Classes/GameWorld.cpp:375:35: error: 'HomeLogic' does not refer to a value
+        _logic = std::make_unique<HomeLogic>();
+                                  ^
+../../../../../../Classes/HomeLogic.h:7:7: note: declared here
+class HomeLogic : public MapLogic {
+      ^
+../../../../../../Classes/GameWorld.cpp:375:46: error: expected expression
+        _logic = std::make_unique<HomeLogic>();
+                                             ^
+../../../../../../Classes/GameWorld.cpp:377:23: error: no member named 'make_unique' in namespace 'std'
+        _logic = std::make_unique<ShopLogic>();
+                 ~~~~~^
+../../../../../../Classes/GameWorld.cpp:377:35: error: 'ShopLogic' does not refer to a value
+        _logic = std::make_unique<ShopLogic>();
+                                  ^
+../../../../../../Classes/ShopLogic.h:7:7: note: declared here
+class ShopLogic : public MapLogic {
+      ^
+../../../../../../Classes/GameWorld.cpp:377:46: error: expected expression
+        _logic = std::make_unique<ShopLogic>();
+                                             ^
+../../../../../../Classes/GameWorld.cpp:379:23: error: no member named 'make_unique' in namespace 'std'
+        _logic = std::make_unique<NPC1HouseLogic>();
+                 ~~~~~^
+../../../../../../Classes/GameWorld.cpp:379:35: error: 'NPC1HouseLogic' does not refer to a value
+        _logic = std::make_unique<NPC1HouseLogic>();
+                                  ^
+../../../../../../Classes/NPC1HouseLogic.h:7:7: note: declared here
+class NPC1HouseLogic : public MapLogic {
+      ^
+../../../../../../Classes/GameWorld.cpp:379:51: error: expected expression
+        _logic = std::make_unique<NPC1HouseLogic>();
+                                                  ^
+../../../../../../Classes/GameWorld.cpp:381:23: error: no member named 'make_unique' in namespace 'std'
+        _logic = std::make_unique<NPC2HouseLogic>();
+                 ~~~~~^
+../../../../../../Classes/GameWorld.cpp:381:35: error: 'NPC2HouseLogic' does not refer to a value
+        _logic = std::make_unique<NPC2HouseLogic>();
+                                  ^
+../../../../../../Classes/NPC2HouseLogic.h:7:7: note: declared here
+class NPC2HouseLogic : public MapLogic {
+      ^
+../../../../../../Classes/GameWorld.cpp:381:51: error: expected expression
+        _logic = std::make_unique<NPC2HouseLogic>();
+                                                  ^
+../../../../../../Classes/GameWorld.cpp:383:23: error: no member named 'make_unique' in namespace 'std'
+        _logic = std::make_unique<MineLogic>();
+                 ~~~~~^
+../../../../../../Classes/GameWorld.cpp:383:35: error: 'MineLogic' does not refer to a value
+        _logic = std::make_unique<MineLogic>();
+                                  ^
+../../../../../../Classes/MineLogic.h:8:7: note: declared here
+class MineLogic : public MapLogic {
+      ^
+../../../../../../Classes/GameWorld.cpp:383:46: error: expected expression
+        _logic = std::make_unique<MineLogic>();
+                                             ^
+2 warnings and 18 errors generated.
+[82/576] Building CXX object CMakeFiles/MyGame.dir/Classes/TileMap.cpp.o
+[83/576] Building CXX object CMakeFiles/MyGame.dir/Classes/ReviveSystem.cpp.o
+In file included from ../../../../../../Classes/ReviveSystem.cpp:2:
+../../../../../../Classes/GameScene.h:15:18: warning: 'init' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+    virtual bool init();
+                 ^
+../../../../../../cocos2d/cocos/2d/CCScene.h:142:10: note: overridden virtual function is here
+    bool init() override;
+         ^
+1 warning generated.
+[84/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCActionProgressTimer.cpp.o
+[85/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCAtlasNode.cpp.o
+[86/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCActionTiledGrid.cpp.o
+[87/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCAnimation.cpp.o
+[88/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCActionPageTurn3D.cpp.o
+[89/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCComponent.cpp.o
+[90/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCActionTween.cpp.o
+[91/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCComponentContainer.cpp.o
+[92/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCAnimationCache.cpp.o
+[93/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCClippingRectangleNode.cpp.o
+[94/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCDrawingPrimitives.cpp.o
+[95/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCCameraBackgroundBrush.cpp.o
+[96/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCFastTMXTiledMap.cpp.o
+[97/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCDrawNode.cpp.o
+[98/576] Building CXX object engine/cocos/core/CMakeFiles/cocos2d.dir/2d/CCFastTMXLayer.cpp.o
+ninja: build stopped: subcommand failed.
+:MyStardewGame:externalNativeBuildDebug FAILED
+:MyStardewGame:externalNativeBuildDebug (Thread[Task worker for ':' Thread 11,5,main]) completed. Took 17.221 secs.
+42 actionable tasks: 11 executed, 31 up-to-date
+VCS Checkout Cache (D:\Users\MyProjects\MyStardewGame\proj.android\.gradle\vcsWorkingDirs) has not been cleaned up in 0 days

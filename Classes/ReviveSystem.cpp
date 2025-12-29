@@ -3,7 +3,7 @@
 #include "TimeManager.h"
 #include "GameWorld.h"
 #include "Player.h"
-
+#include "WeatherManager.h"
 // 单例实例
 ReviveSystem* ReviveSystem::_instance = nullptr;
 
@@ -123,8 +123,17 @@ void ReviveSystem::stepSwitchSceneAndTime(const std::function<void()>& onComplet
     CCLOG("[ReviveSystem] Time: Year %d, Season %d, Day %d, 06:00",
         newYear, newSeason, newDay);
 
-    // 场景切换
+    WeatherManager::getInstance()->updateWeather(newSeason);
     auto director = cocos2d::Director::getInstance();
+    auto currentScene = director->getRunningScene();
+    auto gameScene = dynamic_cast<GameScene*>(currentScene);
+
+    if (gameScene) {
+        auto gameWorld = gameScene->getGameWorld();
+        if (gameWorld) {
+            gameWorld->updateWeatherVisuals(); // 现在可以正确调用了
+        }
+    }
     director->getScheduler()->schedule(
         [onComplete](float dt) {
             auto currentScene = cocos2d::Director::getInstance()->getRunningScene();

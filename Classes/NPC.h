@@ -62,10 +62,28 @@ public:
     GameWorld* getGameWorld() const { return _gameWorld; }
     void setTilePosition(int tx, int ty);  // 直接设置格子位置（瞬移）
 
+    // ===== 好感度系统 =====
+    int favorability;           // 当前好感度
+    int maxFavorability;        // 最大好感度
+
+    // 修改好感度
+    void addFavorability(int amount);
+
+    // 获取好感度
+    int getFavorability() const { return favorability; }
+
+    // 获取关系等级（文字描述）
+    std::string getFavorabilityLevel() const;
+
+    // 新增：检查是否达到特殊好感度等级
+    bool checkFavorabilityMilestone(int threshold);
+
+    // 新增：特殊对话内容
+    std::string specialDialogue40 = "";  // 好感度 40 的特殊对话
 protected:
     bool init(const std::string& id, const std::string& name, const std::string& spriteFrame);
     void update(float dt) override;  // Cocos2d 每帧更新
-
+ 
 private:
     GameWorld* _gameWorld = nullptr;
 

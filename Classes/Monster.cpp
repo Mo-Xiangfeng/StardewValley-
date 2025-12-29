@@ -29,7 +29,7 @@ bool Monster::initWithSpriteFrameName(const std::string& spriteFrameName)
     }
 
     // --- 初始化数值 ---
-    this->maxHP = 60;
+    this->maxHP = 150;
     this->currentHP = 60;
     this->attackPower = 5;
     this->setScale(0.3f);

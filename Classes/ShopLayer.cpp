@@ -228,7 +228,7 @@ void ShopLayer::createShopItem(int cropType, Vec2 position) {
 
     // 价格字体 = 物品高度的 27%
     float priceFontSize = itemHeight * 0.27f;
-    int profit = info.price - info.seedPrice;
+    int profit = info.price;
     std::string priceText = "$" + std::to_string(info.seedPrice) +
         " | +$" + std::to_string(profit);
     auto priceLabel = Label::createWithSystemFont(priceText, "Arial", priceFontSize);
