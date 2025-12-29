@@ -47,6 +47,7 @@ public:
     MapLogic* getLogic() const {
         return _logic.get();
     }
+    void updateWeatherVisuals();
     void playTreeHitEffect(int tx, int ty);
     void playRockHitEffect(int tx, int ty);
     void startFishingMinigame();
@@ -108,6 +109,8 @@ private:
     MapPortal* _currentPortal = nullptr;
     float _portalStayTime = 0.0f;
     Daylight* _daylightLayer = nullptr;
+    cocos2d::ParticleSystemQuad* _weatherParticle = nullptr;
+
 };
 
 #endif

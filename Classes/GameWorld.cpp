@@ -319,10 +319,13 @@ void GameWorld::switchMap(const std::string& mapId,
     // 离开旧地图逻辑
     if (_logic)
         _logic->onExit(this, _player);
-
+    if (_cropLayer) {
+        _cropLayer->removeAllChildren(); // 移除所有作物的精灵图片
+    }
+    _cropSprites.clear();
     const auto& info = _maps.at(mapId);
     _currentMapId = mapId;
-
+    this->updateWeatherVisuals();
     reload(info.txt, info.img);
     if (_rockLayer) {
         if (mapId == "Mine") {
@@ -774,7 +777,46 @@ void GameWorld::updateLandVisuals() {
     }
 }
 
+void GameWorld::updateWeatherVisuals() {
+    auto wm = WeatherManager::getInstance();
+    WeatherType type = wm->getCurrentWeather();
 
+    // --- 1. 处理地图色调 ---
+    if (_mapSprite) {
+        _mapSprite->setColor(wm->getWeatherTint());
+    }
+
+    // --- 2. 处理粒子效果 ---
+    // 先移除旧的粒子
+    if (_weatherParticle) {
+        _weatherParticle->removeFromParent();
+        _weatherParticle = nullptr;
+    }
+
+    switch (type) {
+        case WeatherType::RAINY:
+        case WeatherType::STORMY:
+            _weatherParticle = ParticleRain::create();
+            break;
+        case WeatherType::SNOWY:
+            _weatherParticle = ParticleSnow::create();
+            break;
+        default:
+            break; // 晴天或多云不需要粒子
+    }
+
+    if (_weatherParticle) {
+        // 设置粒子属性，确保它覆盖全屏
+        auto visibleSize = Director::getInstance()->getVisibleSize();
+        _weatherParticle->setPosition(Vec2(visibleSize.width / 2, visibleSize.height));
+        _weatherParticle->setPosVar(Vec2(visibleSize.width / 2, 0));
+        _weatherParticle->setLife(2.0f); // 粒子生命周期
+        _weatherParticle->setSpeed(400.0f); // 下落速度
+
+        // 关键：添加到 GameWorld 或直接加到 GameScene（UI层之下）
+        this->addChild(_weatherParticle, 999); // 999 确保在地图和作物之上
+    }
+}
 
 bool GameWorld::isFarmable(int tx, int ty) {
     // 1. 首先必须在地图边界内
