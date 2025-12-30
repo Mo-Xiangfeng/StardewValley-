@@ -10,9 +10,12 @@
 #include "CropData.h"
 #include "InventoryManager.h"
 #include "WeatherManager.h"
-#include "fishing_game.h"`
+#include "FishingGame.h"`
 #include "TreeManager.h"
 #include "RockManager.h"
+#include <cstdlib>
+#include "NPCManager.h"
+#include "NPC.h"
 USING_NS_CC;
 
 /* =========================
@@ -131,11 +134,10 @@ bool GameWorld::init(const std::string&,
     _treeLayer = Node::create();
     this->addChild(_treeLayer, 70);
     _rockLayer = Node::create();
-    this->addChild(_rockLayer, 71); // 稍微高于树木或保持一致
+    this->addChild(_rockLayer, 99); // 稍微高于树木或保持一致
     _rockLayer->setVisible(false);
     scheduleUpdate();
     TreeManager::getInstance()->init(this);
-    
     return true;
 }
 
@@ -220,14 +222,15 @@ void GameWorld::removeTreeSprite(const cocos2d::Vec2& tilePos) {
         }
     }
 }
+
 void GameWorld::addRockSprite(int tx, int ty) {
-    CCLOG("5555555555555555");
-    auto rock = Sprite::create("RRock.png"); 
+    CCLOG("WSWSWSWSWSWSWSWSWS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    auto rock = Sprite::create("RRock.png");
     float ts = 16.0f * _mapScale;
     rock->setPosition(Vec2((tx + 0.5f) * ts, (ty + 0.5f) * ts));
     // 使用 300,000 级别的 Tag 避免冲突
     int tag = 300000 + tx * 1000 + ty;
-	cocos2d::log("Adding rock sprite with tag: %d", tag);
+    cocos2d::log("Adding rock sprite with tag: %d", tag);
     rock->setTag(tag);
 
     // 添加到专门的图层
@@ -236,11 +239,14 @@ void GameWorld::addRockSprite(int tx, int ty) {
     }
 }
 
+
+
+
 void GameWorld::removeRockSprite(const Vec2& tilePos) {
     int tx = (int)tilePos.x;
     int ty = (int)tilePos.y;
     int tag = 300000 + tx * 1000 + ty;
-	cocos2d::log("Removing rock sprite with tag: %d", tag);
+    cocos2d::log("Removing rock sprite with tag: %d", tag);
     if (_rockLayer) {
         cocos2d::log("Current _rockLayer pointer: %p", _rockLayer);
         cocos2d::log("_rockLayer child count: %d", (int)_rockLayer->getChildrenCount());
@@ -313,16 +319,20 @@ void GameWorld::switchMap(const std::string& mapId,
     // 离开旧地图逻辑
     if (_logic)
         _logic->onExit(this, _player);
-
+    if (_cropLayer) {
+        _cropLayer->removeAllChildren(); // 移除所有作物的精灵图片
+    }
+    _cropSprites.clear();
     const auto& info = _maps.at(mapId);
     _currentMapId = mapId;
-
+    this->updateWeatherVisuals();
     reload(info.txt, info.img);
     if (_rockLayer) {
         if (mapId == "Mine") {
             _rockLayer->setVisible(true);
-            _rockLayer->removeAllChildren(); // 关键：进入矿洞前清空旧的“红石头”视觉
+            _rockLayer->removeAllChildren();
             RockManager::getInstance()->init(this);
+          
             RockManager::getInstance()->refreshRocks();
         }
         else {
@@ -337,6 +347,7 @@ void GameWorld::switchMap(const std::string& mapId,
             _treeLayer->setVisible(false);  // 进入室内/矿洞，隐藏树木
         }
     }
+
     if (_player)
     {
         Vec2 spawn = info.entries.at(entry);
@@ -347,7 +358,7 @@ void GameWorld::switchMap(const std::string& mapId,
         if (_rockLayer == nullptr) {
             _rockLayer = Node::create();
             // 70 是为了确保它在瓦片图层之上，且可以与玩家/树木进行 ZOrder 排序
-            this->addChild(_rockLayer, 70);
+            this->addChild(_rockLayer, 99);
             CCLOG("RockLayer created for the first time.");
         }
 
@@ -362,17 +373,17 @@ void GameWorld::switchMap(const std::string& mapId,
     }
     // 创建对应地图逻辑
     if (mapId == "Map")
-        _logic = std::make_unique<MainMapLogic>();
+        _logic.reset(new MainMapLogic());
     else if (mapId == "Home")
-        _logic = std::make_unique<HomeLogic>();
+        _logic.reset(new HomeLogic());
     else if (mapId == "Shop")
-        _logic = std::make_unique<ShopLogic>();
+        _logic.reset(new ShopLogic());
     else if (mapId == "NPC1House")
-        _logic = std::make_unique<NPC1HouseLogic>();
+        _logic.reset(new NPC1HouseLogic());
     else if (mapId == "NPC2House")
-        _logic = std::make_unique<NPC2HouseLogic>();
+        _logic.reset(new NPC2HouseLogic());
     else if (mapId == "Mine")
-        _logic = std::make_unique<MineLogic>();
+        _logic.reset(new MineLogic());
     if (_daylightLayer) {
         if (mapId != "Mine") {
             _daylightLayer->setVisible(true);  // 回到主地图，开启黑夜
@@ -388,6 +399,21 @@ void GameWorld::switchMap(const std::string& mapId,
     _currentPortal = nullptr;
     _portalStayTime = 0.0f;
     updateLandVisuals();
+
+    auto npcMgr = NPCManager::getInstance();
+    for (auto& pair : npcMgr->getAllNPCs()) {
+        NPC* npc = pair.second;
+        if (npc && npc->getParent() == this) {
+            bool shouldShow = (npc->currentMapId == _currentMapId);  // ← 这里改成 _currentMapId
+            npc->setVisible(shouldShow);
+
+            CCLOG("[GameWorld] NPC '%s' visibility: %s (belongs to: %s, current map: %s)",
+                npc->npcName.c_str(),
+                shouldShow ? "VISIBLE" : "HIDDEN",
+                npc->currentMapId.c_str(),
+                _currentMapId.c_str());  // ← 这里也改成 _currentMapId
+        }
+    }
 }
 
 /* =========================
@@ -604,13 +630,13 @@ void GameWorld::interactWithLand(int tx, int ty, int itemID) {
         }
 
         // 4. 收获判断
-        if (land.isHarvestable) {
+        if (land.isHarvestable && itemID == 0) {
             // 技巧：假设种子 ID 是 1100，对应的果实 ID 是 2200 (你的库里定义的)
             int fruitId = land.cropId + 1100;
 
             // 2. 给予玩家物品
-            bool success = InventoryManager::getInstance()->addItemByID(fruitId, 1);
-
+            bool success = InventoryManager::getInstance()->addItemByID(fruitId, _player->farmingLevel + 1);
+            _player->addExperience(1, 10);
             if (success) {
                 CCLOG("收获成功！获得了果实 ID: %d", fruitId);
                 // 3. 重置土地
@@ -628,12 +654,21 @@ void GameWorld::interactWithLand(int tx, int ty, int itemID) {
 }
 
 void GameWorld::updateLandVisuals() {
+    // 1. 获取或创建土地背景层 (DrawNode)
     auto drawNode = dynamic_cast<DrawNode*>(this->getChildByTag(888));
     if (!drawNode) {
         drawNode = DrawNode::create();
-        this->addChild(drawNode, 1, 888);
+        // 强制设置 Z 为 10，确保在最底层
+        this->addChild(drawNode, 10, 888);
     }
     drawNode->clear();
+
+    // 2. 获取或创建作物精灵层 (Node)
+    if (!_cropLayer) {
+        _cropLayer = Node::create();
+        // 强制设置 Z 为 20，确保严格在 drawNode 之上
+        this->addChild(_cropLayer, 100);
+    }
 
     float ts = 16.0f * getMapScale();
 
@@ -641,36 +676,145 @@ void GameWorld::updateLandVisuals() {
         const std::string& key = it->first;
         const LandTileData& land = it->second;
 
-        // 解析坐标
         size_t sep = key.find('_');
         int tx = std::atoi(key.substr(0, sep).c_str());
         int ty = std::atoi(key.substr(sep + 1).c_str());
 
+        if (_map.getTile(tx, ty) != 8) continue;
+
+        // --- 绘制土地背景 ---
         Vec2 origin(tx * ts, ty * ts);
         Vec2 dest((tx + 1) * ts, (ty + 1) * ts);
 
-        // --- 绘制土地颜色 ---
+        // 逻辑修正：如果土地是 NONE，我们应该清理该格子的图片并跳过背景绘制
+        if (land.state == LandState::NONE) {
+            if (_cropSprites.count(key)) {
+                _cropSprites[key]->removeFromParent();
+                _cropSprites.erase(key);
+            }
+            continue;
+        }
+
         Color4F landColor;
         if (land.state == LandState::TILLED) landColor = Color4F(0.4f, 0.25f, 0.15f, 0.7f);
         else if (land.state == LandState::WATERED) landColor = Color4F(0.2f, 0.15f, 0.1f, 0.9f);
-        else continue;
 
         drawNode->drawSolidRect(origin, dest, landColor);
 
-        // --- 绘制作物标记 ---
+        // --- 处理作物图片 ---
         if (land.cropId != -1) {
-            Vec2 center((tx + 0.5f) * ts, (ty + 0.5f) * ts);
+            int stage = 0;
+            auto info = CropDatabase::getInstance()->getCrop(land.cropId);
             if (land.isHarvestable) {
-                // 成熟了画个金色的圆 (代表可收获)
-                drawNode->drawDot(center, ts * 0.4f, Color4F::YELLOW);
+                stage = 2;
+            }
+            else if (info && info->growthDays > 0) {
+                float progress = (float)land.currentGrowth / info->growthDays;
+                if (progress > 0.5f) stage = 1;
+                else stage = 0;
+            }
+
+            int itemID = land.cropId;
+            std::string spriteName = "item/" + std::to_string(itemID) + "_" + std::to_string(stage) + ".png";
+
+            // 1. 精确计算地块中心坐标
+            // tx * ts 是左边界，+ 0.5f * ts 刚好是水平中心
+            Vec2 center((tx + 0.5f) * ts, (ty + 0.5f) * ts);
+
+            if (_cropSprites.find(key) == _cropSprites.end()) {
+                // --- A. 新建精灵逻辑 ---
+                auto cropSprite = Sprite::create(spriteName);
+                if (cropSprite) {
+                    // 2. 设置锚点为 (0.5, 0.5)，即精灵图片的几何中心
+                    cropSprite->setAnchorPoint(Vec2(0.5f, 0.5f));
+                    cropSprite->setPosition(center);
+
+                    // 3. 自动缩放：确保作物不会超过瓦片大小
+                    float contentWidth = cropSprite->getContentSize().width;
+                    float contentHeight = cropSprite->getContentSize().height;
+                    float maxDim = std::max(contentWidth, contentHeight);
+                    if (maxDim > 0) {
+                        // 按比例缩放，让图片最长的一边等于瓦片大小
+                        cropSprite->setScale(ts / maxDim);
+                    }
+
+                    cropSprite->setName(spriteName);
+                    _cropLayer->addChild(cropSprite);
+                    _cropSprites[key] = cropSprite;
+
+                    // 调试辅助线：在中心画个红点
+                    // drawNode->drawDot(center, 2.0f, Color4F::RED); 
+                }
+                else {
+                    CCLOG("错误：无法加载图片资源 %s", spriteName.c_str());
+                }
             }
             else {
-                // 生长中画个绿色的点，点的大小随生长进度变大
-                auto info = CropDatabase::getInstance()->getCrop(land.cropId);
-                float progress = (info && info->growthDays > 0) ? (float)land.currentGrowth / info->growthDays : 0.1f;
-                drawNode->drawDot(center, ts * (0.1f + progress * 0.2f), Color4F::GREEN);
+                // --- B. 更新现有精灵逻辑 (之前这里的警告日志位置写错了) ---
+                auto cropSprite = _cropSprites[key];
+                if (cropSprite->getName() != spriteName) {
+                    auto newTexture = Director::getInstance()->getTextureCache()->addImage(spriteName);
+                    if (newTexture) {
+                        cropSprite->setTexture(newTexture);
+                        cropSprite->setName(spriteName);
+
+                        // 更换贴图后重新校准缩放（防止不同阶段图片尺寸不一）
+                        float maxDim = std::max(cropSprite->getContentSize().width, cropSprite->getContentSize().height);
+                        cropSprite->setScale(ts / maxDim);
+                    }
+                }
+                // 确保位置始终同步（防止地图缩放改变时位置偏移）
+                cropSprite->setPosition(center);
             }
         }
+        else {
+            // 如果 cropId 为 -1，说明没有作物，移除旧精灵
+            if (_cropSprites.count(key)) {
+                _cropSprites[key]->removeFromParent();
+                _cropSprites.erase(key);
+            }
+        }
+    }
+}
+
+void GameWorld::updateWeatherVisuals() {
+    auto wm = WeatherManager::getInstance();
+    WeatherType type = wm->getCurrentWeather();
+
+    // --- 1. 处理地图色调 ---
+    if (_mapSprite) {
+        _mapSprite->setColor(wm->getWeatherTint());
+    }
+
+    // --- 2. 处理粒子效果 ---
+    // 先移除旧的粒子
+    if (_weatherParticle) {
+        _weatherParticle->removeFromParent();
+        _weatherParticle = nullptr;
+    }
+
+    switch (type) {
+        case WeatherType::RAINY:
+        case WeatherType::STORMY:
+            _weatherParticle = ParticleRain::create();
+            break;
+        case WeatherType::SNOWY:
+            _weatherParticle = ParticleSnow::create();
+            break;
+        default:
+            break; // 晴天或多云不需要粒子
+    }
+
+    if (_weatherParticle) {
+        // 设置粒子属性，确保它覆盖全屏
+        auto visibleSize = Director::getInstance()->getVisibleSize();
+        _weatherParticle->setPosition(Vec2(visibleSize.width / 2, visibleSize.height));
+        _weatherParticle->setPosVar(Vec2(visibleSize.width / 2, 0));
+        _weatherParticle->setLife(2.0f); // 粒子生命周期
+        _weatherParticle->setSpeed(400.0f); // 下落速度
+
+        // 关键：添加到 GameWorld 或直接加到 GameScene（UI层之下）
+        this->addChild(_weatherParticle, 999); // 999 确保在地图和作物之上
     }
 }
 
@@ -760,12 +904,21 @@ void GameWorld::startFishingMinigame() {
     if (currentScene) {
         currentScene->addChild(fishingNode, 9999);
     }
-
     // 4. 处理回调
     fishingNode->onGameOver = [this, fishingNode](bool success) {
         if (success) {
             CCLOG("Catch!");
-            // 这里可以添加奖励逻辑
+            int fishId = 3124 + rand() % 3;
+
+            // 2. 给予玩家物品
+            bool success = InventoryManager::getInstance()->addItemByID(fishId, _player->fishingLevel + 1);
+            _player->addExperience(2, 20);
+            if (success) {
+                CCLOG("收获成功！获得了鱼获 ID: %d", fishId);
+            }
+            else {
+                CCLOG("背包已满，无法收获！");
+            }
         }
 
         // 解锁玩家
@@ -784,6 +937,7 @@ bool GameWorld::isWater(int tx, int ty) {
     // 根据 TileType.h，Water 的 ID 是 2
     return (tileId == 2);
 }
+
 void GameWorld::playTreeHitEffect(int tx, int ty)
 {
     int tag = 200000 + tx * 1000 + ty;
@@ -810,6 +964,25 @@ void GameWorld::playTreeHitEffect(int tx, int ty)
         tree->runAction(hitSequence);
     }
 }
+
+NPC* GameWorld::getNearbyNPC(const cocos2d::Vec2& playerPos, float radius) {
+    auto npcMgr = NPCManager::getInstance();
+
+    for (auto& pair : npcMgr->getAllNPCs()) {
+        NPC* npc = pair.second;
+
+        // 跳过不可见或不在当前地图的 NPC
+        if (!npc->isVisible()) continue;
+        if (npc->getParent() != this) continue;  // 确保 NPC 在当前 GameWorld 中
+
+        float distance = playerPos.distance(npc->getPosition());
+        if (distance <= radius) {
+            return npc;
+        }
+    }
+    return nullptr;
+}
+
 void GameWorld::playRockHitEffect(int tx, int ty)
 {
     int tag = 300000 + tx * 1000 + ty;
@@ -818,7 +991,7 @@ void GameWorld::playRockHitEffect(int tx, int ty)
     auto rock = _rockLayer->getChildByTag(tag);
 
     if (rock) {
-       
+
         rock->stopAllActionsByTag(999); // 假设给受击动作设个标签
 
         // 1. 定义变暗动作 (120, 120, 120 是深灰色)

@@ -111,6 +111,9 @@
     <ClCompile Include="..\Classes\FishingGame.cpp">
       <Filter>classes</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Mobile.cpp">
+      <Filter>classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -228,6 +231,9 @@
       <Filter>classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\FishingGame.h">
+      <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Mobile.h">
       <Filter>classes</Filter>
     </ClInclude>
   </ItemGroup>

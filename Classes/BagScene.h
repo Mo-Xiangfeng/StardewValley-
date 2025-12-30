@@ -5,8 +5,11 @@ class Player;
 class BagScene : public cocos2d::Layer {
 public:
     virtual bool init() override;
-    CREATE_FUNC(BagScene);
+    
+    static cocos2d::Scene* createScene(Player* player);
     void setPlayer(Player* player) { _player = player; }
+    CREATE_FUNC(BagScene);
+    virtual void onEnter() override;
 private:
     Player* _player = nullptr;
     void initAbilityUI(); // 初始化能力数值显示
@@ -14,7 +17,6 @@ private:
     void updateSlotUI(int index);
     int getSlotIndexByPos(cocos2d::Vec2 pos);
     void onBackToGame(cocos2d::Ref* sender);
-
     bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
     void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
     void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);

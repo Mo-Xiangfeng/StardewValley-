@@ -1,4 +1,4 @@
-#include "BagScene.h"
+ï»¿#include "BagScene.h"
 #include "GameScene.h"
 #include "cocos2d.h"
 #include "InventoryManager.h"
@@ -9,6 +9,19 @@
 #include "HelloWorldScene.h"
 USING_NS_CC;
 
+static const char* SAFE_TTF = "fonts/Roboto-Regular.ttf";
+cocos2d::Scene* BagScene::createScene(Player* player)
+{
+    auto scene = cocos2d::Scene::create();
+
+    auto bag = BagScene::create();
+    bag->setPlayer(player);
+
+    scene->addChild(bag);
+    return scene;
+}
+
+
 
 bool BagScene::init() {
     if (!Layer::init()) {
@@ -16,110 +29,124 @@ bool BagScene::init() {
     }
 
     _visibleSize = Director::getInstance()->getVisibleSize();
+    auto origin = Director::getInstance()->getVisibleOrigin();
 
-    // 1. Ìí¼Ó°ëÍ¸Ã÷±³¾°²ã (¾²Ì¬)
+    // åŠé€æ˜èƒŒæ™¯
     auto bgLayer = LayerColor::create(Color4B(0, 0, 0, 180));
     this->addChild(bgLayer);
 
-    // 2. Ìí¼Ó±êÌâ (¾²Ì¬)
-    auto title = Label::createWithTTF("PLAYER INVENTORY", "fonts/Marker Felt.ttf", 100);
-    title->setPosition(Vec2(_visibleSize.width / 2, _visibleSize.height - 150));
-    this->addChild(title);
+    // æ ‡é¢˜ï¼ˆé¡¶éƒ¨å±…ä¸­ï¼Œå®‰å…¨åŒºï¼‰
+    auto title = Label::createWithTTF(
+        "PLAYER INVENTORY",
+        SAFE_TTF,
+        48
+    );
 
-    // 3. Ìí¼Ó·µ»Ø°´Å¥ (¾²Ì¬)
+    if (title) {
+        title->setAnchorPoint(Vec2(0.5f, 1.0f));
+        title->setPosition(Vec2(
+            origin.x + _visibleSize.width / 2,
+            origin.y + _visibleSize.height - 40
+        ));
+        this->addChild(title);
+    }
+    // è¿”å›æŒ‰é’®
     auto homeItem = MenuItemImage::create(
-        "ExitTitile.png",   // Î´µã»÷Í¼Æ¬
-        "ExitPressedTitile.png",   // µã»÷×´Ì¬Í¼Æ¬ (Èç¹ûÃ»ÓĞµ¥¶ÀµÄµã»÷Í¼£¬¿ÉÒÔÖØ¸´ÌîÒ»ÑùµÄ)
-        [](Ref* sender) {
-            // ÇĞ»»»Ø HelloWorldScene
-            auto scene = HelloWorldScene::createScene();
-            // Ê¹ÓÃµ­Èëµ­³öĞ§¹ûÇĞ»»£¬ÌåÑé¸üºÃ
-            Director::getInstance()->replaceScene(TransitionFade::create(0.5f, scene));
+        "ExitTitile.png",
+        "ExitPressedTitile.png",
+        [](Ref*) {
+            Director::getInstance()->replaceScene(
+                TransitionFade::create(0.5f, HelloWorldScene::createScene())
+            );
         });
 
-    // B. ´´½¨¡°ÍË³ö³ÌĞò¡±°´Å¥
-    // ÇëÌæ»» "CloseNormal.png", "CloseSelected.png" ÎªÄãµÄÍ¼Æ¬Â·¾¶
+    // é€€å‡ºæŒ‰é’®
     auto closeItem = MenuItemImage::create(
-        "ExitDesktop.png",    // Î´µã»÷Í¼Æ¬
-        "ExitPressedDesktop.png",    // µã»÷×´Ì¬Í¼Æ¬
-        [](Ref* sender) {
-            // Ö±½Ó¹Ø±Õ³ÌĞò
+        "ExitDesktop.png",
+        "ExitPressedDesktop.png",
+        [](Ref*) {
             Director::getInstance()->end();
         });
 
-    // C. ´´½¨²Ëµ¥ÈİÆ÷
     auto navMenu = Menu::create(homeItem, closeItem, nullptr);
-    navMenu->setPosition(Vec2::ZERO); // ½«Ô­µãÉèÎª×óÏÂ½Ç£¬·½±ã¶¨Î»
-    this->addChild(navMenu, 100);     // zOrder Éè¸ßÒ»µã£¬·ÀÖ¹±»ÆäËû²ãÕÚµ²
+    navMenu->setPosition(Vec2::ZERO);
+    this->addChild(navMenu, 100);
 
-    // D. ÉèÖÃ°´Å¥Î»ÖÃ
-    // ÕâÀïÎÒ°ÑËüÃÇ·ÅÔÚÁËÆÁÄ»×óÉÏ½Ç£¬´¹Ö±ÅÅÁĞ£¬Äã¿ÉÒÔ¸ù¾İÏ²ºÃĞŞ¸Ä×ø±ê
+    homeItem->setAnchorPoint(Vec2(0, 1));
+    closeItem->setAnchorPoint(Vec2(0, 1));
 
-    // ·µ»Ø°´Å¥£º·ÅÔÚ×óÉÏ½Ç
-    homeItem->setPosition(Vec2(950, _visibleSize.height - 600));
+    homeItem->setPosition(Vec2(
+        origin.x + 40,
+        origin.y + _visibleSize.height - 40
+    ));
+    closeItem->setPosition(Vec2(
+        origin.x + 40,
+        origin.y + _visibleSize.height - 140
+    ));
 
-    // ÍË³ö°´Å¥£º·ÅÔÚ·µ»Ø°´Å¥ÏÂ·½
-    closeItem->setPosition(Vec2(950, _visibleSize.height - 700));
-
-
-    auto sacrificeBtn = ui::Button::create("Sacrifice_Normal.png", "Sacrifice_Pressed.png"); // ÇëÈ·±£ÄãÓĞÕâÁ½ÕÅÍ¼Æ¬
-    sacrificeBtn->setTitleFontSize(40);
-    sacrificeBtn->setPosition(Vec2(_visibleSize.width - 200, 150));
+    // Sacrifice æŒ‰é’®ï¼ˆå³ä¸‹è§’ï¼‰
+    auto sacrificeBtn = ui::Button::create("Sacrifice_Normal.png", "Sacrifice_Pressed.png");
+    sacrificeBtn->setAnchorPoint(Vec2(1, 0));
+    sacrificeBtn->setPosition(Vec2(
+        origin.x + _visibleSize.width - 40,
+        origin.y + 40
+    ));
     sacrificeBtn->addClickEventListener(CC_CALLBACK_1(BagScene::onSacrifice, this));
     this->addChild(sacrificeBtn);
 
-
-    // 4. ´´½¨¶¯Ì¬ÈİÆ÷²ã (·Ç³£ÖØÒª£ºÓÃÓÚ´æ·ÅËùÓĞ¿ÉË¢ĞÂµÄÎïÆ·Í¼±ê)
     _itemsContainer = Node::create();
     this->addChild(_itemsContainer);
 
-    // 5. ³õÊ¼»¯ UI ²¼¾Ö
     initUI();
-    initAbilityUI();
-    // 6. ×¢²á´¥Ãş¼àÌıÆ÷ (Ö»×¢²áÒ»´Î)
+    //initAbilityUI();
+
     auto listener = EventListenerTouchOneByOne::create();
     listener->setSwallowTouches(true);
     listener->onTouchBegan = CC_CALLBACK_2(BagScene::onTouchBegan, this);
     listener->onTouchMoved = CC_CALLBACK_2(BagScene::onTouchMoved, this);
     listener->onTouchEnded = CC_CALLBACK_2(BagScene::onTouchEnded, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
     return true;
 }
 
 void BagScene::initUI() {
-    // ¼ÆËã²¼¾ÖÆğÊ¼µã (×óÏÂ½Ç)
+    // è®¡ç®—å¸ƒå±€èµ·å§‹ç‚¹ (å·¦ä¸‹è§’)
     float totalWidth = _cols * _slotSize + (_cols - 1) * _padding;
     float totalHeight = _rows * _slotSize + (_rows - 1) * _padding;
     _startPos = Vec2((_visibleSize.width - totalWidth) / 2, (_visibleSize.height - totalHeight) / 2);
-    _startPos.y -= 400.0f;
-    auto Ability = Sprite::create("Ability.png"); // Ìæ»»ÎªÄãµÄÎÄ¼şÃû
+    _startPos.y -= _visibleSize.height * 0.08f;
+    auto Ability = Sprite::create("Ability.png");
     if (Ability) {
+        Ability->setName("AbilityBG");   // â­â­â­ å…³é”®ä¸­çš„å…³é”®
         Ability->setScale(1.2f);
-        // ¼ÆËãÎ»ÖÃ£º·ÅÔÚ¸ñ×Ó¾ØÕóµÄÕıÉÏ·½
+
         float totalWidth = _cols * _slotSize + (_cols - 1) * _padding;
         float totalHeight = _rows * _slotSize + (_rows - 1) * _padding;
 
-        // ÉèÖÃÔÚ¸ñ×ÓÖĞĞÄÉÏ·½Ô¼ 100 ÏñËØµÄÎ»ÖÃ
-        Ability->setPosition(Vec2(_startPos.x + totalWidth / 2,
-            _startPos.y + totalHeight + 400));
-        this->addChild(Ability, 5); // ÉèÖÃ½ÏĞ¡µÄ zOrder£¬È·±£ÔÚÍÏ×§ÎïÆ·ÏÂ·½
+        Ability->setPosition(Vec2(
+            _visibleSize.width / 2,
+            _visibleSize.height * 0.75f
+        ));
 
+        this->addChild(Ability, 5);
     }
-    // --- ĞÂÔö£º´´½¨À¬»øÍ° ---
-    _trashIcon = Sprite::create("trash_can.png"); // È·±£×ÊÔ´Â·¾¶ÕıÈ·
+
+    // --- æ–°å¢ï¼šåˆ›å»ºåƒåœ¾æ¡¶ ---
+    _trashIcon = Sprite::create("trash_can.png"); // ç¡®ä¿èµ„æºè·¯å¾„æ­£ç¡®
     if (_trashIcon) {
-        // ½«À¬»øÍ°·ÅÔÚ±³°ü¾ØÕóÓÒ²à 50 ÏñËØ´¦
+        // å°†åƒåœ¾æ¡¶æ”¾åœ¨èƒŒåŒ…çŸ©é˜µå³ä¾§ 50 åƒç´ å¤„
         _trashIcon->setPosition(_startPos + Vec2(totalWidth + 60, _slotSize / 2));
         this->addChild(_trashIcon);
 
-        // ³õÊ¼»¯À¬»øÍ°µÄÅö×²ÇøÓò (Ê¹ÓÃÊÀ½ç×ø±ê)
-        Size s = _trashIcon->getContentSize();
+        // åˆå§‹åŒ–åƒåœ¾æ¡¶çš„ç¢°æ’åŒºåŸŸ (ä½¿ç”¨ä¸–ç•Œåæ ‡)
+        Size s = _trashIcon->getContentSize() * _trashIcon->getScale();
         _trashRect = Rect(_trashIcon->getPositionX() - s.width / 2,
             _trashIcon->getPositionY() - s.height / 2,
             s.width, s.height);
     }
-    //ĞÂÔö£ºÊÛÂôÏä
-    _storeIcon = Sprite::create("store.png"); // È·±£×ÊÔ´Â·¾¶ÕıÈ·
+    //æ–°å¢ï¼šå”®å–ç®±
+    _storeIcon = Sprite::create("store.png"); // ç¡®ä¿èµ„æºè·¯å¾„æ­£ç¡®
     float scaleValue = 2.0f;
     _storeIcon->setScale(scaleValue);
     if (_storeIcon) {
@@ -127,7 +154,7 @@ void BagScene::initUI() {
         _storeIcon->setPosition(_startPos + Vec2(totalWidth + 60, _slotSize / 2 + 150));
         this->addChild(_storeIcon);
 
-        // ³õÊ¼»¯À¬»øÍ°µÄÅö×²ÇøÓò (Ê¹ÓÃÊÀ½ç×ø±ê)
+        // åˆå§‹åŒ–åƒåœ¾æ¡¶çš„ç¢°æ’åŒºåŸŸ (ä½¿ç”¨ä¸–ç•Œåæ ‡)
         Size s = _storeIcon->getContentSize();
         _storeRect = Rect(_storeIcon->getPositionX() - s.width / 2,
             _storeIcon->getPositionY() - s.height / 2,
@@ -137,7 +164,7 @@ void BagScene::initUI() {
     auto items = InventoryManager::getInstance()->getItems();
     int capacity = InventoryManager::getInstance()->getCapacity();
 
-    // »æÖÆ¸ñ×Ó±³¾°ºÍ³õÊ¼ÎïÆ·
+    // ç»˜åˆ¶æ ¼å­èƒŒæ™¯å’Œåˆå§‹ç‰©å“
     for (int i = 0; i < capacity; ++i) {
         int r = i / _cols;
         int c = i % _cols;
@@ -145,13 +172,13 @@ void BagScene::initUI() {
         Vec2 pos = _startPos + Vec2(c * (_slotSize + _padding) + _slotSize / 2,
             r * (_slotSize + _padding) + _slotSize / 2);
 
-        // A. »æÖÆ¸ñ×Ó±³¾° (¸ñ×Ó¿òÍ¨³£²»¶¯£¬¿ÉÒÔÖ±½Ó¼ÓÔÚ Scene ÉÏ»ò container ÉÏ)
+        // A. ç»˜åˆ¶æ ¼å­èƒŒæ™¯ (æ ¼å­æ¡†é€šå¸¸ä¸åŠ¨ï¼Œå¯ä»¥ç›´æ¥åŠ åœ¨ Scene ä¸Šæˆ– container ä¸Š)
         auto drawNode = DrawNode::create();
         drawNode->drawRect(Vec2(-_slotSize / 2, -_slotSize / 2), Vec2(_slotSize / 2, _slotSize / 2), Color4F::WHITE);
         drawNode->setPosition(pos);
         this->addChild(drawNode);
 
-        // B. »æÖÆÎïÆ·ÄÚÈİ
+        // B. ç»˜åˆ¶ç‰©å“å†…å®¹
         updateSlotUI(i);
     }
 }
@@ -163,10 +190,10 @@ void BagScene::updateSlotUI(int index) {
     _itemsContainer->removeChildByTag(2000 + index);
 
     auto items = InventoryManager::getInstance()->getItems();
-    // ĞŞ¸Ä£ºÅĞ¶ÏÖ¸ÕëÊÇ·ñÎª¿Õ
+    // ä¿®æ”¹ï¼šåˆ¤æ–­æŒ‡é’ˆæ˜¯å¦ä¸ºç©º
     if (index >= items.size() || items[index] == nullptr) return;
 
-    auto& item = items[index]; // item ÊÇ std::shared_ptr<Item>
+    auto& item = items[index]; // item æ˜¯ std::shared_ptr<Item>
     int r = index / _cols;
     int c = index % _cols;
     Vec2 pos = _startPos + Vec2(c * (_slotSize + _padding) + _slotSize / 2,
@@ -176,7 +203,7 @@ void BagScene::updateSlotUI(int index) {
     if (itemSprite) {
         itemSprite->setPosition(pos);
         itemSprite->setTag(1000 + index);
-        // Ëõ·ÅÊÊÅä
+        // ç¼©æ”¾é€‚é…
         float tw = itemSprite->getContentSize().width;
         float th = itemSprite->getContentSize().height;
         if (tw > 0 && th > 0) {
@@ -186,10 +213,17 @@ void BagScene::updateSlotUI(int index) {
         _itemsContainer->addChild(itemSprite, 10);
 
         if (item->count > 1) {
-            auto label = Label::createWithTTF(std::to_string(item->count), "fonts/arial.ttf", 30);
-            label->setPosition(pos + Vec2(_slotSize / 2 - 2, -_slotSize / 2 + 2));
-            label->setTag(2000 + index);
-            _itemsContainer->addChild(label, 11);
+            auto label = Label::createWithTTF(
+                std::to_string(item->count),
+                SAFE_TTF,
+                30
+            );
+
+            if (label) {
+                label->setPosition(pos + Vec2(_slotSize / 2 - 2, -_slotSize / 2 + 2));
+                label->setTag(2000 + index);
+                _itemsContainer->addChild(label, 11);
+            }
         }
     }
 }
@@ -201,13 +235,13 @@ bool BagScene::onTouchBegan(Touch* touch, Event* event) {
     auto& items = InventoryManager::getInstance()->getItems();
 
     if (_sourceIdx != -1 && _sourceIdx < items.size() && items[_sourceIdx] != nullptr) {
-        // --- ĞŞ¸´µã 1£ºÍ¬Ê±Òş²ØÍ¼±êºÍÊı×Ö±êÇ© ---
+        // --- ä¿®å¤ç‚¹ 1ï¼šåŒæ—¶éšè—å›¾æ ‡å’Œæ•°å­—æ ‡ç­¾ ---
         auto originalIcon = _itemsContainer->getChildByTag(1000 + _sourceIdx);
         auto originalLabel = _itemsContainer->getChildByTag(2000 + _sourceIdx);
         if (originalIcon) originalIcon->setVisible(false);
         if (originalLabel) originalLabel->setVisible(false);
 
-        // 2. ´´½¨ÍÏ×§¾µÏñ
+        // 2. åˆ›å»ºæ‹–æ‹½é•œåƒ
         _dragSprite = Sprite::create(items[_sourceIdx]->iconPath);
         _dragSprite->setPosition(pos);
         _dragSprite->setOpacity(180);
@@ -230,7 +264,7 @@ void BagScene::onTouchEnded(Touch* touch, Event* event) {
     int destIdx = getSlotIndexByPos(touch->getLocation());
     Vec2 dropPos = touch->getLocation();
 
-    bool acted = false; // ±ê¼ÇÊÇ·ñÖ´ĞĞÁËÓĞĞ§²Ù×÷
+    bool acted = false; // æ ‡è®°æ˜¯å¦æ‰§è¡Œäº†æœ‰æ•ˆæ“ä½œ
 
     if (_trashRect.containsPoint(dropPos)) {
         InventoryManager::getInstance()->removeItem(_sourceIdx);
@@ -247,13 +281,13 @@ void BagScene::onTouchEnded(Touch* touch, Event* event) {
     }
     else if (destIdx != -1 && destIdx != _sourceIdx) {
         InventoryManager::getInstance()->swapItems(_sourceIdx, destIdx);
-        updateSlotUI(destIdx); // Ë¢ĞÂÄ¿±êÎ»ÖÃ
+        updateSlotUI(destIdx); // åˆ·æ–°ç›®æ ‡ä½ç½®
         acted = true;
     }
 
-    // --- ĞŞ¸´µã 2£ºÎŞÂÛ³É¹¦Ê§°Ü£¬¶¼Ç¿ÖÆË¢ĞÂÆğÊ¼¸ñ×ÓµÄ UI ---
-    // Èç¹û acted Îª false£¬updateSlotUI »áÖØĞÂ¸ù¾İÊı¾İÉú³ÉÍ¼±ê£¬×ÔÈ»¾Í¡°»Ö¸´¡±ÁË
-    // Èç¹û acted Îª true£¬Êı¾İÒÑ±ä£¬updateSlotUI ¾Í»áÈÃÍ¼±êÕæÕı¡°ÏûÊ§¡±
+    // --- ä¿®å¤ç‚¹ 2ï¼šæ— è®ºæˆåŠŸå¤±è´¥ï¼Œéƒ½å¼ºåˆ¶åˆ·æ–°èµ·å§‹æ ¼å­çš„ UI ---
+    // å¦‚æœ acted ä¸º falseï¼ŒupdateSlotUI ä¼šé‡æ–°æ ¹æ®æ•°æ®ç”Ÿæˆå›¾æ ‡ï¼Œè‡ªç„¶å°±â€œæ¢å¤â€äº†
+    // å¦‚æœ acted ä¸º trueï¼Œæ•°æ®å·²å˜ï¼ŒupdateSlotUI å°±ä¼šè®©å›¾æ ‡çœŸæ­£â€œæ¶ˆå¤±â€
     updateSlotUI(_sourceIdx);
 
     _dragSprite->removeFromParent();
@@ -287,22 +321,41 @@ int BagScene::getSlotIndexByPos(Vec2 touchPos) {
 void BagScene::onBackToGame(Ref* sender) {
     this->removeFromParent();
 }
+void BagScene::onEnter()
+{
+    Layer::onEnter();
 
-void BagScene::initAbilityUI() {
-    // 1. »ñÈ¡µ±Ç°Íæ¼ÒÊµÀı (¼ÙÉè´Ó GameScene »ñÈ¡)
-    auto gameScene = dynamic_cast<GameScene*>(Director::getInstance()->getRunningScene());
-    if (gameScene) {
-        _player = gameScene->getPlayer();
+    CCLOG("BagScene onEnter CALLED");
+
+    if (_player) {
+        CCLOG("BagScene onEnter: player OK");
+        initAbilityUI();
     }
-    if (!_player) return;
+    else {
+        CCLOG("BagScene onEnter: _player IS NULL !!!");
+    }
+}
+void BagScene::initAbilityUI()
+{
+    if (!_player) {
+        CCLOG("Player is null in BagScene");
+        return;
+    }
 
-    // 2. ¶¨ÒåÆğÊ¼×ø±ê£¨ÄãĞèÒª¸ù¾İÄãµÄÄÜÁ¦À¸±³¾°Í¼Î»ÖÃµ÷ÕûÕâĞ©ÊıÖµ£©
-    // ¼ÙÉè Ability ÇøÓòÔÚÆÁÄ»ÓÒ²à
-    float startX = _visibleSize.width * 0.4f;
-    float startY = _visibleSize.height * 0.75f;
-    float lineSpacing = 70.0f; // ĞĞ¼ä¾à
+    // 1ï¸âƒ£ æ‰¾ Ability èƒŒæ™¯å›¾ï¼ˆä½  initUI é‡ŒåŠ çš„é‚£ä¸ªï¼‰
+    auto abilityBg = this->getChildByName("AbilityBG");
+    if (!abilityBg) {
+        CCLOG("AbilityBG not found!");
+        return;
+    }
 
-    // 3. Êı¾İ½á¹¹·½±ãÑ­»·´´½¨
+    Vec2 basePos = abilityBg->getPosition();
+    Size bgSize = abilityBg->getContentSize() * abilityBg->getScale();
+
+    float startX = basePos.x - bgSize.width * 0.35f;
+    float startY = basePos.y + bgSize.height * 0.25f;
+    float lineSpacing = 60.0f;
+
     struct AbilityData {
         std::string name;
         int level;
@@ -310,24 +363,29 @@ void BagScene::initAbilityUI() {
     };
 
     std::vector<AbilityData> abilities = {
-        {"(Combat)", _player->combatLevel, _player->combatExp},
-        {"(Farming)", _player->farmingLevel, _player->farmingExp},
-        {"(Fishing)", _player->fishingLevel, _player->fishingExp},
-        {"(Foraging)", _player->foragingLevel, _player->foragingExp}
+        {"Combat",    _player->combatLevel,    _player->combatExp},
+        {"Farming",   _player->farmingLevel,   _player->farmingExp},
+        {"Fishing",   _player->fishingLevel,   _player->fishingExp},
+        {"Foraging",  _player->foragingLevel,  _player->foragingExp}
     };
 
-    // 4. Ñ­»·äÖÈ¾ÎÄ×Ö
     for (int i = 0; i < abilities.size(); ++i) {
-        std::string infoStr = abilities[i].name + ": Lv." + std::to_string(abilities[i].level) +
-            "      (Exp: " + std::to_string(abilities[i].exp) + ")";
+        std::string info =
+            abilities[i].name +
+            "  Lv." + std::to_string(abilities[i].level) +
+            "  Exp:" + std::to_string(abilities[i].exp);
 
-        auto label = Label::createWithSystemFont(infoStr, "Arial", 30);
-        label->setAnchorPoint(Vec2(0, 0.5f)); // ×ó¶ÔÆë
-        label->setPosition(Vec2(startX, startY - (i * lineSpacing)));
-        label->setColor(Color3B::BLACK);
-        label->enableOutline(Color4B::BLACK, 2); // ¼ÓÃè±ß·½±ã¿´Çå
+        auto label = Label::createWithSystemFont(info, "Arial", 28);
 
-        this->addChild(label, 100);
+        if (!label) continue;
+
+        label->setAnchorPoint(Vec2(0, 0.5f));
+        label->setPosition(Vec2(
+            startX,
+            startY - i * lineSpacing
+        ));
+        label->setColor(Color3B::BLACK);          // â‘  é«˜å¯¹æ¯”è‰²
+        this->addChild(label, 1000);
     }
 }
 
@@ -336,59 +394,75 @@ void BagScene::onSacrifice(cocos2d::Ref* sender) {
     InventoryManager* invMgr = InventoryManager::getInstance();
 
     if (invMgr->hasAllDatabaseItems()) {
-        // --- 1. ´´½¨Ê¤Àû±³¾°ÕÚÕÖ (ÉîºÚÉ«°ëÍ¸Ã÷) ---
+        // --- 1. åˆ›å»ºèƒœåˆ©èƒŒæ™¯é®ç½© (æ·±é»‘è‰²åŠé€æ˜) ---
         auto overlay = LayerColor::create(Color4B(0, 0, 0, 220), _visibleSize.width, _visibleSize.height);
         this->addChild(overlay, 999);
 
-        // --- 2. ´´½¨¡°ÓÎÏ·Ê¤Àû¡±ÎÄ×Ö ---
-        // ×¢Òâ£ºÈç¹ûÏÔÊ¾ÖĞÎÄÂÒÂë£¬ÇëÈ·±£×ÖÌåÖ§³ÖÖĞÎÄ²¢½«ÎÄ¼ş±£´æÎª UTF-8 BOM ¸ñÊ½
-        auto winLabel = Label::createWithTTF("GAME VICTORY!", "fonts/Marker Felt.ttf", 100);
-        winLabel->setPosition(Vec2(_visibleSize.width / 2, _visibleSize.height / 2));
-        winLabel->setColor(Color3B(255, 215, 0));
+        // --- 2. åˆ›å»ºâ€œæ¸¸æˆèƒœåˆ©â€æ–‡å­— ---
+        // æ³¨æ„ï¼šå¦‚æœæ˜¾ç¤ºä¸­æ–‡ä¹±ç ï¼Œè¯·ç¡®ä¿å­—ä½“æ”¯æŒä¸­æ–‡å¹¶å°†æ–‡ä»¶ä¿å­˜ä¸º UTF-8 BOM æ ¼å¼
+        auto winLabel = Label::createWithTTF(
+            "GAME VICTORY!",
+            SAFE_TTF,
+            64
+        );
 
-        // Ìí¼ÓÎÄ×ÖÍâ±ß¿òÈÃËü¸üĞÑÄ¿
-        winLabel->enableOutline(Color4B::BLACK, 3);
-        winLabel->setOpacity(0); // ³õÊ¼Í¸Ã÷
-        winLabel->setScale(0.2f); // ³õÊ¼¼«Ğ¡
-        overlay->addChild(winLabel);
+        if (winLabel) {
+            winLabel->setPosition(Vec2(_visibleSize.width / 2, _visibleSize.height / 2));
+            winLabel->setColor(Color3B(255, 215, 0));
+            winLabel->setOpacity(0);
+            winLabel->setScale(0.2f);
+            overlay->addChild(winLabel);
+        }
 
-        // --- 3. ÉèÖÃÎÄ×Ö¶¯»­£º´ÓÖĞĞÄµ¯³ö²¢·Å´ó ---
+        // --- 3. è®¾ç½®æ–‡å­—åŠ¨ç”»ï¼šä»ä¸­å¿ƒå¼¹å‡ºå¹¶æ”¾å¤§ ---
         auto fadeIn = FadeIn::create(0.5f);
-        auto scaleUp = EaseBackOut::create(ScaleTo::create(0.6f, 1.2f)); // ´øÓĞ»Øµ¯Ğ§¹ûµÄ·Å´ó
-        auto spawn = Spawn::create(fadeIn, scaleUp, nullptr); // Í¬Ê±Ö´ĞĞ
+        auto scaleUp = EaseBackOut::create(ScaleTo::create(0.6f, 1.2f)); // å¸¦æœ‰å›å¼¹æ•ˆæœçš„æ”¾å¤§
+        auto spawn = Spawn::create(fadeIn, scaleUp, nullptr); // åŒæ—¶æ‰§è¡Œ
 
-        // ÈÃÎÄ×ÖÉÏÏÂÇáÇáÆ¯¸¡µÄÑ­»·¶¯×÷
+        // è®©æ–‡å­—ä¸Šä¸‹è½»è½»æ¼‚æµ®çš„å¾ªç¯åŠ¨ä½œ
         auto moveUp = MoveBy::create(1.0f, Vec2(0, 20));
         auto moveDown = moveUp->reverse();
         auto floatSeq = Sequence::create(moveUp, moveDown, nullptr);
         auto repeatFloat = RepeatForever::create(floatSeq);
 
-        // --- 4. Ìí¼ÓÅçÈªÑÌ»¨Á£×ÓĞ§¹û ---
+        // --- 4. æ·»åŠ å–·æ³‰çƒŸèŠ±ç²’å­æ•ˆæœ ---
         auto fireworks = ParticleFireworks::create();
         fireworks->setPosition(Vec2(_visibleSize.width / 2, _visibleSize.height / 2));
         overlay->addChild(fireworks);
 
-        // --- 5. Ö´ĞĞĞòÁĞ¶¯×÷£ºÏÔÊ¾ -> µÈ´ı -> ÇĞ»»³¡¾° ---
+        // --- 5. æ‰§è¡Œåºåˆ—åŠ¨ä½œï¼šæ˜¾ç¤º -> ç­‰å¾… -> åˆ‡æ¢åœºæ™¯ ---
         auto delay = DelayTime::create(3.5f);
         auto callback = CallFunc::create([]() {
-            // ÇĞ»»»ØµÇÂ¼Ò³Ãæ
+            // åˆ‡æ¢å›ç™»å½•é¡µé¢
             auto scene = HelloWorldScene::createScene();
             Director::getInstance()->replaceScene(TransitionFade::create(1.2f, scene));
             });
 
         winLabel->runAction(Sequence::create(spawn, delay, callback, nullptr));
-        winLabel->runAction(repeatFloat); // ¶ÀÁ¢ÔËĞĞÆ¯¸¡¶¯×÷
+        winLabel->runAction(repeatFloat); // ç‹¬ç«‹è¿è¡Œæ¼‚æµ®åŠ¨ä½œ
 
     }
     else {
-        // --- Ê§°ÜÌáÊ¾£º¼òµ¥Õğ¶¯²¢ÏÔÊ¾ÌáÊ¾ ---
-        auto hint = Label::createWithTTF("Sacrifice Failed! Need more items.", "fonts/arial.ttf", 36);
-        hint->setPosition(Vec2(_visibleSize.width / 2, 200));
-        hint->setColor(Color3B::RED);
-        this->addChild(hint, 1000);
-        hint->runAction(Sequence::create(FadeIn::create(0.3f), DelayTime::create(1.5f), RemoveSelf::create(), nullptr));
+        // --- å¤±è´¥æç¤ºï¼šç®€å•éœ‡åŠ¨å¹¶æ˜¾ç¤ºæç¤º ---
+        auto hint = Label::createWithTTF(
+            "Sacrifice Failed! Need more items.",
+            SAFE_TTF,
+            36
+        );
 
-        // ÆÁÄ»¶¶¶¯Âß¼­
+        if (hint) {
+            hint->setPosition(Vec2(_visibleSize.width / 2, 200));
+            hint->setColor(Color3B::RED);
+            this->addChild(hint, 1000);
+            hint->runAction(Sequence::create(
+                FadeIn::create(0.3f),
+                DelayTime::create(1.5f),
+                RemoveSelf::create(),
+                nullptr
+            ));
+        }
+
+        // å±å¹•æŠ–åŠ¨é€»è¾‘
         auto shake = Sequence::create(MoveBy::create(0.05f, Vec2(10, 0)), MoveBy::create(0.05f, Vec2(-20, 0)), MoveBy::create(0.05f, Vec2(10, 0)), nullptr);
         this->runAction(shake);
     }

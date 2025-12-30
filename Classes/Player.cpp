@@ -65,6 +65,7 @@ bool Player::initWithSpriteFrameName(const std::string& spriteFrameName)
     {
         return false;
     }
+    scheduleUpdate();
     // ------------------------------------------
     // 在这里添加你角色属性的默认初始化
     // ------------------------------------------
@@ -205,16 +206,28 @@ cocos2d::Animation* Player::createAnimation(const std::string& framePrefix, int 
     return cocos2d::Animation::createWithSpriteFrames(frames, delay);
 }
 
-void Player::start_move(int directionX, int directionY)
+void Player::start_move(float directionX, float directionY)
 {
-    // 1. 确定新的移动方向
-    Direction newDirection = DIR_DOWN; // 默认向下
-    if (directionY > 0) newDirection = DIR_UP;
-    else if (directionY < 0) newDirection = DIR_DOWN;
-    else if (directionX < 0) newDirection = DIR_LEFT;
-    else if (directionX > 0) newDirection = DIR_RIGHT;
+    CCLOG("start_move dx=%.3f dy=%.3f", directionX, directionY);
 
-    // 2. 确定要播放的动作
+    const float dead = 0.2f;
+    Direction newDirection = DIR_DOWN;
+
+    if (directionY > dead) newDirection = DIR_UP;
+    else if (directionY < -dead) newDirection = DIR_DOWN;
+    else if (directionX < -dead) newDirection = DIR_LEFT;
+    else if (directionX > dead) newDirection = DIR_RIGHT;
+
+    const float speed = 200.0f;
+    _currentVelocity.set(directionX * speed,
+        directionY * speed);
+
+    // ★★★★★ 关键：确保 update 在跑 ★★★★★
+    if (!this->isScheduled(CC_SCHEDULE_SELECTOR(Player::update))) {
+        this->scheduleUpdate();
+        CCLOG("Player::update scheduled");
+    }
+
     cocos2d::Action* nextAction = nullptr;
     switch (newDirection) {
     case DIR_UP:    nextAction = _walkAction_up; break;
@@ -223,125 +236,56 @@ void Player::start_move(int directionX, int directionY)
     case DIR_RIGHT: nextAction = _walkAction_right; break;
     }
 
-    // 3. 只有当动作不同时才切换动画
-    if (nextAction != nullptr && nextAction != _currentWalkAction)
-    {
-        const float speed = 100.0f;
-        _currentVelocity.x = directionX * speed;
-        _currentVelocity.y = directionY * speed;
-        // 停止旧动作
-        this->stopActionByTag(WALK_ACTION_TAG);
-
-        // 运行新动作并设置 Tag
+    if (nextAction && nextAction != _currentWalkAction) {
+        stopActionByTag(WALK_ACTION_TAG);
         nextAction->setTag(WALK_ACTION_TAG);
-        this->runAction(nextAction);
+        runAction(nextAction);
         _currentWalkAction = nextAction;
     }
 
-    // 4. 更新玩家的方向属性 (用于 update 移动逻辑)
-    this->direction = newDirection;
-
-    // 5. 确保 update 函数被调度
-    this->scheduleUpdate();
+    direction = newDirection;
 }
 
-void Player::stop_move(int directionX, int directionY)
+
+
+void Player::stop_move(int, int)
 {
-    if (directionX == 0 && directionY == 0)
-    {
-        // 停止动画
-        _currentVelocity = cocos2d::Vec2::ZERO;
-        this->stopActionByTag(WALK_ACTION_TAG);
-        _currentWalkAction = nullptr; // 清除当前动作引用
+    _currentVelocity = Vec2::ZERO;
+    stopActionByTag(WALK_ACTION_TAG);
+    _currentWalkAction = nullptr;
 
-        // 设置为当前方向的第一帧（待机）
-        std::string frameName;
-        switch (this->direction) {
-        case DIR_UP:    frameName = "up_side-0.png"; break;
-        case DIR_DOWN:  frameName = "down_side-0.png"; break;
-        case DIR_LEFT:  frameName = "left_side-0.png"; break;
-        case DIR_RIGHT: frameName = "right_side-0.png"; break;
-        default: frameName = "down_side-0.png"; break;
-        }
-        this->setSpriteFrame(frameName);
-
-        // 停止 update 调度，直到再次移动
-        this->unscheduleUpdate(); // 建议在 GameScene::update 中检查速度是否为零
-    }
+    // 保留 update，让下一次摇杆能立刻走
 }
 
 void Player::update(float dt)
 {
-    // 1. 计算预期速度和位置
-   // 1. 计算预期速度和位置
-    const float speed = 200.0f
-        ;
-    Vec2 velocity = Vec2::ZERO;
+    CCLOG(">>> Player::update running dt=%.4f", dt);
 
-    if
-        (direction == DIR_UP) velocity.y += speed;
-    else if
-        (direction == DIR_DOWN) velocity.y -= speed;
-    else if
-        (direction == DIR_LEFT) velocity.x -= speed;
-    else if
-        (direction == DIR_RIGHT) velocity.x += speed;
+    if (_currentVelocity == Vec2::ZERO) return;
+    if (!_world) return;
 
-    Vec2 currentPos =this->getPosition();
-    Vec2 newPos = currentPos + velocity * dt;
+    Vec2 curPos = getPosition();
+    Vec2 newPos = curPos + _currentVelocity * dt;
 
-    // ======== 核心：在此处插入碰撞检测逻辑 ========
-    if (_world) {
-        // 检查新位置是否可以通行
-        if(_world->isWalkable(newPos)) {
-            // 如果可以通行，直接设置新位置
-            this->setPosition(newPos);
-        }
-        else
-        {
-            // [进阶逻辑]：尝试“滑行” (防止被墙完全卡死)
-            // 尝试只在 X 轴移动
-            Vec2 xOnlyPos = Vec2(newPos.x, currentPos.y);
-            if
-                (_world->isWalkable(xOnlyPos)) {this -> setPosition(xOnlyPos);
-            }
-            else
-            {
-                // 尝试只在 Y 轴移动
-                Vec2 yOnlyPos = Vec2(currentPos.x, newPos.y);
-                if
-                    (_world->isWalkable(yOnlyPos)) {
-                    this
-                        ->setPosition(yOnlyPos);
-                }
-            }
-        }
-    
-        // [可选]：地图边界检查
-        Size mapSize = _world->getMapSizeScaled();
-        float halfW = this->getContentSize().width * 0.5f
-            ;
-        float halfH = this->getContentSize().height * 0.5f
-            ;
-        Vec2 clampedPos =
-            this
-            ->getPosition();
-        clampedPos.x = clampf(clampedPos.x, halfW, mapSize.width - halfW);
-        clampedPos.y = clampf(clampedPos.y, halfH, mapSize.height - halfH);
-        this
-            ->setPosition(clampedPos);
+    // ★★★ 核心修复：直接用 newPos（已经是 map-local） ★★★
+    if (_world->isWalkable(newPos)) {
+        setPosition(newPos);
     }
-    else
-    {
-        // 如果没有关联 _world，则维持原样移动
-        this->setPosition(newPos);
-    }
-    // ============================================
+    else {
+        Vec2 xOnly(newPos.x, curPos.y);
+        Vec2 yOnly(curPos.x, newPos.y);
 
-    if (velocity == Vec2::ZERO && _currentWalkAction == nullptr) {
-        this ->unscheduleUpdate();
+        if (_world->isWalkable(xOnly)) {
+            setPosition(xOnly);
+        }
+        else if (_world->isWalkable(yOnly)) {
+            setPosition(yOnly);
+        }
     }
 }
+
+
+
 
 void Player::farm()
 {

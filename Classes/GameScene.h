@@ -5,6 +5,7 @@
 
 #include "cocos2d.h"
 #include"Player.h"
+#include "Mobile.h"
 #include "ui/CocosGUI.h"
 class DialogueBox;
 class NPC;
@@ -13,15 +14,18 @@ class GameScene : public cocos2d::Scene
 public:
     static cocos2d::Scene* createScene();
     virtual bool init();
-
+    void handleEAction();
+    void handleTAction();
     // implement the "static create()" method manually
     CREATE_FUNC(GameScene);
-
+    void selectHotbarSlot(int index);
     GameWorld* getGameWorld() const { return _gameWorld; }
     Player* getPlayer() const { return _playerSprite; }
     void showFavorabilityGain(const std::string& npcName, int amount);
+    void handlePointerDown(const cocos2d::Vec2& screenPos);
 private:
     // 【修改点 1】：动画精灵
+    Joystick* _joystick = nullptr;
     Player* _playerSprite;
     GameWorld* _gameWorld;
     cocos2d::ui::LoadingBar* _staminaBar;
@@ -30,6 +34,7 @@ private:
     DialogueBox* _dialogueBox = nullptr;
     NPC* _currentTalkingNPC = nullptr;
     cocos2d::EventListenerMouse* _mouseListener = nullptr;
+    cocos2d::Vec2 _joyDir = cocos2d::Vec2::ZERO;
     void initNPCs();  // 初始化 NPC
 
     // ... (保持其它成员变量和函数不变，如 onKeyPressed, update 等)

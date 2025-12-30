@@ -1,5 +1,7 @@
 #include "Hotbar.h"
-
+#include "InventoryManager.h"
+#include "Player.h"
+#include   "GameScene.h" 
 USING_NS_CC;
 
 bool Hotbar::init() {
@@ -10,49 +12,100 @@ bool Hotbar::init() {
 
     setupLayout();
     refresh();
-    // --- 注册监听器 ---
-    auto listener = cocos2d::EventListenerCustom::create("inventory_changed", [this](cocos2d::EventCustom* event) {
-        this->refresh(); // 收到信号就刷新显示
+
+    // 背包变化监听
+    auto listener = EventListenerCustom::create(
+        "inventory_changed",
+        [this](EventCustom*) {
+            this->refresh();
         });
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
+    // ===== 触摸监听（核心）=====
+    auto touchListener = EventListenerTouchOneByOne::create();
+    touchListener->setSwallowTouches(true);
+
+    touchListener->onTouchBegan = [this](Touch* touch, Event*) {
+        Vec2 localPos = this->convertToNodeSpace(touch->getLocation());
+        int index = getSlotIndexByPos(localPos);
+        if (index >= 0) {
+            onSlotTouched(index);
+            return true;
+        }
+        return false;
+        };
+
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+
     return true;
 }
+void Hotbar::setSelectedIndex(int index)
+{
+    _selectedIndex = index;
 
-void Hotbar::setupLayout() {
-    auto visibleSize = Director::getInstance()->getVisibleSize();
+    for (int i = 0; i < _slotBgs.size(); ++i) {
+        _slotBgs[i]->clear();
 
-    // 计算快捷栏整体居中位置
-    float totalWidth = _slotCount * _slotSize + (_slotCount - 1) * _padding;
-    Vec2 startPos = Vec2(-totalWidth / 2, 0); // 以 Hotbar 节点中心为参考
+        // 背景
+        Color4F bgColor = (i == _selectedIndex)
+            ? Color4F(1, 1, 0, 0.4f)   // 选中：黄色
+            : Color4F(0, 0, 0, 0.5f);  // 普通
 
-    for (int i = 0; i < _slotCount; ++i) {
-        Vec2 pos = startPos + Vec2(i * (_slotSize + _padding) + _slotSize / 2, _slotSize / 2);
+        _slotBgs[i]->drawSolidRect(
+            Vec2(-_slotSize / 2, -_slotSize / 2),
+            Vec2(_slotSize / 2, _slotSize / 2),
+            bgColor
+        );
 
-        // 绘制格子底框
-        auto bg = DrawNode::create();
-        // 1. 绘制实心背景
-        bg->drawSolidRect(Vec2(-_slotSize / 2, -_slotSize / 2), Vec2(_slotSize / 2, _slotSize / 2), Color4F(0, 0, 0, 0.5f));
-
-        // 2. 绘制边框 (解决报错的部分)
-        // 先定义一个明确的数组
-        Vec2 vertices[] = {
+        // 边框
+        Vec2 verts[] = {
             Vec2(-_slotSize / 2, -_slotSize / 2),
             Vec2(_slotSize / 2, -_slotSize / 2),
             Vec2(_slotSize / 2, _slotSize / 2),
             Vec2(-_slotSize / 2, _slotSize / 2)
         };
+        _slotBgs[i]->drawPolygon(
+            verts, 4, Color4F(0, 0, 0, 0), 1, Color4F::WHITE
+        );
+    }
+}
+void Hotbar::setupLayout() {
+    float totalWidth = _slotCount * _slotSize + (_slotCount - 1) * _padding;
+    Vec2 startPos = Vec2(-totalWidth / 2, 0);
 
-        // 传递数组名（自动转为指针）和顶点数量（4）
-        bg->drawPolygon(vertices, 4, Color4F(0, 0, 0, 0), 1, Color4F::WHITE);
+    for (int i = 0; i < _slotCount; ++i) {
+        Vec2 pos = startPos + Vec2(
+            i * (_slotSize + _padding) + _slotSize / 2,
+            _slotSize / 2
+        );
+
+        auto bg = DrawNode::create();
+        _slotBgs.push_back(bg);
+        // 背景
+        bg->drawSolidRect(
+            Vec2(-_slotSize / 2, -_slotSize / 2),
+            Vec2(_slotSize / 2, _slotSize / 2),
+            Color4F(0, 0, 0, 0.5f)
+        );
+
+        // 边框
+        Vec2 verts[] = {
+            Vec2(-_slotSize / 2, -_slotSize / 2),
+            Vec2(_slotSize / 2, -_slotSize / 2),
+            Vec2(_slotSize / 2, _slotSize / 2),
+            Vec2(-_slotSize / 2, _slotSize / 2)
+        };
+        bg->drawPolygon(verts, 4, Color4F(0, 0, 0, 0), 1, Color4F::WHITE);
+
+
         bg->setPosition(pos);
         this->addChild(bg, -1);
     }
-}// drawNode->drawRect(Vec2(-_slotSize / 2, -_slotSize / 2), Vec2(_slotSize / 2, _slotSize / 2), Color4F::WHITE);
+}
 
 void Hotbar::refresh() {
     _itemsContainer->removeAllChildren();
 
-    // 获取背包前 10 个数据
     auto items = InventoryManager::getInstance()->getItems();
     float totalWidth = _slotCount * _slotSize + (_slotCount - 1) * _padding;
     Vec2 startPos = Vec2(-totalWidth / 2, 0);
@@ -60,28 +113,63 @@ void Hotbar::refresh() {
     for (int i = 0; i < _slotCount && i < items.size(); ++i) {
         if (!items[i] || items[i]->id == 0) continue;
 
-        Vec2 pos = startPos + Vec2(i * (_slotSize + _padding) + _slotSize / 2, _slotSize / 2);
+        Vec2 pos = startPos + Vec2(
+            i * (_slotSize + _padding) + _slotSize / 2,
+            _slotSize / 2
+        );
 
-        // 创建物品图标
         auto sprite = Sprite::create(items[i]->iconPath);
-        if (sprite) {
-            sprite->setPosition(pos);
-            float targetSize = _slotSize * 0.8f;
-            sprite->setScale(std::min(targetSize / sprite->getContentSize().width, targetSize / sprite->getContentSize().height));
-            _itemsContainer->addChild(sprite);
+        if (!sprite) continue;
 
-            // 数量显示
-            if (items[i]->count > 1) {
-                auto countLabel = Label::createWithSystemFont(std::to_string(items[i]->count), "Arial", 12);
-                countLabel->setAnchorPoint(Vec2(1, 0));
-                countLabel->setPosition(pos + Vec2(_slotSize / 2 - 2, -_slotSize / 2 + 2));
-                _itemsContainer->addChild(countLabel);
-            }
+        sprite->setPosition(pos);
+        float targetSize = _slotSize * 0.8f;
+        sprite->setScale(
+            std::min(
+                targetSize / sprite->getContentSize().width,
+                targetSize / sprite->getContentSize().height
+            )
+        );
+        _itemsContainer->addChild(sprite);
+
+        if (items[i]->count > 1) {
+            auto label = Label::createWithSystemFont(
+                std::to_string(items[i]->count),
+                "Arial",
+                12
+            );
+            label->setAnchorPoint(Vec2(1, 0));
+            label->setPosition(pos + Vec2(_slotSize / 2 - 2, -_slotSize / 2 + 2));
+            _itemsContainer->addChild(label);
         }
     }
 }
 
+int Hotbar::getSlotIndexByPos(const Vec2& localPos) {
+    float totalWidth = _slotCount * _slotSize + (_slotCount - 1) * _padding;
+    float left = -totalWidth / 2;
+    float bottom = 0;
+
+    if (localPos.x < left || localPos.x > left + totalWidth ||
+        localPos.y < bottom || localPos.y > bottom + _slotSize) {
+        return -1;
+    }
+
+    int index = (int)((localPos.x - left) / (_slotSize + _padding));
+    return (index >= 0 && index < _slotCount) ? index : -1;
+}
+
+void Hotbar::onSlotTouched(int index)
+{
+    auto scene = Director::getInstance()->getRunningScene();
+    auto gameScene = dynamic_cast<GameScene*>(scene);
+    if (!gameScene) return;
+
+    gameScene->selectHotbarSlot(index);
+
+    CCLOG("[Hotbar] Touch select slot %d", index);
+}
+
 void Hotbar::onEnter() {
     Node::onEnter();
-    this->refresh(); // 每次进入主场景（或从背包返回）时强制刷新
+    refresh();
 }

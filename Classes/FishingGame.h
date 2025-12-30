@@ -1,38 +1,35 @@
-#pragma once
-#ifndef __FISHING_GAME_NODE_H__
-#define __FISHING_GAME_NODE_H__
-
+ï»¿#pragma once
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 
-class FishingGame : public cocos2d::Node {
+class FishingGame : public cocos2d::Layer
+{
 public:
     CREATE_FUNC(FishingGame);
     virtual bool init() override;
-    void update(float dt) override;
+    virtual void update(float dt) override;
 
-    // µ±µöÓã½áÊøÊ±µÄ»Øµ÷£ºtrue Îª×¥µ½£¬false ÎªÌÓÅÜ
     std::function<void(bool)> onGameOver;
 
 private:
-    cocos2d::Node* _container;       
-    cocos2d::Sprite* _fishBar;
-    cocos2d::Sprite* _fish;
-    cocos2d::ui::LoadingBar* _prog;
+    cocos2d::Node* _container = nullptr;
+    cocos2d::Sprite* _fishBar = nullptr;
+    cocos2d::Sprite* _fish = nullptr;
+    cocos2d::ui::LoadingBar* _prog = nullptr;
 
-    float _barY = 0.0f;
-    float _barVel = 0.0f;
-    float _fishY = 0.0f;
-    float _fishTargetY = 0.0f;
-    float _fishTimer = 0.0f;
-    float _progress = 30.0f; // ³õÊ¼½ø¶È
     bool _isPressing = false;
 
-    // ÎïÀí³£Á¿
-    const float AREA_H = 580.0f;    // µöÓã²Û¸ß¶È
-    const float BAR_H = 110.0f;      // ÂÌÌõ¸ß¶È
-    const float GRAVITY = -300.0f; // ÖØÁ¦
-    const float BUOYANCY = 400.0f; // Êó±ê°´×¡Ê±µÄ¸¡Á¦
+    float _barY = 0;
+    float _barVel = 0;
+    float _fishY = 0;
+    float _fishTargetY = 0;
+    float _fishTimer = 0;
+    float _progress = 30.0f;
+    bool _ending = false;      // æ˜¯å¦å·²è¿›å…¥ç»“æŸæµç¨‹
+    bool _winResult = false;  // æˆåŠŸ or å¤±è´¥
+    // å¸¸é‡
+    static constexpr float BAR_H = 150.0f;
+    static constexpr float AREA_H = 260.0f;
+    static constexpr float GRAVITY = -900.0f;
+    static constexpr float BUOYANCY = 1400.0f;
 };
-
-#endif

@@ -46,7 +46,7 @@ bool GameWorld::init(const std::string&,
         "tilemap.txt",
         "Map.png",
         {
-            { "Spawn",    {13, 45} },
+            { "Spawn",    {20, 33} },
             { "HomeDoor", {32, 25} },
             { "ShopDoor", {53, 27} },
             { "NPC1Door", {20, 33} },
@@ -481,7 +481,6 @@ int GameWorld::debugGetTile(int tx, int ty)
     if (tileId < 0) return false;
     return _map.isWalkable(tileId);
 }*/
-
 bool GameWorld::isWalkable(const cocos2d::Vec2& posInMap)
 {
     float ts = _map.tileWidth * _mapScale;
@@ -491,7 +490,7 @@ bool GameWorld::isWalkable(const cocos2d::Vec2& posInMap)
     int ty = std::floor((posInMap.y + 0.1f) / ts);
 
     // 打印地图实际宽高，看看是不是 txt 没读全
-    // CCLOG("Map Size: %d x %d", _map.width, _map.height);
+    CCLOG("Map Size: %d x %d", _map.width, _map.height);
 
     int tileId = _map.getTile(tx, ty);
 
@@ -504,6 +503,7 @@ bool GameWorld::isWalkable(const cocos2d::Vec2& posInMap)
 
     return _map.isWalkable(tileId);
 }
+
 
 
 void GameWorld::updateCamera()

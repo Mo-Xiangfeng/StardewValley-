@@ -1,4 +1,4 @@
-// ÎÄ¼şÃû: GameScene.cpp (Classes/GameScene.cpp)
+ï»¿// æ–‡ä»¶å: GameScene.cpp (Classes/GameScene.cpp)
 #include "BagScene.h"
 #include "GameScene.h"
 #include "HelloWorldScene.h" 
@@ -18,6 +18,47 @@
 
 USING_NS_CC;
 using namespace cocos2d::ui;
+static Node* createVirtualButton(
+    const std::string& text,
+    const Size& size,
+    const Color4B& color,
+    const std::function<void()>& onClick)
+{
+    auto node = Node::create();
+    node->setContentSize(size);
+
+    // èƒŒæ™¯
+    auto bg = LayerColor::create(color, size.width, size.height);
+    bg->setOpacity(200);
+    node->addChild(bg);
+
+    // å­—æ¯
+    auto label = Label::createWithSystemFont(text, "Arial", 48);
+    label->setColor(Color3B::WHITE);
+    label->setPosition(Vec2(size.width / 2, size.height / 2));
+    node->addChild(label, 1);
+
+    // è§¦æ‘¸ç›‘å¬
+    auto listener = EventListenerTouchOneByOne::create();
+    listener->setSwallowTouches(true);
+
+    listener->onTouchBegan = [node](Touch* touch, Event*) {
+        Vec2 p = touch->getLocation();
+        Rect r = node->getBoundingBox();
+        return r.containsPoint(p);
+        };
+
+    listener->onTouchEnded = [onClick](Touch*, Event*) {
+        if (onClick) onClick();
+        };
+
+    Director::getInstance()->getEventDispatcher()
+        ->addEventListenerWithSceneGraphPriority(listener, node);
+
+    return node;
+}
+
+
 Scene* GameScene::createScene()
 {
     return GameScene::create();
@@ -34,91 +75,123 @@ bool GameScene::init()
 
     auto time = TimeDisplayScene::createScene();
     this->addChild(time, 10);
-
+    Vec2 uiBase(
+        origin.x + visibleSize.width - 80,  // å³è¾¹
+        origin.y + 150                       // ä¸‹è¾¹
+    );
     auto StaminaContainer = Node::create();
-    StaminaContainer->setPosition(Vec2(origin.x + 1750, origin.y + visibleSize.height - 1050)); // ÉèÖÃÕûÌåÎ»ÖÃ
+    StaminaContainer->setPosition(uiBase);
     this->addChild(StaminaContainer, 100);
 
-    // 2. Ìí¼Ó±³¾°Í¼Æ¬
+    // èƒŒæ™¯
     auto barbg = Sprite::create("HP_bar.png");
     barbg->setScale(0.92f);
     StaminaContainer->addChild(barbg);
 
-    // 2. ´´½¨½ø¶ÈÌõ
+    // è¡€æ¡
     auto LoadingBar = ui::LoadingBar::create("GREEN.png");
     LoadingBar->setDirection(ui::LoadingBar::Direction::LEFT);
     LoadingBar->setRotation(-90);
-    // --- µ÷Õû´óĞ¡µÄºËĞÄ´úÂë ---
     LoadingBar->ignoreContentAdaptWithSize(false);
-    // ¼ÙÉèÄãµÄ±³¾°Í¼¿í 200£¬ÄãÏ£Íû½ø¶ÈÌõÉÔÎ¢Õ­Ò»µã£¬±ÈÈç 180
     LoadingBar->setContentSize(Size(165.0f, 25.0f));
-    // -----------------------
-
     LoadingBar->setPercent(100);
     LoadingBar->setColor(Color3B::GREEN);
-
-    // ÉèÖÃÏà¶ÔÓÚ±³¾°Í¼ÖĞĞÄµÄÎ»ÖÃ
-    // Èç¹û±³¾°Í¼ºÜ´ó£¬Vec2(0, 0) »áÈÃ½ø¶ÈÌõÕıºÃ¸ÇÔÚ±³¾°Í¼ÖĞĞÄ
     LoadingBar->setPosition(Vec2(1, -22));
-
     StaminaContainer->addChild(LoadingBar);
-    this->_StaminaBar = LoadingBar; // ¼ÇµÃ¸³Öµ¸ø³ÉÔ±±äÁ¿
 
-
-
-
-
-
-
-
+    this->_StaminaBar = LoadingBar;
     auto staminaContainer = Node::create();
-    staminaContainer->setPosition(Vec2(origin.x + 1850, origin.y + visibleSize.height - 1050)); // ÉèÖÃÕûÌåÎ»ÖÃ
+    staminaContainer->setPosition(uiBase + Vec2(-70, 0)); // ğŸ‘ˆ å·¦ç§»
     this->addChild(staminaContainer, 100);
 
-    // 2. Ìí¼Ó±³¾°Í¼Æ¬
+    // èƒŒæ™¯
     auto barBG = Sprite::create("resistance_bar.png");
     staminaContainer->addChild(barBG);
 
-    // 2. ´´½¨½ø¶ÈÌõ
+    // ä½“åŠ›æ¡
     auto loadingBar = ui::LoadingBar::create("GREEN.png");
     loadingBar->setDirection(ui::LoadingBar::Direction::LEFT);
     loadingBar->setRotation(-90);
-    // --- µ÷Õû´óĞ¡µÄºËĞÄ´úÂë ---
     loadingBar->ignoreContentAdaptWithSize(false);
-    // ¼ÙÉèÄãµÄ±³¾°Í¼¿í 200£¬ÄãÏ£Íû½ø¶ÈÌõÉÔÎ¢Õ­Ò»µã£¬±ÈÈç 180
     loadingBar->setContentSize(Size(160.0f, 25.0f));
-    // -----------------------
-
     loadingBar->setPercent(100);
     loadingBar->setColor(Color3B::GREEN);
-
-    // ÉèÖÃÏà¶ÔÓÚ±³¾°Í¼ÖĞĞÄµÄÎ»ÖÃ
-    // Èç¹û±³¾°Í¼ºÜ´ó£¬Vec2(0, 0) »áÈÃ½ø¶ÈÌõÕıºÃ¸ÇÔÚ±³¾°Í¼ÖĞĞÄ
     loadingBar->setPosition(Vec2(1, -24));
-
     staminaContainer->addChild(loadingBar);
-    this->_staminaBar = loadingBar; // ¼ÇµÃ¸³Öµ¸ø³ÉÔ±±äÁ¿
+
+    this->_staminaBar = loadingBar;
 
 
-    //ÎïÆ·À¸
+
+    //ç‰©å“æ 
     auto hotbar = Hotbar::create();
+    hotbar->setName("Hotbar");
 
-    // ·ÅÖÃÔÚÆÁÄ»µ×²¿ÖĞĞÄ£¬Áô³ö 20 ÏñËØ±ß¾à
-    hotbar->setPosition(Vec2(visibleSize.width / 2, 0));
+    // æ”¾ç½®åœ¨å±å¹•åº•éƒ¨ä¸­å¿ƒï¼Œç•™å‡º 20 åƒç´ è¾¹è·
+    hotbar->setPosition(Vec2(
+        origin.x + visibleSize.width / 2,
+        origin.y + 20
+    ));
+
     this->addChild(hotbar, 99);
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 
-    //½¨Á¢±³°ü¿Õ¼äºÍÎïÆ·³õÊ¼»¯
+    _joystick = Joystick::create();
+    _joystick->setPosition(Vec2(
+        origin.x + visibleSize.width * 0.15f,
+        origin.y + visibleSize.height * 0.25f
+    ));
+    this->addChild(_joystick, 200);
+
+
+#endif
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+
+    Vec2 basePos(
+        origin.x + visibleSize.width * 0.85f,
+        origin.y + visibleSize.height * 0.25f
+    );
+
+    // ===== Tï¼ˆäº¤äº’ï¼‰=====
+    auto btnT = createVirtualButton(
+        "T",
+        Size(110, 110),
+        Color4B(60, 160, 60, 255),
+        [this]() { handleTAction(); }
+    );
+    btnT->setPosition(basePos);
+    btnT->setName("BtnT");
+    this->addChild(btnT, 200);
+
+    // ===== Eï¼ˆèƒŒåŒ…ï¼‰=====
+    auto btnE = createVirtualButton(
+        "E",
+        Size(110, 110),
+        Color4B(60, 90, 180, 255),
+        [this]() { handleEAction(); }
+    );
+
+    // ğŸ‘‰ åªåœ¨ X æ–¹å‘æŒªä¸€ç‚¹
+    btnE->setPosition(basePos + Vec2(-120, 0));  // æ•°å€¼è¶Šå°è¶Šè¿‘
+    btnE->setName("BtnE");
+    this->addChild(btnE, 200);
+
+#endif
+
+
+
+    //å»ºç«‹èƒŒåŒ…ç©ºé—´å’Œç‰©å“åˆå§‹åŒ–
     auto inv = InventoryManager::getInstance();
 
-    // µÚÒ»²½£º³õÊ¼»¯¸ñ×Ó¿Õ¼ä
+    // ç¬¬ä¸€æ­¥ï¼šåˆå§‹åŒ–æ ¼å­ç©ºé—´
     inv->initInventory(20);
 
-    // µÚ¶ş²½£º¼ÓÔØÎïÆ·Ä£°æ¿â
+    // ç¬¬äºŒæ­¥ï¼šåŠ è½½ç‰©å“æ¨¡ç‰ˆåº“
     inv->loadItemDatabase();
 
-    // µÚÈı²½£ºÏÖÔÚÄã¿ÉÒÔ·Ç³£ÇáËÉµØÌí¼ÓÎïÆ·ÁË£¬²»ĞèÒªÔÙĞ´Ò»±éÊôĞÔ
-    inv->addItemByID(1110, 1);  // ¼ÓµöÓã¸Í
+    // ç¬¬ä¸‰æ­¥ï¼šç°åœ¨ä½ å¯ä»¥éå¸¸è½»æ¾åœ°æ·»åŠ ç‰©å“äº†ï¼Œä¸éœ€è¦å†å†™ä¸€éå±æ€§
+    inv->addItemByID(1110, 1);  // åŠ é’“é±¼ç«¿
     inv->addItemByID(1111, 1);
     inv->addItemByID(1112, 1);
     inv->addItemByID(1113, 1);
@@ -136,48 +209,66 @@ bool GameScene::init()
     inv->addItemByID(3125, 1); 
     inv->addItemByID(3126, 1);*/
 
-    // 1. ³õÊ¼»¯µØÍ¼ÊÀ½ç (´Ó HelloWorldScene Ç¨ÒÆ)
+    // 1. åˆå§‹åŒ–åœ°å›¾ä¸–ç•Œ (ä» HelloWorldScene è¿ç§»)
     _gameWorld = GameWorld::create("tilemap.txt", "Map.png");
     this->addChild(_gameWorld);
 
-    // 2. ³õÊ¼»¯Ö÷½Ç
+    // 2. åˆå§‹åŒ–ä¸»è§’
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile("down_side.plist");
     _playerSprite = Player::createWithSpriteFrameName("down_side-0.png");
 
     if (_playerSprite)
     {
-        // ÉèÖÃËõ·ÅÓë³õÊ¼×´Ì¬
+        // è®¾ç½®ç¼©æ”¾ä¸åˆå§‹çŠ¶æ€
         _playerSprite->setScale(4.0f);
         _playerSprite->direction = 0;
 
-        // °ó¶¨ÊÀ½çÒıÓÃ (¹Ø¼ü£ºÎªÁËÈÃ Player ÄÚ²¿µÄ update ÄÜµ÷ÓÃ isWalkable)
+        // ç»‘å®šä¸–ç•Œå¼•ç”¨ (å…³é”®ï¼šä¸ºäº†è®© Player å†…éƒ¨çš„ update èƒ½è°ƒç”¨ isWalkable)
         _playerSprite->setGameWorld(_gameWorld);
 
-        // 3. ½«Ö÷½ÇÌí¼Óµ½µØÍ¼²ã¶ø²»ÊÇ Scene ²ã (ÕâÑùÏà»úÒÆ¶¯Ê±½ÇÉ«²Å»áËæµØÍ¼ÒÆ¶¯)
+        // 3. å°†ä¸»è§’æ·»åŠ åˆ°åœ°å›¾å±‚è€Œä¸æ˜¯ Scene å±‚ (è¿™æ ·ç›¸æœºç§»åŠ¨æ—¶è§’è‰²æ‰ä¼šéšåœ°å›¾ç§»åŠ¨)
         _gameWorld->addChild(_playerSprite, 1000);
         _gameWorld->setPlayer(_playerSprite);
 
-        // 4. ¼ÓÔØ¶¯»­Êı¾İ
+        // 4. åŠ è½½åŠ¨ç”»æ•°æ®
         _playerSprite->createAndRunActionAnimation();
 
-        // 5. ÉèÖÃ³õÊ¼µØÍ¼ºÍ³öÉúµã
+        // 5. è®¾ç½®åˆå§‹åœ°å›¾å’Œå‡ºç”Ÿç‚¹
         _gameWorld->switchMap("Map", "Spawn");
 
-        // 6. ×¢²áÊäÈë¼àÌı
+        // 6. æ³¨å†Œè¾“å…¥ç›‘å¬
         auto listener = EventListenerKeyboard::create();
         listener->onKeyPressed = CC_CALLBACK_2(GameScene::onKeyPressed, this);
         listener->onKeyReleased = CC_CALLBACK_2(GameScene::onKeyReleased, this);
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
         auto mouseListener = EventListenerMouse::create();
         mouseListener->onMouseDown = CC_CALLBACK_1(GameScene::onMouseDown, this);
         _eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
+#endif
+        
+        auto touchListener = EventListenerTouchOneByOne::create();
+        touchListener->setSwallowTouches(true);
+        touchListener->onTouchBegan = [this](Touch* touch, Event*) {
+            Vec2 p = touch->getLocation();
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+            if (_joystick && _joystick->getBoundingBox().containsPoint(p)) {
+                return false; // è®©æ‘‡æ†å¤„ç†
+            }
+#endif
+
+            handlePointerDown(p);
+            return true;
+            };
+
+        _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
         initNPCs();
         _dialogueBox = DialogueBox::create("", "");
         this->addChild(_dialogueBox, 9999);
         _currentTalkingNPC = nullptr;
-        // 7. ¿ªÆôÖ÷Ñ­»·
+        // 7. å¼€å¯ä¸»å¾ªç¯
         scheduleUpdate();
     }
     auto timeManager = TimeManager::getInstance();
@@ -187,7 +278,7 @@ bool GameScene::init()
         auto reviveSystem = ReviveSystem::getInstance();
         if (reviveSystem && !reviveSystem->isReviving())
         {
-            // ÔİÍ£Ê±¼äÁ÷ÊÅ
+            // æš‚åœæ—¶é—´æµé€
             auto timeManager = TimeManager::getInstance();
             if (timeManager) {
                 timeManager->pauseTime();
@@ -197,13 +288,13 @@ bool GameScene::init()
             reviveSystem->triggerRevive(this, "exhaustion", [this]() {
                 CCLOG("[GameScene] Exhaustion revive completed.");
 
-                // »Ö¸´Íæ¼Ò×´Ì¬
+                // æ¢å¤ç©å®¶çŠ¶æ€
                 if (_playerSprite) {
                     _playerSprite->currentHP = _playerSprite->maxHP;
                     _playerSprite->currentStamina = _playerSprite->maxStamina;
                 }
 
-                // »Ö¸´Ê±¼äÁ÷ÊÅ
+                // æ¢å¤æ—¶é—´æµé€
                 auto timeManager = TimeManager::getInstance();
                 if (timeManager) {
                     timeManager->resumeTime();
@@ -212,7 +303,7 @@ bool GameScene::init()
                 });
         }
     });
-    // --- ¹Ø¼üĞŞÕı£º×¢²áÈÕÆÚ±ä¸ü»Øµ÷ ---
+    // --- å…³é”®ä¿®æ­£ï¼šæ³¨å†Œæ—¥æœŸå˜æ›´å›è°ƒ ---
     timeManager->registerDayCallback([this](int y, int s, int d) {
         CCLOG("[GameScene] DayCallback RECEIVED! New Day: %d", d);
         if (this->_gameWorld) {
@@ -228,21 +319,43 @@ bool GameScene::init()
         });
     return true;
 }
+void GameScene::handleEAction()
+{
+    // å¤ç”¨ä½ åŸæ¥ KEY_E çš„é€»è¾‘
+    auto existingBag = this->getChildByName("BagLayerNode");
+    if (!existingBag && _playerSprite && _playerSprite->what_in_hand_now == 0) {
+        auto bag = BagScene::create();
+        bag->setPlayer(this->getPlayer());  
+        this->addChild(bag, 100, "BagLayerNode");
+    }
+    else if (existingBag) {
+        existingBag->removeFromParent();
+    }
+}
 
+void GameScene::handleTAction()
+{
+    // å¤ç”¨ä½ åŸæ¥ T çš„äº¤äº’ï¼ˆprocessMovement é‡Œé‚£æ®µï¼‰
+    if (!_playerSprite) return;
+    auto world = _playerSprite->getGameWorld();
+    if (world) {
+        world->onInteract();
+    }
+}
 void GameScene::initNPCs() {
     auto npcMgr = NPCManager::getInstance();
     npcMgr->init();
 
-    // Ê¾Àı£º´´½¨Ò»¸öÅ©·ò NPC
+    // ç¤ºä¾‹ï¼šåˆ›å»ºä¸€ä¸ªå†œå¤« NPC
     NPC* farmer = npcMgr->createNPC(
         "npc_farmer",           // NPC ID
-        "Lao Wang",                  // ÏÔÊ¾Ãû³Æ
-        "down_side-0.png"       // Ê¹ÓÃ Player µÄ¾«ÁéÖ¡×÷ÎªÁÙÊ±Õ¼Î»·û
+        "Lao Wang",                  // æ˜¾ç¤ºåç§°
+        "down_side-0.png"       // ä½¿ç”¨ Player çš„ç²¾çµå¸§ä½œä¸ºä¸´æ—¶å ä½ç¬¦
     );
 
     if (farmer) {
         farmer->favorability = 20;
-        // ÉèÖÃ¶Ô»°
+        // è®¾ç½®å¯¹è¯
         farmer->dialogues.clear();
         farmer->dialogues.push_back("Remember to water the crops!");
         farmer->dialogues.push_back("Hello!I am Lao Wang.");
@@ -251,9 +364,9 @@ void GameScene::initNPCs() {
         farmer->specialDialogue40 = "You know... I've been farming for 30 years. "
             "I feel like we're becoming real friends now! "
             "Here, take this gift as a token of our friendship.";
-        // ÉèÖÃÈÕ³Ì£º
-        // 6:00-12:00 ÔÚÅ©Ìï (¼ÙÉè×ø±ê 10, 15)
-       // 06:00 - ´Ó NPC1Door£¨×Ô¼º¼ÒÃÅ¿Ú£©³öÀ´
+        // è®¾ç½®æ—¥ç¨‹ï¼š
+        // 6:00-12:00 åœ¨å†œç”° (å‡è®¾åæ ‡ 10, 15)
+       // 06:00 - ä» NPC1Doorï¼ˆè‡ªå·±å®¶é—¨å£ï¼‰å‡ºæ¥
         farmer->addSchedulePoint(6, 20, 33, 1, "Map");
         farmer->addSchedulePoint(7, 16, 13, 2, "Map");
         farmer->addSchedulePoint(10, 30, 16, 0, "Map");
@@ -262,7 +375,7 @@ void GameScene::initNPCs() {
         farmer->addSchedulePoint(20, 20, 33, 1, "Map");
 
 
-        // ³õÊ¼»¯Ê±·ÅÔÚ NPC1Door
+        // åˆå§‹åŒ–æ—¶æ”¾åœ¨ NPC1Door
         npcMgr->addNPCToWorld("npc_farmer", _gameWorld, 20, 33, "Map");
 
         NPC* fisherman = npcMgr->createNPC(
@@ -286,7 +399,7 @@ void GameScene::initNPCs() {
             fisherman->addSchedulePoint(16, 35, 19, 3, "Map");
             fisherman->addSchedulePoint(20, 8, 30, 1, "Map");
 
-            // ³õÊ¼»¯Ê±·ÅÔÚ NPC2Door
+            // åˆå§‹åŒ–æ—¶æ”¾åœ¨ NPC2Door
             npcMgr->addNPCToWorld("npc_fisherman", _gameWorld, 8, 30, "Map");
         }
     }
@@ -300,54 +413,52 @@ void GameScene::onMouseDown(EventMouse* event)
         return;
     }
 
+    Vec2 screenPos = Director::getInstance()->convertToGL(
+        event->getLocationInView()
+    );
 
-    // ===== 1. ×èÖ¹¶¯×÷ÆÚ¼äµÄ½»»¥ =====
-    if (_playerSprite && _playerSprite->_isAction) {
+    handlePointerDown(screenPos);
+}
+
+
+void GameScene::handlePointerDown(const Vec2& screenPos)
+{
+    if (!_gameWorld || !_playerSprite) {
+        CCLOG("handlePointerDown ignored: Game not ready");
         return;
     }
+    if (_playerSprite && _playerSprite->_isAction) return;
 
-    // ===== 2. ×ø±ê×ª»» =====
-    Vec2 clickPos = Director::getInstance()->convertToGL(event->getLocationInView());
-    Vec2 worldPos = _gameWorld->convertToNodeSpace(clickPos);
+    Vec2 worldPos = _gameWorld->convertToNodeSpace(screenPos);
 
-    // ===== 3. ÉÌµêµØÍ¼ÌØÊâ´¦Àí =====
+    // ===== å•†åº—åœ°å›¾ç‰¹æ®Šå¤„ç† =====
     if (_gameWorld && _gameWorld->getCurrentMapId() == "Shop") {
         _gameWorld->handleInteraction(worldPos);
         return;
     }
-    // ===== 4. ¶Ô»°¿òÏÔÊ¾Ê±µÄ´¦Àí£¨¼ÌĞø¶Ô»°£©=====
+
+    // ===== å¯¹è¯æ¡†æ˜¾ç¤ºä¸­ =====
     if (_dialogueBox && _dialogueBox->isVisible()) {
         if (_currentTalkingNPC) {
-            // Ôö¼ÓºÃ¸Ğ¶È
             int oldFavorability = _currentTalkingNPC->getFavorability();
             _currentTalkingNPC->addFavorability(5);
 
             showFavorabilityGain(_currentTalkingNPC->npcName, 5);
 
-            // ¼ì²éÊÇ·ñ´ïµ½ 40
-            bool reachedFriend = (oldFavorability < 40 && _currentTalkingNPC->getFavorability() >= 40);
+            bool reachedFriend =
+                (oldFavorability < 40 && _currentTalkingNPC->getFavorability() >= 40);
 
-            std::string nextDialogue;
-
-            if (reachedFriend && !_currentTalkingNPC->specialDialogue40.empty()) {
-                nextDialogue = _currentTalkingNPC->specialDialogue40;
-                CCLOG("[ÌØÊâ¶Ô»°] %s ´ïµ½ Friend µÈ¼¶£¡", _currentTalkingNPC->npcName.c_str());
-            }
-            else {
-                nextDialogue = _currentTalkingNPC->getNextDialogue();
-            }
+            std::string nextDialogue =
+                (reachedFriend && !_currentTalkingNPC->specialDialogue40.empty())
+                ? _currentTalkingNPC->specialDialogue40
+                : _currentTalkingNPC->getNextDialogue();
 
             _dialogueBox->setText(nextDialogue);
-
-            CCLOG("ÏÔÊ¾ÏÂÒ»¾ä¶Ô»°: %s (ºÃ¸Ğ¶È: %d/%d - %s)",
-                nextDialogue.c_str(),
-                _currentTalkingNPC->getFavorability(),
-                _currentTalkingNPC->maxFavorability,
-                _currentTalkingNPC->getFavorabilityLevel().c_str());
         }
-        return;  // ´¦ÀíÍê¶Ô»°ºóÖ±½Ó·µ»Ø
+        return;
     }
-    // ===== 5. NPC ½»»¥¼ì²â =====
+
+    // ===== NPC äº¤äº’ =====
     auto npcMgr = NPCManager::getInstance();
     for (auto& pair : npcMgr->getAllNPCs()) {
         NPC* npc = pair.second;
@@ -355,117 +466,67 @@ void GameScene::onMouseDown(EventMouse* event)
         if (!npc->isVisible()) continue;
         if (npc->getParent() != _gameWorld) continue;
 
-        Rect npcRect = npc->getBoundingBox();
-
-        if (npcRect.containsPoint(worldPos)) {
+        if (npc->getBoundingBox().containsPoint(worldPos)) {
             float distance = _playerSprite->getPosition().distance(npc->getPosition());
             float interactRadius = 64.0f * _gameWorld->getMapScale();
 
             if (distance <= interactRadius) {
-                // Ö»ÓĞÔÚÇĞ»» NPC Ê±²ÅÖØÖÃ¶Ô»°
                 if (_currentTalkingNPC != npc) {
                     _currentTalkingNPC = npc;
                     npc->resetDialogue();
-                    CCLOG("[NPC] ¿ªÊ¼Óë %s µÄĞÂ¶Ô»°", npc->npcName.c_str());
                 }
 
-                // Ôö¼ÓºÃ¸Ğ¶È
-                int oldFavorability = npc->getFavorability();
                 npc->addFavorability(5);
+                showFavorabilityGain(npc->npcName, 5);
 
-                showFavorabilityGain(_currentTalkingNPC->npcName, 5);
-
-                // ¼ì²éÊÇ·ñ´ïµ½ 40
-                bool reachedFriend = (oldFavorability < 40 && npc->getFavorability() >= 40);
-
-                std::string dialogue;
-
-                if (reachedFriend && !npc->specialDialogue40.empty()) {
-                    dialogue = npc->specialDialogue40;
-                    CCLOG("[ÌØÊâ¶Ô»°] %s ´ïµ½ Friend µÈ¼¶£¡", npc->npcName.c_str());
-                }
-                else {
-                    dialogue = npc->getNextDialogue();
-                }
+                std::string dialogue =
+                    (!_currentTalkingNPC->specialDialogue40.empty() &&
+                        npc->getFavorability() >= 40)
+                    ? npc->specialDialogue40
+                    : npc->getNextDialogue();
 
                 _dialogueBox->init(npc->npcName, dialogue);
                 _dialogueBox->show();
-
-                CCLOG("¿ªÊ¼Óë %s ¶Ô»°: %s (ºÃ¸Ğ¶È: %d/%d - %s)",
-                    npc->npcName.c_str(),
-                    dialogue.c_str(),
-                    npc->getFavorability(),
-                    npc->maxFavorability,
-                    npc->getFavorabilityLevel().c_str());
-            }
-            else {
-                CCLOG("Ì«Ô¶ÁË£¬×ß½üµãÔÙµã»÷");
             }
             return;
         }
     }
 
-    if (event->getMouseButton() == cocos2d::EventMouse::MouseButton::BUTTON_LEFT)
-    {
-        CCLOG("MouseDown Event Address: %p, Button: %d", event, (int)event->getMouseButton());
-        CCLOG("999999999999999999999999999999999");
-        if (_playerSprite && _playerSprite->_isAction) {
-            return;
+    // ===== åœ°å›¾äº¤äº’ / åŠ¨ä½œ =====
+    if (_gameWorld && _gameWorld->getCurrentMapId() == "Home") {
+        auto logic = _gameWorld->getLogic();
+        if (logic) {
+            logic->onInteract(_playerSprite, worldPos);
         }
-        if (_gameWorld && _gameWorld->getCurrentMapId() == "Home")
-        {
-            Vec2 touchPos = Director::getInstance()->convertToGL(event->getLocationInView());
-            Vec2 posInMap = _gameWorld->convertToNodeSpace(touchPos);
-            auto logic = _gameWorld->getLogic();
-            if (logic) {
-                logic->onInteract(_playerSprite, posInMap);
+    }
+    else if (_playerSprite && !_playerSprite->_isAction) {
+        switch (_playerSprite->what_in_hand_now) {
+        case 1112: _playerSprite->farm();  _playerSprite->useStamina(2); break;
+        case 1113: _playerSprite->water(); _playerSprite->useStamina(1); break;
+        case 1110: _playerSprite->cut();   _playerSprite->useStamina(2); break;
+        case 1111: _gameWorld->startFishingMinigame(); _playerSprite->useStamina(5); break;
+        default:
+            if (_playerSprite->what_in_hand_now >= 2200 &&
+                _playerSprite->what_in_hand_now <= 2206) {
+                _playerSprite->eat(10, 20);
+                InventoryManager::getInstance()->removeItemByID(
+                    _playerSprite->what_in_hand_now, 1);
             }
-        }
-        else if (_gameWorld && _gameWorld->getCurrentMapId() == "Shop")
-        {
-            // »ñÈ¡µã»÷Î»ÖÃ²¢×ª»»ÎªµØÍ¼×ø±ê
-            Vec2 touchPos = Director::getInstance()->convertToGL(event->getLocationInView());
-            Vec2 posInMap = _gameWorld->convertToNodeSpace(touchPos);
-
-            // Ö´ĞĞ½»»¥ÅĞ¶¨
-            _gameWorld->handleInteraction(posInMap);
-        }
-        else if (_playerSprite && !_playerSprite->_isAction && _playerSprite->what_in_hand_now == 1112) // ¡¾? ±ÜÃâÖØ¸´¹¥»÷¡¿
-        {
-            _playerSprite->farm();
-            _playerSprite->useStamina(2);
-        }
-        else if (_playerSprite && !_playerSprite->_isAction && _playerSprite->what_in_hand_now == 1113) {
-            _playerSprite->water();
-            _playerSprite->useStamina(1);
-        }
-        else if (_playerSprite && !_playerSprite->_isAction && _playerSprite->what_in_hand_now == 1110) {
-            _playerSprite->cut();
-            _playerSprite->useStamina(2);
-        }
-        else if (_playerSprite && _playerSprite->what_in_hand_now == 1111) {
-            _gameWorld->startFishingMinigame();
-            _playerSprite->useStamina(5);
-
-        }
-        else if (_playerSprite && _playerSprite->what_in_hand_now <= 2206 && _playerSprite->what_in_hand_now >= 2200) {
-            _playerSprite->eat(10, 20);
-            InventoryManager::getInstance()->removeItemByID(_playerSprite->what_in_hand_now, 1);
-            event->stopPropagation();
-        }
-        else {
-            if (_playerSprite && !_playerSprite->_isAction) {
+            else {
                 _playerSprite->onInteract();
             }
+            break;
         }
     }
 }
 
-
 void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
-    // ... ÆäËûÂß¼­ ...
-    if (keyCode == EventKeyboard::KeyCode::KEY_ESCAPE) {
+    // ... å…¶ä»–é€»è¾‘ ...
+    if (keyCode == EventKeyboard::KeyCode::KEY_ESCAPE ||
+        keyCode == EventKeyboard::KeyCode::KEY_BACKSPACE)
+    {
+
         if (_dialogueBox && _dialogueBox->isVisible()) {
             _dialogueBox->hide();
             if (_currentTalkingNPC) {
@@ -474,49 +535,50 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
             _currentTalkingNPC = nullptr;
             return;
         }
+
+
+        auto bag = this->getChildByName("BagLayerNode");
+        if (bag) {
+            bag->removeFromParent();
+            this->resume();   // å¦‚æœä½ æŒ‰æˆ‘ä¹‹å‰å»ºè®® pause è¿‡
+            return;
+        }
     }
-    // 1. ´¦ÀíÊı×Ö¼ü 1-9
+    // 1. å¤„ç†æ•°å­—é”® 1-9
     if (keyCode >= EventKeyboard::KeyCode::KEY_1 && keyCode <= EventKeyboard::KeyCode::KEY_9) {
-        // ¼ÆËãË÷Òı£ºKEY_1 ¶ÔÓ¦ 0£¬KEY_2 ¶ÔÓ¦ 1...
+        // è®¡ç®—ç´¢å¼•ï¼šKEY_1 å¯¹åº” 0ï¼ŒKEY_2 å¯¹åº” 1...
         int idx = (int)keyCode - (int)EventKeyboard::KeyCode::KEY_1;
         _selectedSlotIndex = idx;
 
         auto items = InventoryManager::getInstance()->getItems();
         if (idx < items.size() && items[idx] != nullptr) {
             _playerSprite->what_in_hand_now = items[idx]->id;
-            CCLOG("Ñ¡ÖĞ¿ì½İÀ¸ %d, ÎïÆ·ID: %d", idx + 1, items[idx]->id);
+            CCLOG("é€‰ä¸­å¿«æ·æ  %d, ç‰©å“ID: %d", idx + 1, items[idx]->id);
         }
         else {
             _playerSprite->what_in_hand_now = 0;
-            CCLOG("Ñ¡ÖĞ¿ì½İÀ¸ %d, µ«¸Ã¸ñÎª¿Õ", idx + 1);
+            CCLOG("é€‰ä¸­å¿«æ·æ  %d, ä½†è¯¥æ ¼ä¸ºç©º", idx + 1);
         }
         return;
     }
 
-    // 2. ´¦Àí 0 (¿ÕÊÖ)
+    // 2. å¤„ç† 0 (ç©ºæ‰‹)
     if (keyCode == EventKeyboard::KeyCode::KEY_0) {
         _selectedSlotIndex = -1;
         _playerSprite->what_in_hand_now = 0;
-        CCLOG("ÇĞ»»Îª¿ÕÊÖ");
+        CCLOG("åˆ‡æ¢ä¸ºç©ºæ‰‹");
         return;
     }
 
-    // 3. Ô­ÓĞµÄÆäËû°´¼ü´¦Àí
+    // 3. åŸæœ‰çš„å…¶ä»–æŒ‰é”®å¤„ç†
     switch (keyCode) {
         case EventKeyboard::KeyCode::KEY_W: _isWPressed = true; break;
         case EventKeyboard::KeyCode::KEY_A: _isAPressed = true; break;
         case EventKeyboard::KeyCode::KEY_S: _isSPressed = true; break;
         case EventKeyboard::KeyCode::KEY_D: _isDPressed = true; break;
-        case EventKeyboard::KeyCode::KEY_T: _isTPressed = true; break;
+        case EventKeyboard::KeyCode::KEY_T: _isTPressed = true; handleTAction();  break;
         case EventKeyboard::KeyCode::KEY_E: {
-            auto existingBag = this->getChildByName("BagLayerNode");
-            if (!existingBag && _playerSprite->what_in_hand_now == 0) {
-                auto bag = BagScene::create();
-                this->addChild(bag, 100, "BagLayerNode");
-            }
-            else if(existingBag){
-                existingBag->removeFromParent();
-            }
+            handleEAction();
             break;
         }
         default: break;
@@ -526,7 +588,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 
 void GameScene::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 {
-    // ¡¾ĞŞ¸Äµã¡¿£ºÉèÖÃ°´¼ü×´Ì¬Îª false
+    // ã€ä¿®æ”¹ç‚¹ã€‘ï¼šè®¾ç½®æŒ‰é”®çŠ¶æ€ä¸º false
     switch (keyCode)
     {
     case EventKeyboard::KeyCode::KEY_W:
@@ -563,35 +625,40 @@ void GameScene::processMovement()
     int dirX = 0;
     int dirY = 0;
 
-    // 1. ¼ÆËã·½ÏòÊäÈë
-    if (_isWPressed) dirY += 1; // ÉÏ
-    if (_isSPressed) dirY -= 1; // ÏÂ
-    if (_isAPressed) dirX -= 1; // ×ó
-    if (_isDPressed) dirX += 1; // ÓÒ
+    // 1. è®¡ç®—æ–¹å‘è¾“å…¥
+    if (_isWPressed) dirY += 1; // ä¸Š
+    if (_isSPressed) dirY -= 1; // ä¸‹
+    if (_isAPressed) dirX -= 1; // å·¦
+    if (_isDPressed) dirX += 1; // å³
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    if (_joystick && _joystick->isActive()) {
+        Vec2 d = _joystick->getDirection();
+
+        // æ­»åŒºï¼Œé˜²æ­¢æŠ–åŠ¨
+        const float deadZone = 0.2f;
+
+        if (fabs(d.x) > deadZone)
+            dirX = (d.x > 0) ? 1 : -1;
+        else
+            dirX = 0;
+
+        if (fabs(d.y) > deadZone)
+            dirY = (d.y > 0) ? 1 : -1;
+        else
+            dirY = 0;
+}
+#endif
     if (_isTPressed) {
         auto world = _playerSprite->getGameWorld();
         if (world) {
             world->onInteract();
         }
     }
-    if (dirX != 0 || dirY != 0)
-    {
-        // ÕıÔÚÒÆ¶¯£º¸ù¾İ X/Y µÄ¾ø¶ÔÖµÓÅÏÈ¼¶È·¶¨¶¯»­·½Ïò£¬È»ºó¿ªÊ¼ÒÆ¶¯
-        if (abs(dirY) >= abs(dirX))
-        {
-            // ´¹Ö±·½ÏòÕ¼ÓÅ (¶¯»­Ê¹ÓÃÉÏÏÂ·½Ïò)
-            _playerSprite->start_move(dirX, dirY);
-        }
-        else
-        {
-            // Ë®Æ½·½ÏòÕ¼ÓÅ (¶¯»­Ê¹ÓÃ×óÓÒ·½Ïò)
-            _playerSprite->start_move(dirX, dirY);
-        }
+    if (dirX != 0 || dirY != 0) {
+        _playerSprite->start_move(dirX, dirY);
     }
-    else
-    {
-        // Í£Ö¹ÒÆ¶¯
-        _playerSprite->stop_move(0, 0);
+    else {
+        _playerSprite->stop_move(0, 0);  
     }
 }
 
@@ -599,24 +666,24 @@ void GameScene::processMovement()
 void GameScene::update(float dt)
 {
     
-        // 1. ´¦Àí¼üÅÌÊäÈë£¬Õâ»á´¥·¢ _playerSprite->start_move
+        // 1. å¤„ç†é”®ç›˜è¾“å…¥ï¼Œè¿™ä¼šè§¦å‘ _playerSprite->start_move
         processMovement();
 
-        // 2. ¸üĞÂµØÍ¼Âß¼­ (´«ËÍÕó¼ì²â¡¢Logic ¸üĞÂ)
+        // 2. æ›´æ–°åœ°å›¾é€»è¾‘ (ä¼ é€é˜µæ£€æµ‹ã€Logic æ›´æ–°)
         if (_gameWorld)
         {
             //_gameWorld->update(dt);
 
-            // 3. ¸üĞÂÏà»ú (ÈÃ»­Ãæ¸úËæÖ÷½Ç)
+            // 3. æ›´æ–°ç›¸æœº (è®©ç”»é¢è·Ÿéšä¸»è§’)
             _gameWorld->updateCamera();
         }
 
         if (_playerSprite && _StaminaBar) {
-            // ¼ÆËã°Ù·Ö±È£º(µ±Ç°Öµ / ×î´óÖµ) * 100
+            // è®¡ç®—ç™¾åˆ†æ¯”ï¼š(å½“å‰å€¼ / æœ€å¤§å€¼) * 100
             float percent = (float)_playerSprite->currentHP / _playerSprite->maxHP * 100.0f;
             _StaminaBar->setPercent(percent);
 
-            // ½ø½×£ºÌåÁ¦²»×ãÊ±±äºì
+            // è¿›é˜¶ï¼šä½“åŠ›ä¸è¶³æ—¶å˜çº¢
             if (percent < 25.0f) {
                 _StaminaBar->setColor(Color3B::RED);
             }
@@ -626,11 +693,11 @@ void GameScene::update(float dt)
         }
 
         if (_playerSprite && _staminaBar) {
-            // ¼ÆËã°Ù·Ö±È£º(µ±Ç°Öµ / ×î´óÖµ) * 100
+            // è®¡ç®—ç™¾åˆ†æ¯”ï¼š(å½“å‰å€¼ / æœ€å¤§å€¼) * 100
             float percent = (float)_playerSprite->currentStamina / _playerSprite->maxStamina * 100.0f;
             _staminaBar->setPercent(percent);
 
-            // ½ø½×£ºÌåÁ¦²»×ãÊ±±äºì
+            // è¿›é˜¶ï¼šä½“åŠ›ä¸è¶³æ—¶å˜çº¢
             if (percent < 25.0f) {
                 _staminaBar->setColor(Color3B::RED);
             }
@@ -643,75 +710,96 @@ void GameScene::update(float dt)
 
         if (_selectedSlotIndex != -1) {
             auto items = InventoryManager::getInstance()->getItems();
-            // ¼ì²éµ±Ç°Ñ¡ÖĞµÄ¸ñ×ÓÊÇ·ñ±ä³ÉÁË¿ÕÖ¸Õë£¬»òÕß ID ÊÇ·ñ·¢ÉúÁË±ä»¯
+            // æ£€æŸ¥å½“å‰é€‰ä¸­çš„æ ¼å­æ˜¯å¦å˜æˆäº†ç©ºæŒ‡é’ˆï¼Œæˆ–è€… ID æ˜¯å¦å‘ç”Ÿäº†å˜åŒ–
             if (_selectedSlotIndex < items.size()) {
                 auto currentItem = items[_selectedSlotIndex];
                 if (currentItem == nullptr) {
-                    // ¹Ø¼üµã£ºÈç¹ûÎïÆ·ÓÃÍêÁË£¬×Ô¶¯ÖØÖÃ ID
+                    // å…³é”®ç‚¹ï¼šå¦‚æœç‰©å“ç”¨å®Œäº†ï¼Œè‡ªåŠ¨é‡ç½® ID
                     if (_playerSprite->what_in_hand_now != 0) {
                         _playerSprite->what_in_hand_now = 0;
-                        CCLOG("¼ì²âµ½ÎïÆ·ÒÑÏûºÄ´ù¾¡£¬×Ô¶¯Çå¿ÕÊÖ³Ö¡£");
+                        CCLOG("æ£€æµ‹åˆ°ç‰©å“å·²æ¶ˆè€—æ®†å°½ï¼Œè‡ªåŠ¨æ¸…ç©ºæ‰‹æŒã€‚");
                     }
                 }
                 else {
-                    // È·±£ ID Í¬²½£¨·ÀÖ¹±³°ü¸ñÎ»±»Ìæ»»ÁË£©
+                    // ç¡®ä¿ ID åŒæ­¥ï¼ˆé˜²æ­¢èƒŒåŒ…æ ¼ä½è¢«æ›¿æ¢äº†ï¼‰
                     _playerSprite->what_in_hand_now = currentItem->id;
                 }
             }
         }
 }
+void GameScene::selectHotbarSlot(int index)
+{
+    _selectedSlotIndex = index;
+
+    auto items = InventoryManager::getInstance()->getItems();
+
+    if (index >= 0 && index < items.size() && items[index] != nullptr) {
+        _playerSprite->what_in_hand_now = items[index]->id;
+        CCLOG("é€‰ä¸­å¿«æ·æ  %d, ç‰©å“ID: %d", index + 1, items[index]->id);
+    }
+    else {
+        _playerSprite->what_in_hand_now = 0;
+        CCLOG("é€‰ä¸­å¿«æ·æ  %d, ä¸ºç©º", index + 1);
+    }
+
+    // ğŸ”¥ å¦‚æœä½ çš„ Hotbar æœ‰é«˜äº®æ¥å£ï¼ˆæ¨èï¼‰
+    if (auto hotbar = dynamic_cast<Hotbar*>(this->getChildByName("Hotbar"))) {
+        hotbar->setSelectedIndex(index);
+    }
+}
+
 
 void GameScene::showFavorabilityGain(const std::string& npcName, int amount) {
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    // 1. ´´½¨ÈİÆ÷½Úµã£¨ÓÃÓÚ×éºÏ¶à¸öÔªËØ£©
+    // 1. åˆ›å»ºå®¹å™¨èŠ‚ç‚¹ï¼ˆç”¨äºç»„åˆå¤šä¸ªå…ƒç´ ï¼‰
     auto container = Node::create();
-    this->addChild(container, 10000);  // ×î¸ß²ã¼¶
+    this->addChild(container, 10000);  // æœ€é«˜å±‚çº§
 
-    // 2. ´´½¨±³¾°£¨°ëÍ¸Ã÷ºÚÉ«Ô²½Ç¾ØĞÎ£©
+    // 2. åˆ›å»ºèƒŒæ™¯ï¼ˆåŠé€æ˜é»‘è‰²åœ†è§’çŸ©å½¢ï¼‰
     auto bg = LayerColor::create(Color4B(0, 0, 0, 180), 350, 80);
-    bg->setPosition(Vec2(-175, -40));  // ¾ÓÖĞ
+    bg->setPosition(Vec2(-175, -40));  // å±…ä¸­
     container->addChild(bg);
 
-    //3. ´´½¨°®ĞÄÍ¼±ê£¨Èç¹ûÓĞÍ¼Æ¬×ÊÔ´£©
+    //3. åˆ›å»ºçˆ±å¿ƒå›¾æ ‡ï¼ˆå¦‚æœæœ‰å›¾ç‰‡èµ„æºï¼‰
     auto heart = Sprite::create("item/5113.png");
     heart->setPosition(Vec2(-120, 0));
     container->addChild(heart);
 
 
-    // 4. ´´½¨ÎÄ×Ö£ºNPC Ãû×Ö
+    // 4. åˆ›å»ºæ–‡å­—ï¼šNPC åå­—
     auto nameLabel = Label::createWithSystemFont(npcName, "Arial", 28);
     nameLabel->setColor(Color3B::WHITE);
     nameLabel->setAnchorPoint(Vec2(0, 0.5));
     nameLabel->setPosition(Vec2(-80, 15));
     container->addChild(nameLabel);
 
-    // 5. ´´½¨ÎÄ×Ö£ººÃ¸Ğ¶ÈÔö¼Ó
+    // 5. åˆ›å»ºæ–‡å­—ï¼šå¥½æ„Ÿåº¦å¢åŠ 
     std::string gainText = "+" + std::to_string(amount) + " Favorability";
     auto gainLabel = Label::createWithSystemFont(gainText, "Arial", 24);
-    gainLabel->setColor(Color3B(100, 255, 100));  // ÂÌÉ«
+    gainLabel->setColor(Color3B(100, 255, 100));  // ç»¿è‰²
     gainLabel->setAnchorPoint(Vec2(0, 0.5));
     gainLabel->setPosition(Vec2(-80, -15));
     container->addChild(gainLabel);
 
-    // 6. ÉèÖÃ³õÊ¼Î»ÖÃ£¨ÆÁÄ»ÉÏ·½ÖĞĞÄ£©
+    // 6. è®¾ç½®åˆå§‹ä½ç½®ï¼ˆå±å¹•ä¸Šæ–¹ä¸­å¿ƒï¼‰
     container->setPosition(Vec2(
         origin.x + visibleSize.width / 2,
         origin.y + visibleSize.height - 150
     ));
-    container->setOpacity(0);  // ³õÊ¼Í¸Ã÷
+    container->setOpacity(0);  // åˆå§‹é€æ˜
 
-    // 7. ´´½¨¶¯»­ĞòÁĞ
-    auto fadeIn = FadeIn::create(0.3f);          // µ­Èë
-    auto delay = DelayTime::create(1.5f);        // Í£Áô 1.5 Ãë
-    auto fadeOut = FadeOut::create(0.5f);        // µ­³ö
-    auto remove = RemoveSelf::create();          // ÒÆ³ı½Úµã
+    // 7. åˆ›å»ºåŠ¨ç”»åºåˆ—
+    auto fadeIn = FadeIn::create(0.3f);          // æ·¡å…¥
+    auto delay = DelayTime::create(1.5f);        // åœç•™ 1.5 ç§’
+    auto fadeOut = FadeOut::create(0.5f);        // æ·¡å‡º
+    auto remove = RemoveSelf::create();          // ç§»é™¤èŠ‚ç‚¹
 
     auto sequence = Sequence::create(fadeIn, delay, fadeOut, remove, nullptr);
     container->runAction(sequence);
 
-    // 8. Ìí¼ÓÇáÎ¢µÄÉÏ¸¡¶¯»­
+    // 8. æ·»åŠ è½»å¾®çš„ä¸Šæµ®åŠ¨ç”»
     auto moveUp = MoveBy::create(2.3f, Vec2(0, 30));
     container->runAction(moveUp);
 }

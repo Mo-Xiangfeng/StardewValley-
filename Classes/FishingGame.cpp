@@ -1,146 +1,151 @@
-#include "cocos2d.h"
-#include "FishingGame.h"
-#include "HelloWorldScene.h"
+ï»¿#include "FishingGame.h"
 #include "ui/CocosGUI.h"
 
 USING_NS_CC;
 using namespace cocos2d::ui;
 
-
-bool FishingGame::init() {
-    if (!Node::init()) return false;
+bool FishingGame::init()
+{
+    if (!Layer::init()) return false;
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
 
+    // åˆå§‹çŠ¶æ€
+    _isPressing = false;
+    _barVel = 0;
+    _progress = 30.0f;
 
-    // 1. °ëÍ¸Ã÷ÕÚÕÖ²ã£¨ÈÃ±³¾°µØÍ¼±ä°µ£¬Í»³öĞ¡ÓÎÏ·£©
+    // åŠé€æ˜é®ç½©
     auto mask = LayerColor::create(Color4B(0, 0, 0, 150));
     this->addChild(mask);
 
-    // 2. ÓÎÏ·ÈİÆ÷£¨¾ÓÖĞÏÔÊ¾£©
+    // å®¹å™¨
     _container = Node::create();
     _container->setPosition(visibleSize / 2);
     this->addChild(_container);
 
-    // 3. »æÖÆ UI (±³¾°²Û¡¢ÂÌÌõ¡¢Óã)
+    // èƒŒæ™¯
     auto bg = Sprite::create("fishing_pole.png");
-    bg->setPosition(20, 0);
     bg->setScale(0.7f);
     _container->addChild(bg);
 
+    Size bgSize = bg->getContentSize();
 
+    // ç»¿æ¡
     _fishBar = Sprite::create();
     _fishBar->setTextureRect(Rect(0, 0, 35, BAR_H));
     _fishBar->setColor(Color3B::GREEN);
-    _fishBar->setAnchorPoint(Vec2(0, -0.1));
+    _fishBar->setAnchorPoint(Vec2(0, 0));
 
-    Size bgSize = bg->getContentSize();
     float barPosX = bgSize.width * 0.44f;
-    float initialY = 100.0f;
-    _barY = initialY;
-    _fishY = initialY;
-    _fishBar->setPosition(Vec2(barPosX, _barY));
+    _barY = 100.0f;
+    _fishBar->setPosition(barPosX, _barY);
     bg->addChild(_fishBar);
 
+    // é±¼
+    _fishY = _barY;
     _fish = Sprite::create("fishing.png");
-    _fish->setPosition(Vec2(_fishBar->getPositionX() + 15, _fishY));
     _fish->setScale(0.2f);
+    _fish->setPosition(barPosX + 15, _fishY);
     bg->addChild(_fish);
 
-    // 1. ´´½¨½ø¶ÈÌõ£¬Ö±½Ó¶ÁÈ¡ÄãµÄÍ¼Æ¬
-    _prog = ui::LoadingBar::create("GREEN.png");
-
-
-    _prog->setDirection(ui::LoadingBar::Direction::RIGHT);
+    // è¿›åº¦æ¡
+    _prog = LoadingBar::create("GREEN.png");
+    _prog->setDirection(LoadingBar::Direction::RIGHT);
     _prog->setRotation(90);
-
     _prog->ignoreContentAdaptWithSize(false);
-    _prog->setContentSize(Size(AREA_H, 11));
-    _prog->setPosition(Vec2(bgSize.width * 0.89f, bgSize.height * 0.5f));
+    _prog->setContentSize(Size(AREA_H, 12));
+    _prog->setPercent(_progress);
+    _prog->setPosition(Vec2(bgSize.width * 0.9f, bgSize.height * 0.5f));
     bg->addChild(_prog, 10);
 
-    auto mouseListener = EventListenerMouse::create();
+    // =========================
+    // Android è§¦æ‘¸è¾“å…¥ï¼ˆå”¯ä¸€ï¼‰
+    // =========================
+    auto touchListener = EventListenerTouchOneByOne::create();
+    touchListener->setSwallowTouches(true);
 
-    // ÉèÖÃÍÌÊÉÊÂ¼ş£¬·ÀÖ¹µã»÷´©Í¸µ½ÏÂ²ãµÄ GameScene
-    // ×¢Òâ£ºEventListenerMouse Ã»ÓĞ setSwallowTouches£¬
-    // µ«ÎÒÃÇ¿ÉÒÔÍ¨¹ıÔÚ»Øµ÷ÖĞÍ£Ö¹´«²¥»òÊ¹ÓÃÓÅÏÈ¼¶À´ÊµÏÖ
-
-    mouseListener->onMouseDown = [this](Event* event) {
-        if (static_cast<EventMouse*>(event)->getMouseButton() == EventMouse::MouseButton::BUTTON_LEFT) {
-            _isPressing = true;
-            // Í£Ö¹ÊÂ¼şÏòÏÂ´«µİ
-            event->stopPropagation();
-        }
+    touchListener->onTouchBegan = [this](Touch* touch, Event* event) {
+        _isPressing = true;
+        return true;
         };
 
-    // Í¬ÑùĞŞ¸Ä onMouseUp
-    mouseListener->onMouseUp = [this](Event* event) {
-        if (static_cast<EventMouse*>(event)->getMouseButton() == EventMouse::MouseButton::BUTTON_LEFT) {
-            _isPressing = false;
-            event->stopPropagation();
-        }
+    touchListener->onTouchEnded = [this](Touch* touch, Event* event) {
+        _isPressing = false;
         };
 
-    // Ê¹ÓÃ½Ï¸ßµÄÓÅÏÈ¼¶×¢²á£¨»òÕßÊ¹ÓÃ´øÓĞ SceneGraphPriority µÄ¼àÌı£©
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
+    touchListener->onTouchCancelled = [this](Touch* touch, Event* event) {
+        _isPressing = false;
+        };
+
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 
     this->scheduleUpdate();
     return true;
 }
 
-void FishingGame::update(float dt) {
-    // --- ÎïÀíÂß¼­ ---
+void FishingGame::update(float dt)
+{
+    // ======================
+    // A. ç»¿æ¡ç‰©ç†
+    // ======================
     float accel = _isPressing ? BUOYANCY : GRAVITY;
     _barVel += accel * dt;
     _barY += _barVel * dt;
 
-    // Åö×²±ß½ç´¦Àí
-    if (_barY <= 0) {
+    if (_barY < 0) {
         _barY = 0;
-        _barVel *= -0.4f; // ·´µ¯
+        _barVel = 0;
     }
-    else if (_barY >= AREA_H - BAR_H) {
+    if (_barY > AREA_H - BAR_H) {
         _barY = AREA_H - BAR_H;
         _barVel = 0;
     }
+
     _fishBar->setPositionY(_barY);
 
-    // B. Óã AI£ºÆ½»¬ÒÆ¶¯µ½Ëæ»úÄ¿±ê
+    // ======================
+    // B. é±¼ AI
+    // ======================
     _fishTimer -= dt;
     if (_fishTimer <= 0) {
         _fishTargetY = CCRANDOM_0_1() * (AREA_H - 20);
         _fishTimer = 1.0f + CCRANDOM_0_1() * 1.5f;
     }
-    _fishY = _fishY + (_fishTargetY - _fishY) * 1.0f * dt; // Lerp Æ½»¬²åÖµ
-    _fish->setPositionY(_fishY + 10); // +10 ÊÇÎªÁË¶ÔÆëÖĞĞÄ
 
-    bool isInside = (_fishY >= _barY && _fishY <= _barY + BAR_H);
-    _progress += (isInside ? 20.0f : -10.0f) * dt;
-    _progress = std::max(0.0f, std::min(100.0f, _progress));
-    if (_prog) {
-        _prog->setPercent(_progress);
+    _fishY += (_fishTargetY - _fishY) * 1.2f * dt;
+    _fish->setPositionY(_fishY + 10);
 
-        // ÊÓ¾õ·´À¡£ºÈç¹û½ø¶È¿ìµô¹âÁË£¬±ä¸öÉ«ÌáĞÑÍæ¼Ò
-        if (_progress < 25.0f) {
-            _prog->setColor(Color3B::RED);
-        }
-        else {
-            _prog->setColor(Color3B::WHITE); // »Ö¸´Ô­Í¼ÑÕÉ«£¨ÂÌÉ«£©
-        }
-    }
+    // ======================
+    // C. è¿›åº¦åˆ¤å®š
+    // ======================
+    bool inside = (_fishY >= _barY && _fishY <= _barY + BAR_H);
+    _progress += (inside ? 25.0f : -15.0f) * dt;
+    _progress = clampf(_progress, 0.0f, 100.0f);
 
-    // D. ¼ì²é½áÊø
-    if (_progress >= 100.0f || _progress <= 0.0f) {
-        if (_progress >= 100.0f || _progress <= 0.0f) {
-            // ¡¾¹Ø¼ü¡¿ÏÈÍ£Ö¹µ÷¶È£¬ÔÙÖ´ĞĞ»Øµ÷
-            this->unscheduleUpdate();
+    _prog->setPercent(_progress);
+    _prog->setColor(_progress < 25 ? Color3B::RED : Color3B::WHITE);
 
-            if (onGameOver) {
-                onGameOver(_progress >= 100.0f);
-            }
+    // ======================
+    // D. ç»“æŸåˆ¤å®šï¼ˆå®‰å…¨ç‰ˆï¼‰
+    // ======================
+    if (!_ending && (_progress <= 0 || _progress >= 100)) {
+        _ending = true;
+        _winResult = (_progress >= 100);
 
-            // ×¢Òâ£º»Øµ÷Ö®ºó²»ÒªÔÙĞ´ÈÎºÎ´úÂë£¬ÒòÎª´ËÊ± this ¿ÉÄÜÒÑ±»Ïú»Ù
-            return;
-        }
+        // ç«‹åˆ»åœæ­¢ updateï¼ˆéå¸¸é‡è¦ï¼‰
+        this->unscheduleUpdate();
+
+        // â­ å…³é”®ä¿®å¤ï¼šå»¶è¿Ÿåˆ°ä¸‹ä¸€å¸§å†å¤„ç†ç»“æŸ
+        this->runAction(Sequence::create(
+            DelayTime::create(0),
+            CallFunc::create([this]() {
+                if (onGameOver) {
+                    onGameOver(_winResult);
+                }
+                this->removeFromParent();
+                }),
+            nullptr
+        ));
     }
 }

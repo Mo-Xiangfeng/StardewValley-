@@ -168,6 +168,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClCompile Include="..\Classes\MainMapLogic.cpp" />
     <ClCompile Include="..\Classes\MapPortal.cpp" />
     <ClCompile Include="..\Classes\MineLogic.cpp" />
+    <ClCompile Include="..\Classes\Mobile.cpp" />
     <ClCompile Include="..\Classes\MoneyManager.cpp" />
     <ClCompile Include="..\Classes\Monster.cpp" />
     <ClCompile Include="..\Classes\NPC.cpp" />
@@ -206,6 +207,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClInclude Include="..\Classes\MapLogic.h" />
     <ClInclude Include="..\Classes\MapPortal.h" />
     <ClInclude Include="..\Classes\MineLogic.h" />
+    <ClInclude Include="..\Classes\Mobile.h" />
     <ClInclude Include="..\Classes\MoneyManager.h" />
     <ClInclude Include="..\Classes\Monster.h" />
     <ClInclude Include="..\Classes\NPC.h" />

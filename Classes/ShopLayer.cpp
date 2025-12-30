@@ -199,14 +199,14 @@ void ShopLayer::createShopItem(int cropType, Vec2 position) {
     float iconFontSize = itemHeight * 0.45f;
     std::string icon;
     switch (cropType) {
-        case 1100: icon = "[P]"; break;
-        case 1101/*POTATO*/: icon = "[PT]"; break;
-        case 1102/*CAULIFLOWER*/: icon = "[C]"; break;
-        case 1103/*TOMATO*/: icon = "[T]"; break;
-        case 1104/*CORN*/: icon = "[CR]"; break;
-        case 1105/*PUMPKIN*/: icon = "[PK]"; break;
-        case 1106/*WHEAT*/: icon = "[W]"; break;
-        default: icon = "[?]"; break;
+    case 1100: icon = "[P]"; break;
+    case 1101/*POTATO*/: icon = "[PT]"; break;
+    case 1102/*CAULIFLOWER*/: icon = "[C]"; break;
+    case 1103/*TOMATO*/: icon = "[T]"; break;
+    case 1104/*CORN*/: icon = "[CR]"; break;
+    case 1105/*PUMPKIN*/: icon = "[PK]"; break;
+    case 1106/*WHEAT*/: icon = "[W]"; break;
+    default: icon = "[?]"; break;
     }
 
     auto seedIcon = Label::createWithSystemFont(icon, "Arial", iconFontSize);

@@ -47,7 +47,7 @@ public:
     // 行为方法
     void eat(int hpRestore, int staminaRestore);
     void takeDamage(int damage);
-    void start_move(int directionX, int directionY);
+    void start_move(float directionX, float directionY);
     void stop_move(int directionX, int directionY);
     virtual void update(float dt) override;
     cocos2d::Action* _walkAction_down = nullptr;
